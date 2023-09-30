@@ -9,21 +9,59 @@
 /* Begin PBXBuildFile section */
 		210821202AC85E5D00A999AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108211F2AC85E5D00A999AC /* AppDelegate.swift */; };
 		210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821212AC85E5D00A999AC /* SceneDelegate.swift */; };
-		210821242AC85E5D00A999AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821232AC85E5D00A999AC /* ViewController.swift */; };
-		210821272AC85E5D00A999AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210821252AC85E5D00A999AC /* Main.storyboard */; };
+		210821242AC85E5D00A999AC /* NewsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821232AC85E5D00A999AC /* NewsSearchViewController.swift */; };
 		210821292AC85E5E00A999AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210821282AC85E5E00A999AC /* Assets.xcassets */; };
 		2108212C2AC85E5E00A999AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2108212A2AC85E5E00A999AC /* LaunchScreen.storyboard */; };
+		210821342AC85E9300A999AC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 210821332AC85E9300A999AC /* .gitignore */; };
+		210821362AC85EA500A999AC /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821352AC85EA500A999AC /* APIKey.swift */; };
+		210821382AC85FFF00A999AC /* NewsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */; };
+		2108213E2AC862EF00A999AC /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108213D2AC862EF00A999AC /* TabbarController.swift */; };
+		210821402AC8633A00A999AC /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108213F2AC8633A00A999AC /* JournalViewController.swift */; };
+		210821432AC8636500A999AC /* JournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821422AC8636500A999AC /* JournalViewModel.swift */; };
+		2108214C2AC864AF00A999AC /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108214B2AC864AF00A999AC /* Frame.swift */; };
+		2108214E2AC864C900A999AC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108214D2AC864C900A999AC /* Color.swift */; };
+		210821512AC8652300A999AC /* APIStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821502AC8652300A999AC /* APIStruct.swift */; };
+		210821532AC8653300A999AC /* RealmStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821522AC8653300A999AC /* RealmStruct.swift */; };
+		210821562AC8654B00A999AC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 210821552AC8654B00A999AC /* Alamofire */; };
+		210821592AC8655F00A999AC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 210821582AC8655F00A999AC /* SnapKit */; };
+		2108215C2AC8656F00A999AC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2108215B2AC8656F00A999AC /* Realm */; };
+		2108215E2AC8656F00A999AC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2108215D2AC8656F00A999AC /* RealmSwift */; };
+		210821602AC869B400A999AC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108215F2AC869B400A999AC /* Network.swift */; };
+		210821622AC869B900A999AC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821612AC869B900A999AC /* Router.swift */; };
+		210821642AC869F300A999AC /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821632AC869F300A999AC /* Repository.swift */; };
+		210821672AC86AA600A999AC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821662AC86AA600A999AC /* BaseViewController.swift */; };
+		210821692AC86ACD00A999AC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821682AC86ACD00A999AC /* WebViewController.swift */; };
+		2108216B2AC86AD700A999AC /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108216A2AC86AD700A999AC /* WebViewModel.swift */; };
+		2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108216D2AC86AF200A999AC /* MemoViewController.swift */; };
+		210821712AC86BA100A999AC /* MemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821702AC86BA100A999AC /* MemoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2108211C2AC85E5D00A999AC /* NewsJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2108211F2AC85E5D00A999AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		210821212AC85E5D00A999AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		210821232AC85E5D00A999AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		210821262AC85E5D00A999AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		210821232AC85E5D00A999AC /* NewsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchViewController.swift; sourceTree = "<group>"; };
 		210821282AC85E5E00A999AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2108212B2AC85E5E00A999AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2108212D2AC85E5E00A999AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		210821332AC85E9300A999AC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		210821352AC85EA500A999AC /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchViewModel.swift; sourceTree = "<group>"; };
+		2108213D2AC862EF00A999AC /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		2108213F2AC8633A00A999AC /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
+		210821422AC8636500A999AC /* JournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewModel.swift; sourceTree = "<group>"; };
+		2108214B2AC864AF00A999AC /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
+		2108214D2AC864C900A999AC /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		210821502AC8652300A999AC /* APIStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStruct.swift; sourceTree = "<group>"; };
+		210821522AC8653300A999AC /* RealmStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStruct.swift; sourceTree = "<group>"; };
+		2108215F2AC869B400A999AC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		210821612AC869B900A999AC /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		210821632AC869F300A999AC /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		210821662AC86AA600A999AC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		210821682AC86ACD00A999AC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		2108216A2AC86AD700A999AC /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		2108216D2AC86AF200A999AC /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
+		210821702AC86BA100A999AC /* MemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +69,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2108215E2AC8656F00A999AC /* RealmSwift in Frameworks */,
+				2108215C2AC8656F00A999AC /* Realm in Frameworks */,
+				210821562AC8654B00A999AC /* Alamofire in Frameworks */,
+				210821592AC8655F00A999AC /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +100,150 @@
 			children = (
 				2108211F2AC85E5D00A999AC /* AppDelegate.swift */,
 				210821212AC85E5D00A999AC /* SceneDelegate.swift */,
-				210821232AC85E5D00A999AC /* ViewController.swift */,
-				210821252AC85E5D00A999AC /* Main.storyboard */,
+				210821352AC85EA500A999AC /* APIKey.swift */,
+				2108213A2AC8602600A999AC /* Setup */,
+				210821452AC8639900A999AC /* Manager */,
+				2108214F2AC8650200A999AC /* Model */,
+				210821652AC86A8D00A999AC /* View */,
+				2108213C2AC862E300A999AC /* Scenes */,
 				210821282AC85E5E00A999AC /* Assets.xcassets */,
 				2108212A2AC85E5E00A999AC /* LaunchScreen.storyboard */,
 				2108212D2AC85E5E00A999AC /* Info.plist */,
+				210821332AC85E9300A999AC /* .gitignore */,
 			);
 			path = NewsJournal;
+			sourceTree = "<group>";
+		};
+		210821392AC8601600A999AC /* NewsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */,
+				210821232AC85E5D00A999AC /* NewsSearchViewController.swift */,
+			);
+			path = NewsSearch;
+			sourceTree = "<group>";
+		};
+		2108213A2AC8602600A999AC /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				210821442AC8638700A999AC /* Utility */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		2108213B2AC862CA00A999AC /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				210821422AC8636500A999AC /* JournalViewModel.swift */,
+				2108213F2AC8633A00A999AC /* JournalViewController.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		2108213C2AC862E300A999AC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				210821412AC8635500A999AC /* Tabbar */,
+				210821392AC8601600A999AC /* NewsSearch */,
+				2108213B2AC862CA00A999AC /* Journal */,
+				2108216C2AC86ADB00A999AC /* Web */,
+				2108216F2AC86AF900A999AC /* Memo */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		210821412AC8635500A999AC /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				2108213D2AC862EF00A999AC /* TabbarController.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		210821442AC8638700A999AC /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2108214B2AC864AF00A999AC /* Frame.swift */,
+				2108214D2AC864C900A999AC /* Color.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		210821452AC8639900A999AC /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				210821472AC8641500A999AC /* Realm */,
+				210821462AC863A300A999AC /* Router */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		210821462AC863A300A999AC /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				210821612AC869B900A999AC /* Router.swift */,
+				2108215F2AC869B400A999AC /* Network.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		210821472AC8641500A999AC /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				210821632AC869F300A999AC /* Repository.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		210821492AC8646F00A999AC /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				210821662AC86AA600A999AC /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		2108214A2AC8647600A999AC /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		2108214F2AC8650200A999AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				210821502AC8652300A999AC /* APIStruct.swift */,
+				210821522AC8653300A999AC /* RealmStruct.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		210821652AC86A8D00A999AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				210821492AC8646F00A999AC /* Base */,
+				2108214A2AC8647600A999AC /* Custom */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2108216C2AC86ADB00A999AC /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				2108216A2AC86AD700A999AC /* WebViewModel.swift */,
+				210821682AC86ACD00A999AC /* WebViewController.swift */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		2108216F2AC86AF900A999AC /* Memo */ = {
+			isa = PBXGroup;
+			children = (
+				210821702AC86BA100A999AC /* MemoViewModel.swift */,
+				2108216D2AC86AF200A999AC /* MemoViewController.swift */,
+			);
+			path = Memo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +262,12 @@
 			dependencies = (
 			);
 			name = NewsJournal;
+			packageProductDependencies = (
+				210821552AC8654B00A999AC /* Alamofire */,
+				210821582AC8655F00A999AC /* SnapKit */,
+				2108215B2AC8656F00A999AC /* Realm */,
+				2108215D2AC8656F00A999AC /* RealmSwift */,
+			);
 			productName = NewsJournal;
 			productReference = 2108211C2AC85E5D00A999AC /* NewsJournal.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +296,11 @@
 				Base,
 			);
 			mainGroup = 210821132AC85E5D00A999AC;
+			packageReferences = (
+				210821542AC8654B00A999AC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				210821572AC8655F00A999AC /* XCRemoteSwiftPackageReference "SnapKit" */,
+				2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 2108211D2AC85E5D00A999AC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +315,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210821342AC85E9300A999AC /* .gitignore in Resources */,
 				2108212C2AC85E5E00A999AC /* LaunchScreen.storyboard in Resources */,
 				210821292AC85E5E00A999AC /* Assets.xcassets in Resources */,
-				210821272AC85E5D00A999AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +328,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				210821242AC85E5D00A999AC /* ViewController.swift in Sources */,
+				210821602AC869B400A999AC /* Network.swift in Sources */,
+				2108216B2AC86AD700A999AC /* WebViewModel.swift in Sources */,
+				2108214C2AC864AF00A999AC /* Frame.swift in Sources */,
+				210821642AC869F300A999AC /* Repository.swift in Sources */,
+				210821242AC85E5D00A999AC /* NewsSearchViewController.swift in Sources */,
+				210821512AC8652300A999AC /* APIStruct.swift in Sources */,
+				210821432AC8636500A999AC /* JournalViewModel.swift in Sources */,
+				2108214E2AC864C900A999AC /* Color.swift in Sources */,
+				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
+				2108213E2AC862EF00A999AC /* TabbarController.swift in Sources */,
+				210821532AC8653300A999AC /* RealmStruct.swift in Sources */,
 				210821202AC85E5D00A999AC /* AppDelegate.swift in Sources */,
+				210821712AC86BA100A999AC /* MemoViewModel.swift in Sources */,
+				210821382AC85FFF00A999AC /* NewsSearchViewModel.swift in Sources */,
+				210821622AC869B900A999AC /* Router.swift in Sources */,
+				210821692AC86ACD00A999AC /* WebViewController.swift in Sources */,
+				210821362AC85EA500A999AC /* APIKey.swift in Sources */,
+				210821672AC86AA600A999AC /* BaseViewController.swift in Sources */,
 				210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */,
+				210821402AC8633A00A999AC /* JournalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		210821252AC85E5D00A999AC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				210821262AC85E5D00A999AC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2108212A2AC85E5E00A999AC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -291,9 +490,9 @@
 				INFOPLIST_FILE = NewsJournal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,9 +500,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.phillyh.NewsJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -318,9 +520,9 @@
 				INFOPLIST_FILE = NewsJournal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,9 +530,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.phillyh.NewsJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -356,6 +561,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		210821542AC8654B00A999AC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		210821572AC8655F00A999AC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.42.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		210821552AC8654B00A999AC /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 210821542AC8654B00A999AC /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		210821582AC8655F00A999AC /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 210821572AC8655F00A999AC /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		2108215B2AC8656F00A999AC /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		2108215D2AC8656F00A999AC /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 210821142AC85E5D00A999AC /* Project object */;
 }
