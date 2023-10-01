@@ -34,6 +34,9 @@
 		2108216B2AC86AD700A999AC /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108216A2AC86AD700A999AC /* WebViewModel.swift */; };
 		2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108216D2AC86AF200A999AC /* MemoViewController.swift */; };
 		210821712AC86BA100A999AC /* MemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821702AC86BA100A999AC /* MemoViewModel.swift */; };
+		210821742AC86D5700A999AC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821732AC86D5700A999AC /* UserDefaultsManager.swift */; };
+		210821772AC86D7E00A999AC /* Extension+NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821762AC86D7E00A999AC /* Extension+NotificationName.swift */; };
+		210821792AC8725700A999AC /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821782AC8725700A999AC /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		2108216A2AC86AD700A999AC /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		2108216D2AC86AF200A999AC /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		210821702AC86BA100A999AC /* MemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewModel.swift; sourceTree = "<group>"; };
+		210821732AC86D5700A999AC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		210821762AC86D7E00A999AC /* Extension+NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NotificationName.swift"; sourceTree = "<group>"; };
+		210821782AC8725700A999AC /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				210821442AC8638700A999AC /* Utility */,
+				210821752AC86D6A00A999AC /* NotificationCenter */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -172,6 +179,7 @@
 		210821452AC8639900A999AC /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				210821722AC86D4200A999AC /* UserDefaults */,
 				210821472AC8641500A999AC /* Realm */,
 				210821462AC863A300A999AC /* Router */,
 			);
@@ -215,6 +223,7 @@
 			children = (
 				210821502AC8652300A999AC /* APIStruct.swift */,
 				210821522AC8653300A999AC /* RealmStruct.swift */,
+				210821782AC8725700A999AC /* Observable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -244,6 +253,22 @@
 				2108216D2AC86AF200A999AC /* MemoViewController.swift */,
 			);
 			path = Memo;
+			sourceTree = "<group>";
+		};
+		210821722AC86D4200A999AC /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				210821732AC86D5700A999AC /* UserDefaultsManager.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		210821752AC86D6A00A999AC /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				210821762AC86D7E00A999AC /* Extension+NotificationName.swift */,
+			);
+			path = NotificationCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,6 +359,7 @@
 				210821642AC869F300A999AC /* Repository.swift in Sources */,
 				210821242AC85E5D00A999AC /* NewsSearchViewController.swift in Sources */,
 				210821512AC8652300A999AC /* APIStruct.swift in Sources */,
+				210821772AC86D7E00A999AC /* Extension+NotificationName.swift in Sources */,
 				210821432AC8636500A999AC /* JournalViewModel.swift in Sources */,
 				2108214E2AC864C900A999AC /* Color.swift in Sources */,
 				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
@@ -345,9 +371,11 @@
 				210821622AC869B900A999AC /* Router.swift in Sources */,
 				210821692AC86ACD00A999AC /* WebViewController.swift in Sources */,
 				210821362AC85EA500A999AC /* APIKey.swift in Sources */,
+				210821742AC86D5700A999AC /* UserDefaultsManager.swift in Sources */,
 				210821672AC86AA600A999AC /* BaseViewController.swift in Sources */,
 				210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */,
 				210821402AC8633A00A999AC /* JournalViewController.swift in Sources */,
+				210821792AC8725700A999AC /* Observable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
