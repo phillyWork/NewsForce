@@ -37,6 +37,7 @@
 		210821742AC86D5700A999AC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821732AC86D5700A999AC /* UserDefaultsManager.swift */; };
 		210821772AC86D7E00A999AC /* Extension+NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821762AC86D7E00A999AC /* Extension+NotificationName.swift */; };
 		210821792AC8725700A999AC /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821782AC8725700A999AC /* Observable.swift */; };
+		213AAC7B2AC952BE001BF9AC /* Enum+ViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC7A2AC952BE001BF9AC /* Enum+ViewControllerType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		210821732AC86D5700A999AC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		210821762AC86D7E00A999AC /* Extension+NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NotificationName.swift"; sourceTree = "<group>"; };
 		210821782AC8725700A999AC /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		213AAC7A2AC952BE001BF9AC /* Enum+ViewControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+ViewControllerType.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		210821412AC8635500A999AC /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				213AAC7A2AC952BE001BF9AC /* Enum+ViewControllerType.swift */,
 				2108213D2AC862EF00A999AC /* TabbarController.swift */,
 			);
 			path = Tabbar;
@@ -362,6 +365,7 @@
 				210821772AC86D7E00A999AC /* Extension+NotificationName.swift in Sources */,
 				210821432AC8636500A999AC /* JournalViewModel.swift in Sources */,
 				2108214E2AC864C900A999AC /* Color.swift in Sources */,
+				213AAC7B2AC952BE001BF9AC /* Enum+ViewControllerType.swift in Sources */,
 				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
 				2108213E2AC862EF00A999AC /* TabbarController.swift in Sources */,
 				210821532AC8653300A999AC /* RealmStruct.swift in Sources */,
