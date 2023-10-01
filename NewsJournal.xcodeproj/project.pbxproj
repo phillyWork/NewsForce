@@ -47,6 +47,7 @@
 		213AAC8F2AC9AABC001BF9AC /* PDFDocumentCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC8E2AC9AABC001BF9AC /* PDFDocumentCreator.swift */; };
 		213AAC912AC9AB03001BF9AC /* PDFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC902AC9AB03001BF9AC /* PDFViewModel.swift */; };
 		213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */; };
+		213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		213AAC8E2AC9AABC001BF9AC /* PDFDocumentCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocumentCreator.swift; sourceTree = "<group>"; };
 		213AAC902AC9AB03001BF9AC /* PDFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewModel.swift; sourceTree = "<group>"; };
 		213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+LPError.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 		210821392AC8601600A999AC /* NewsSearch */ = {
 			isa = PBXGroup;
 			children = (
+				213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */,
 				210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */,
 				210821232AC85E5D00A999AC /* NewsSearchViewController.swift */,
 			);
@@ -440,6 +443,7 @@
 				210821382AC85FFF00A999AC /* NewsSearchViewModel.swift in Sources */,
 				210821622AC869B900A999AC /* Router.swift in Sources */,
 				210821692AC86ACD00A999AC /* WebViewController.swift in Sources */,
+				213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */,
 				210821362AC85EA500A999AC /* APIKey.swift in Sources */,
 				210821742AC86D5700A999AC /* UserDefaultsManager.swift in Sources */,
 				210821672AC86AA600A999AC /* BaseViewController.swift in Sources */,
