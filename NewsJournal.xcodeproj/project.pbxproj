@@ -15,7 +15,7 @@
 		210821342AC85E9300A999AC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 210821332AC85E9300A999AC /* .gitignore */; };
 		210821362AC85EA500A999AC /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821352AC85EA500A999AC /* APIKey.swift */; };
 		210821382AC85FFF00A999AC /* NewsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */; };
-		2108213E2AC862EF00A999AC /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108213D2AC862EF00A999AC /* TabbarController.swift */; };
+		2108213E2AC862EF00A999AC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108213D2AC862EF00A999AC /* TabBarController.swift */; };
 		210821402AC8633A00A999AC /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108213F2AC8633A00A999AC /* JournalViewController.swift */; };
 		210821432AC8636500A999AC /* JournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821422AC8636500A999AC /* JournalViewModel.swift */; };
 		2108214C2AC864AF00A999AC /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108214B2AC864AF00A999AC /* Frame.swift */; };
@@ -38,6 +38,15 @@
 		210821772AC86D7E00A999AC /* Extension+NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821762AC86D7E00A999AC /* Extension+NotificationName.swift */; };
 		210821792AC8725700A999AC /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821782AC8725700A999AC /* Observable.swift */; };
 		213AAC7B2AC952BE001BF9AC /* Enum+ViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC7A2AC952BE001BF9AC /* Enum+ViewControllerType.swift */; };
+		213AAC7D2AC95F6D001BF9AC /* CustomTagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC7C2AC95F6D001BF9AC /* CustomTagButton.swift */; };
+		213AAC7F2AC95FEA001BF9AC /* Enum+TagType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC7E2AC95FEA001BF9AC /* Enum+TagType.swift */; };
+		213AAC822AC960C7001BF9AC /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC812AC960C7001BF9AC /* Font.swift */; };
+		213AAC842AC962E5001BF9AC /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC832AC962E5001BF9AC /* CustomSearchBar.swift */; };
+		213AAC8A2AC9A11A001BF9AC /* CustomBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC892AC9A11A001BF9AC /* CustomBarButtonItem.swift */; };
+		213AAC8C2AC9A485001BF9AC /* Enum+BarButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC8B2AC9A485001BF9AC /* Enum+BarButtonType.swift */; };
+		213AAC8F2AC9AABC001BF9AC /* PDFDocumentCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC8E2AC9AABC001BF9AC /* PDFDocumentCreator.swift */; };
+		213AAC912AC9AB03001BF9AC /* PDFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC902AC9AB03001BF9AC /* PDFViewModel.swift */; };
+		213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +60,7 @@
 		210821332AC85E9300A999AC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		210821352AC85EA500A999AC /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchViewModel.swift; sourceTree = "<group>"; };
-		2108213D2AC862EF00A999AC /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		2108213D2AC862EF00A999AC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2108213F2AC8633A00A999AC /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		210821422AC8636500A999AC /* JournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewModel.swift; sourceTree = "<group>"; };
 		2108214B2AC864AF00A999AC /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
@@ -70,6 +79,15 @@
 		210821762AC86D7E00A999AC /* Extension+NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NotificationName.swift"; sourceTree = "<group>"; };
 		210821782AC8725700A999AC /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		213AAC7A2AC952BE001BF9AC /* Enum+ViewControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+ViewControllerType.swift"; sourceTree = "<group>"; };
+		213AAC7C2AC95F6D001BF9AC /* CustomTagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTagButton.swift; sourceTree = "<group>"; };
+		213AAC7E2AC95FEA001BF9AC /* Enum+TagType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+TagType.swift"; sourceTree = "<group>"; };
+		213AAC812AC960C7001BF9AC /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		213AAC832AC962E5001BF9AC /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		213AAC892AC9A11A001BF9AC /* CustomBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBarButtonItem.swift; sourceTree = "<group>"; };
+		213AAC8B2AC9A485001BF9AC /* Enum+BarButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+BarButtonType.swift"; sourceTree = "<group>"; };
+		213AAC8E2AC9AABC001BF9AC /* PDFDocumentCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocumentCreator.swift; sourceTree = "<group>"; };
+		213AAC902AC9AB03001BF9AC /* PDFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewModel.swift; sourceTree = "<group>"; };
+		213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +173,7 @@
 				210821412AC8635500A999AC /* Tabbar */,
 				210821392AC8601600A999AC /* NewsSearch */,
 				2108213B2AC862CA00A999AC /* Journal */,
+				213AAC8D2AC9AAA0001BF9AC /* PDF */,
 				2108216C2AC86ADB00A999AC /* Web */,
 				2108216F2AC86AF900A999AC /* Memo */,
 			);
@@ -165,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				213AAC7A2AC952BE001BF9AC /* Enum+ViewControllerType.swift */,
-				2108213D2AC862EF00A999AC /* TabbarController.swift */,
+				2108213D2AC862EF00A999AC /* TabBarController.swift */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -175,6 +194,7 @@
 			children = (
 				2108214B2AC864AF00A999AC /* Frame.swift */,
 				2108214D2AC864C900A999AC /* Color.swift */,
+				213AAC812AC960C7001BF9AC /* Font.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -217,6 +237,9 @@
 		2108214A2AC8647600A999AC /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				213AAC882AC9A109001BF9AC /* BarButton */,
+				213AAC802AC95FF8001BF9AC /* TagButton */,
+				213AAC852AC962E9001BF9AC /* SearchBar */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -272,6 +295,42 @@
 				210821762AC86D7E00A999AC /* Extension+NotificationName.swift */,
 			);
 			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
+		213AAC802AC95FF8001BF9AC /* TagButton */ = {
+			isa = PBXGroup;
+			children = (
+				213AAC7E2AC95FEA001BF9AC /* Enum+TagType.swift */,
+				213AAC7C2AC95F6D001BF9AC /* CustomTagButton.swift */,
+			);
+			path = TagButton;
+			sourceTree = "<group>";
+		};
+		213AAC852AC962E9001BF9AC /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				213AAC832AC962E5001BF9AC /* CustomSearchBar.swift */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		213AAC882AC9A109001BF9AC /* BarButton */ = {
+			isa = PBXGroup;
+			children = (
+				213AAC8B2AC9A485001BF9AC /* Enum+BarButtonType.swift */,
+				213AAC892AC9A11A001BF9AC /* CustomBarButtonItem.swift */,
+			);
+			path = BarButton;
+			sourceTree = "<group>";
+		};
+		213AAC8D2AC9AAA0001BF9AC /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				213AAC8E2AC9AABC001BF9AC /* PDFDocumentCreator.swift */,
+				213AAC902AC9AB03001BF9AC /* PDFViewModel.swift */,
+				213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */,
+			);
+			path = PDF;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,14 +421,21 @@
 				210821642AC869F300A999AC /* Repository.swift in Sources */,
 				210821242AC85E5D00A999AC /* NewsSearchViewController.swift in Sources */,
 				210821512AC8652300A999AC /* APIStruct.swift in Sources */,
+				213AAC8C2AC9A485001BF9AC /* Enum+BarButtonType.swift in Sources */,
 				210821772AC86D7E00A999AC /* Extension+NotificationName.swift in Sources */,
+				213AAC7F2AC95FEA001BF9AC /* Enum+TagType.swift in Sources */,
 				210821432AC8636500A999AC /* JournalViewModel.swift in Sources */,
 				2108214E2AC864C900A999AC /* Color.swift in Sources */,
 				213AAC7B2AC952BE001BF9AC /* Enum+ViewControllerType.swift in Sources */,
+				213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */,
 				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
-				2108213E2AC862EF00A999AC /* TabbarController.swift in Sources */,
+				2108213E2AC862EF00A999AC /* TabBarController.swift in Sources */,
+				213AAC8F2AC9AABC001BF9AC /* PDFDocumentCreator.swift in Sources */,
 				210821532AC8653300A999AC /* RealmStruct.swift in Sources */,
+				213AAC842AC962E5001BF9AC /* CustomSearchBar.swift in Sources */,
+				213AAC7D2AC95F6D001BF9AC /* CustomTagButton.swift in Sources */,
 				210821202AC85E5D00A999AC /* AppDelegate.swift in Sources */,
+				213AAC912AC9AB03001BF9AC /* PDFViewModel.swift in Sources */,
 				210821712AC86BA100A999AC /* MemoViewModel.swift in Sources */,
 				210821382AC85FFF00A999AC /* NewsSearchViewModel.swift in Sources */,
 				210821622AC869B900A999AC /* Router.swift in Sources */,
@@ -377,9 +443,11 @@
 				210821362AC85EA500A999AC /* APIKey.swift in Sources */,
 				210821742AC86D5700A999AC /* UserDefaultsManager.swift in Sources */,
 				210821672AC86AA600A999AC /* BaseViewController.swift in Sources */,
+				213AAC822AC960C7001BF9AC /* Font.swift in Sources */,
 				210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */,
 				210821402AC8633A00A999AC /* JournalViewController.swift in Sources */,
 				210821792AC8725700A999AC /* Observable.swift in Sources */,
+				213AAC8A2AC9A11A001BF9AC /* CustomBarButtonItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

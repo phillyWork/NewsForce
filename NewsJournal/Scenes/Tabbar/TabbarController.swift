@@ -7,22 +7,22 @@
 
 import UIKit
 
-final class TabbarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureTabbar()
-        setupTabbarItem()
+        configureTabBar()
+        setupTabBarItem()
     }
     
-    private func configureTabbar() {
-        view.backgroundColor = Constant.Color.background
+    private func configureTabBar() {
+        view.backgroundColor = Constant.Color.whiteBackground
         tabBar.isTranslucent = false
         tabBar.tintColor = Constant.Color.mainRed
     }
     
-    private func setupTabbarItem() {
+    private func setupTabBarItem() {
         let newsSearchVC = NewsSearchViewController()
         newsSearchVC.tabBarItem.title = ViewControllerType.newsSearchVC.tabbarTitle
         newsSearchVC.tabBarItem.image = UIImage(systemName: ViewControllerType.newsSearchVC.tabbarItemString)

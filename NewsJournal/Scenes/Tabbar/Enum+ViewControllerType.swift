@@ -30,6 +30,13 @@ enum ViewControllerType {
         }
     }
     
-    
+    var searchBarPlaceholder: String {
+        switch self {
+        case .newsSearchVC:
+            return "기사를 검색해보세요"
+        case .journalVC:
+            return "검색어를 입력하세요"
+        }
+    }
     
 }
