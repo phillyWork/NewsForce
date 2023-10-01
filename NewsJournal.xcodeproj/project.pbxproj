@@ -48,6 +48,8 @@
 		213AAC912AC9AB03001BF9AC /* PDFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC902AC9AB03001BF9AC /* PDFViewModel.swift */; };
 		213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */; };
 		213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */; };
+		213AAC972AC9BC3C001BF9AC /* Enum+SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */; };
+		213AAC992AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC982AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		213AAC902AC9AB03001BF9AC /* PDFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewModel.swift; sourceTree = "<group>"; };
 		213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+LPError.swift"; sourceTree = "<group>"; };
+		213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+SortType.swift"; sourceTree = "<group>"; };
+		213AAC982AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+SearchBarCancelButton.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */,
+				213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */,
 				210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */,
 				210821232AC85E5D00A999AC /* NewsSearchViewController.swift */,
 			);
@@ -312,6 +317,7 @@
 		213AAC852AC962E9001BF9AC /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
+				213AAC982AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift */,
 				213AAC832AC962E5001BF9AC /* CustomSearchBar.swift */,
 			);
 			path = SearchBar;
@@ -419,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				210821602AC869B400A999AC /* Network.swift in Sources */,
+				213AAC972AC9BC3C001BF9AC /* Enum+SortType.swift in Sources */,
 				2108216B2AC86AD700A999AC /* WebViewModel.swift in Sources */,
 				2108214C2AC864AF00A999AC /* Frame.swift in Sources */,
 				210821642AC869F300A999AC /* Repository.swift in Sources */,
@@ -429,6 +436,7 @@
 				213AAC7F2AC95FEA001BF9AC /* Enum+TagType.swift in Sources */,
 				210821432AC8636500A999AC /* JournalViewModel.swift in Sources */,
 				2108214E2AC864C900A999AC /* Color.swift in Sources */,
+				213AAC992AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift in Sources */,
 				213AAC7B2AC952BE001BF9AC /* Enum+ViewControllerType.swift in Sources */,
 				213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */,
 				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
