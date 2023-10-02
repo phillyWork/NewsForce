@@ -7,9 +7,12 @@
 
 import UIKit
 import SnapKit
+import JDStatusBarNotification
 
 class BaseViewController: UIViewController {
 
+    let toastManager = NotificationPresenter.shared()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +28,12 @@ class BaseViewController: UIViewController {
         
     }
     
-    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(confirm)
+        self.present(alert, animated: true)
+    }
     
 }
