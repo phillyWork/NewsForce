@@ -16,9 +16,10 @@ extension Constant {
         static let largeRed = UIColor(red: 125/255, green: 0, blue: 0, alpha: 1)
         
         static let tagButtonText = UIColor(red: 166/255, green: 166/255, blue: 166/255, alpha: 1)
-        static let coolGray9 = UIColor(red: 89/255, green: 89/255, blue: 89/255, alpha: 1)
         static let searchBarText = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
 
+        static let cellShadow = UIColor(red: 89/255, green: 89/255, blue: 89/255, alpha: 1)
+        
     }
     
 }

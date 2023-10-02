@@ -11,6 +11,10 @@ enum Constant {
     
     enum Frame {
         
+        static let collectionViewCellShadowRadius = 5.0
+        static let collectionViewCellShadowOpacity: Float = 0.8
+        static let collectionViewCellshadowOffset = CGSize(width: 0, height: 5)
+        
         static let stackViewItemSpace: CGFloat = 10
 
         static let journalCollectionViewGroupInterItemSpace: CGFloat = 15

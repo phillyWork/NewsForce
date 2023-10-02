@@ -19,7 +19,12 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     func configCell() {
-        
+        //shadow for each cell
+        layer.shadowColor = Constant.Color.cellShadow.cgColor
+        layer.shadowOffset = Constant.Frame.collectionViewCellshadowOffset
+        layer.shadowRadius = Constant.Frame.collectionViewCellShadowRadius
+        layer.shadowOpacity = Constant.Frame.collectionViewCellShadowOpacity
+        layer.masksToBounds = false
     }
     
 }
