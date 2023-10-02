@@ -50,11 +50,17 @@
 		213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */; };
 		213AAC972AC9BC3C001BF9AC /* Enum+SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */; };
 		2180E5582ACAFD4B00CAC283 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 2180E5572ACAFD4B00CAC283 /* JDStatusBarNotification */; };
+		2180E55A2ACB070B00CAC283 /* JournalRealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5592ACB070B00CAC283 /* JournalRealmViewModel.swift */; };
+		2180E55F2ACB125600CAC283 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E55E2ACB125600CAC283 /* TagViewController.swift */; };
+		2180E5612ACB125D00CAC283 /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5602ACB125D00CAC283 /* TagViewModel.swift */; };
+		2180E5632ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5622ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift */; };
+		2180E5662ACB197E00CAC283 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5652ACB197E00CAC283 /* Extension+String.swift */; };
+		2180E5692ACB19AF00CAC283 /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */; };
 		21E830C02ACA92980009025D /* Enum+NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830BF2ACA92980009025D /* Enum+NetworkError.swift */; };
 		21E830C22ACA9A120009025D /* APISetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C12ACA9A120009025D /* APISetup.swift */; };
 		21E830C42ACAA7FB0009025D /* NewsLinkPresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C32ACAA7FB0009025D /* NewsLinkPresentationCell.swift */; };
-		21E830C62ACAC4F50009025D /* Enum+NewsSearchTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C52ACAC4F40009025D /* Enum+NewsSearchTitle.swift */; };
-		21E830C92ACAC5440009025D /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C82ACAC5440009025D /* JournalCell.swift */; };
+		21E830C62ACAC4F50009025D /* Enum+NewsSearchSetupValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C52ACAC4F40009025D /* Enum+NewsSearchSetupValues.swift */; };
+		21E830C92ACAC5440009025D /* JournalRealmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C82ACAC5440009025D /* JournalRealmCell.swift */; };
 		21E830CB2ACAC56D0009025D /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830CA2ACAC56D0009025D /* BaseCollectionViewCell.swift */; };
 		21E830CD2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830CC2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -100,11 +106,17 @@
 		213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+LPError.swift"; sourceTree = "<group>"; };
 		213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+SortType.swift"; sourceTree = "<group>"; };
+		2180E5592ACB070B00CAC283 /* JournalRealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalRealmViewModel.swift; sourceTree = "<group>"; };
+		2180E55E2ACB125600CAC283 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		2180E5602ACB125D00CAC283 /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		2180E5622ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+JournalRealmSetupValues.swift"; sourceTree = "<group>"; };
+		2180E5652ACB197E00CAC283 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
 		21E830BF2ACA92980009025D /* Enum+NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+NetworkError.swift"; sourceTree = "<group>"; };
 		21E830C12ACA9A120009025D /* APISetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISetup.swift; sourceTree = "<group>"; };
 		21E830C32ACAA7FB0009025D /* NewsLinkPresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLinkPresentationCell.swift; sourceTree = "<group>"; };
-		21E830C52ACAC4F40009025D /* Enum+NewsSearchTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+NewsSearchTitle.swift"; sourceTree = "<group>"; };
-		21E830C82ACAC5440009025D /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
+		21E830C52ACAC4F40009025D /* Enum+NewsSearchSetupValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+NewsSearchSetupValues.swift"; sourceTree = "<group>"; };
+		21E830C82ACAC5440009025D /* JournalRealmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalRealmCell.swift; sourceTree = "<group>"; };
 		21E830CA2ACAC56D0009025D /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		21E830CC2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLinkPresentationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,9 +194,10 @@
 		2108213B2AC862CA00A999AC /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				21E830C82ACAC5440009025D /* JournalCell.swift */,
-				210821422AC8636500A999AC /* JournalViewModel.swift */,
-				2108213F2AC8633A00A999AC /* JournalViewController.swift */,
+				2180E5672ACB198700CAC283 /* Journal+Setup */,
+				2180E5642ACB134A00CAC283 /* Enum+JournalRealm */,
+				2180E55B2ACB073000CAC283 /* JournalCell+ViewModel */,
+				2180E55C2ACB11AE00CAC283 /* JournalViewController+ViewModel */,
 			);
 			path = Journal;
 			sourceTree = "<group>";
@@ -198,6 +211,7 @@
 				213AAC8D2AC9AAA0001BF9AC /* PDF */,
 				2108216C2AC86ADB00A999AC /* Web */,
 				2108216F2AC86AF900A999AC /* Memo */,
+				2180E55D2ACB123700CAC283 /* Tag */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -358,12 +372,56 @@
 			path = PDF;
 			sourceTree = "<group>";
 		};
+		2180E55B2ACB073000CAC283 /* JournalCell+ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2180E5592ACB070B00CAC283 /* JournalRealmViewModel.swift */,
+				21E830C82ACAC5440009025D /* JournalRealmCell.swift */,
+			);
+			path = "JournalCell+ViewModel";
+			sourceTree = "<group>";
+		};
+		2180E55C2ACB11AE00CAC283 /* JournalViewController+ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				210821422AC8636500A999AC /* JournalViewModel.swift */,
+				2108213F2AC8633A00A999AC /* JournalViewController.swift */,
+			);
+			path = "JournalViewController+ViewModel";
+			sourceTree = "<group>";
+		};
+		2180E55D2ACB123700CAC283 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				2180E5602ACB125D00CAC283 /* TagViewModel.swift */,
+				2180E55E2ACB125600CAC283 /* TagViewController.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
+		2180E5642ACB134A00CAC283 /* Enum+JournalRealm */ = {
+			isa = PBXGroup;
+			children = (
+				2180E5622ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift */,
+			);
+			path = "Enum+JournalRealm";
+			sourceTree = "<group>";
+		};
+		2180E5672ACB198700CAC283 /* Journal+Setup */ = {
+			isa = PBXGroup;
+			children = (
+				2180E5652ACB197E00CAC283 /* Extension+String.swift */,
+				2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */,
+			);
+			path = "Journal+Setup";
+			sourceTree = "<group>";
+		};
 		21E830C72ACAC5130009025D /* Enum+NewsSearch */ = {
 			isa = PBXGroup;
 			children = (
 				213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */,
 				213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */,
-				21E830C52ACAC4F40009025D /* Enum+NewsSearchTitle.swift */,
+				21E830C52ACAC4F40009025D /* Enum+NewsSearchSetupValues.swift */,
 			);
 			path = "Enum+NewsSearch";
 			sourceTree = "<group>";
@@ -475,18 +533,21 @@
 				21E830C02ACA92980009025D /* Enum+NetworkError.swift in Sources */,
 				2108216B2AC86AD700A999AC /* WebViewModel.swift in Sources */,
 				2108214C2AC864AF00A999AC /* Frame.swift in Sources */,
+				2180E5612ACB125D00CAC283 /* TagViewModel.swift in Sources */,
 				210821642AC869F300A999AC /* Repository.swift in Sources */,
 				210821242AC85E5D00A999AC /* NewsSearchViewController.swift in Sources */,
 				210821512AC8652300A999AC /* APIStruct.swift in Sources */,
 				213AAC8C2AC9A485001BF9AC /* Enum+BarButtonType.swift in Sources */,
+				2180E5662ACB197E00CAC283 /* Extension+String.swift in Sources */,
 				210821772AC86D7E00A999AC /* Extension+NotificationName.swift in Sources */,
-				21E830C62ACAC4F50009025D /* Enum+NewsSearchTitle.swift in Sources */,
+				21E830C62ACAC4F50009025D /* Enum+NewsSearchSetupValues.swift in Sources */,
 				21E830C22ACA9A120009025D /* APISetup.swift in Sources */,
 				213AAC7F2AC95FEA001BF9AC /* Enum+TagType.swift in Sources */,
 				210821432AC8636500A999AC /* JournalViewModel.swift in Sources */,
 				2108214E2AC864C900A999AC /* Color.swift in Sources */,
 				213AAC7B2AC952BE001BF9AC /* Enum+ViewControllerType.swift in Sources */,
-				21E830C92ACAC5440009025D /* JournalCell.swift in Sources */,
+				21E830C92ACAC5440009025D /* JournalRealmCell.swift in Sources */,
+				2180E55F2ACB125600CAC283 /* TagViewController.swift in Sources */,
 				213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */,
 				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
 				2108213E2AC862EF00A999AC /* TabBarController.swift in Sources */,
@@ -504,8 +565,11 @@
 				210821692AC86ACD00A999AC /* WebViewController.swift in Sources */,
 				213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */,
 				210821362AC85EA500A999AC /* APIKey.swift in Sources */,
+				2180E55A2ACB070B00CAC283 /* JournalRealmViewModel.swift in Sources */,
 				210821742AC86D5700A999AC /* UserDefaultsManager.swift in Sources */,
 				210821672AC86AA600A999AC /* BaseViewController.swift in Sources */,
+				2180E5632ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift in Sources */,
+				2180E5692ACB19AF00CAC283 /* Extension+NSAttributedString.swift in Sources */,
 				213AAC822AC960C7001BF9AC /* Font.swift in Sources */,
 				210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */,
 				210821402AC8633A00A999AC /* JournalViewController.swift in Sources */,

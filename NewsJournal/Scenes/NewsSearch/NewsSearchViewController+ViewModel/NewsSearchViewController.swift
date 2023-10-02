@@ -75,6 +75,7 @@ final class NewsSearchViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.prefetchDataSource = self
         collectionView.isPrefetchingEnabled = true
+        collectionView.isPagingEnabled = true
         
         view.addSubview(indicator)
         indicator.isHidden = true

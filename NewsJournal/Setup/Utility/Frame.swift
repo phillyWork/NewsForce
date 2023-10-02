@@ -33,6 +33,10 @@ enum Constant {
         static let newsSearchCollectionViewGroupFractionalHeight: CGFloat = 0.5
         static let newsSearchCollectionViewRepeatingItemCount: Int = 1
         
+        static let journalRealmCellLabelInset = 10
+        static let journalRealmCellTitleLabelHeightMultiply = 0.3
+        static let journalRealmCellCheckImageSizeMultiply = 0.1
+        
     }
 
 }
