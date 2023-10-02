@@ -12,13 +12,22 @@ enum Constant {
     enum Frame {
         
         static let stackViewItemSpace: CGFloat = 10
-        static let collectionViewGroupInterItemSpace: CGFloat = 15
-        static let collectionViewInterGroupSpace: CGFloat = 15
-        static let collectionViewSpacingForDoublePadding: CGFloat = 20
-        static let collectionViewItemFractionalWidth: CGFloat = 0.5
-        static let collectionViewGroupFractionalWidth: CGFloat = 1.0
-        static let collectionViewEstimatedHeight: CGFloat = 150
-        static let collectionViewRepeatingItemCount: Int = 2
+
+        static let journalCollectionViewGroupInterItemSpace: CGFloat = 15
+        static let journalCollectionViewInterGroupSpace: CGFloat = 15
+        static let journalCollectionViewSpacingForDoublePadding: CGFloat = 20
+        static let journalCollectionViewItemFractionalWidth: CGFloat = 0.5
+        static let journalCollectionViewGroupFractionalWidth: CGFloat = 1.0
+        static let journalCollectionViewEstimatedHeight: CGFloat = 150
+        static let journalCollectionViewRepeatingItemCount: Int = 2
+        
+        static let newsSearchCollectionViewInterGroupSpace: CGFloat = 10
+        static let newsSearchCollectionViewEdgeInsets: CGFloat = 10
+        static let newsSearchCollectionViewItemFractionalWidth: CGFloat = 1.0
+        static let newsSearchCollectionViewItemFractionalHeight: CGFloat = 1.0
+        static let newsSearchCollectionViewGroupFractionalWidth: CGFloat = 1.0
+        static let newsSearchCollectionViewGroupFractionalHeight: CGFloat = 0.5
+        static let newsSearchCollectionViewRepeatingItemCount: Int = 1
         
     }
 
