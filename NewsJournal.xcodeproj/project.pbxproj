@@ -49,7 +49,14 @@
 		213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */; };
 		213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */; };
 		213AAC972AC9BC3C001BF9AC /* Enum+SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */; };
-		213AAC992AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC982AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift */; };
+		2180E5582ACAFD4B00CAC283 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 2180E5572ACAFD4B00CAC283 /* JDStatusBarNotification */; };
+		21E830C02ACA92980009025D /* Enum+NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830BF2ACA92980009025D /* Enum+NetworkError.swift */; };
+		21E830C22ACA9A120009025D /* APISetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C12ACA9A120009025D /* APISetup.swift */; };
+		21E830C42ACAA7FB0009025D /* NewsLinkPresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C32ACAA7FB0009025D /* NewsLinkPresentationCell.swift */; };
+		21E830C62ACAC4F50009025D /* Enum+NewsSearchTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C52ACAC4F40009025D /* Enum+NewsSearchTitle.swift */; };
+		21E830C92ACAC5440009025D /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C82ACAC5440009025D /* JournalCell.swift */; };
+		21E830CB2ACAC56D0009025D /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830CA2ACAC56D0009025D /* BaseCollectionViewCell.swift */; };
+		21E830CD2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830CC2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +100,13 @@
 		213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+LPError.swift"; sourceTree = "<group>"; };
 		213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+SortType.swift"; sourceTree = "<group>"; };
-		213AAC982AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+SearchBarCancelButton.swift"; sourceTree = "<group>"; };
+		21E830BF2ACA92980009025D /* Enum+NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+NetworkError.swift"; sourceTree = "<group>"; };
+		21E830C12ACA9A120009025D /* APISetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISetup.swift; sourceTree = "<group>"; };
+		21E830C32ACAA7FB0009025D /* NewsLinkPresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLinkPresentationCell.swift; sourceTree = "<group>"; };
+		21E830C52ACAC4F40009025D /* Enum+NewsSearchTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+NewsSearchTitle.swift"; sourceTree = "<group>"; };
+		21E830C82ACAC5440009025D /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
+		21E830CA2ACAC56D0009025D /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		21E830CC2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLinkPresentationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2180E5582ACAFD4B00CAC283 /* JDStatusBarNotification in Frameworks */,
 				2108215E2AC8656F00A999AC /* RealmSwift in Frameworks */,
 				2108215C2AC8656F00A999AC /* Realm in Frameworks */,
 				210821562AC8654B00A999AC /* Alamofire in Frameworks */,
@@ -149,10 +163,9 @@
 		210821392AC8601600A999AC /* NewsSearch */ = {
 			isa = PBXGroup;
 			children = (
-				213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */,
-				213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */,
-				210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */,
-				210821232AC85E5D00A999AC /* NewsSearchViewController.swift */,
+				21E830C72ACAC5130009025D /* Enum+NewsSearch */,
+				21E830CE2ACAC6390009025D /* NewsLinkPresentationCell+ViewModel */,
+				21E830CF2ACAC64E0009025D /* NewsSearchViewController+ViewModel */,
 			);
 			path = NewsSearch;
 			sourceTree = "<group>";
@@ -169,6 +182,7 @@
 		2108213B2AC862CA00A999AC /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				21E830C82ACAC5440009025D /* JournalCell.swift */,
 				210821422AC8636500A999AC /* JournalViewModel.swift */,
 				2108213F2AC8633A00A999AC /* JournalViewController.swift */,
 			);
@@ -203,6 +217,7 @@
 				2108214B2AC864AF00A999AC /* Frame.swift */,
 				2108214D2AC864C900A999AC /* Color.swift */,
 				213AAC812AC960C7001BF9AC /* Font.swift */,
+				21E830C12ACA9A120009025D /* APISetup.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -221,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				210821612AC869B900A999AC /* Router.swift */,
+				21E830BF2ACA92980009025D /* Enum+NetworkError.swift */,
 				2108215F2AC869B400A999AC /* Network.swift */,
 			);
 			path = Router;
@@ -238,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				210821662AC86AA600A999AC /* BaseViewController.swift */,
+				21E830CA2ACAC56D0009025D /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -317,7 +334,6 @@
 		213AAC852AC962E9001BF9AC /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
-				213AAC982AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift */,
 				213AAC832AC962E5001BF9AC /* CustomSearchBar.swift */,
 			);
 			path = SearchBar;
@@ -342,6 +358,34 @@
 			path = PDF;
 			sourceTree = "<group>";
 		};
+		21E830C72ACAC5130009025D /* Enum+NewsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */,
+				213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */,
+				21E830C52ACAC4F40009025D /* Enum+NewsSearchTitle.swift */,
+			);
+			path = "Enum+NewsSearch";
+			sourceTree = "<group>";
+		};
+		21E830CE2ACAC6390009025D /* NewsLinkPresentationCell+ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				21E830CC2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift */,
+				21E830C32ACAA7FB0009025D /* NewsLinkPresentationCell.swift */,
+			);
+			path = "NewsLinkPresentationCell+ViewModel";
+			sourceTree = "<group>";
+		};
+		21E830CF2ACAC64E0009025D /* NewsSearchViewController+ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */,
+				210821232AC85E5D00A999AC /* NewsSearchViewController.swift */,
+			);
+			path = "NewsSearchViewController+ViewModel";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -363,6 +407,7 @@
 				210821582AC8655F00A999AC /* SnapKit */,
 				2108215B2AC8656F00A999AC /* Realm */,
 				2108215D2AC8656F00A999AC /* RealmSwift */,
+				2180E5572ACAFD4B00CAC283 /* JDStatusBarNotification */,
 			);
 			productName = NewsJournal;
 			productReference = 2108211C2AC85E5D00A999AC /* NewsJournal.app */;
@@ -396,6 +441,7 @@
 				210821542AC8654B00A999AC /* XCRemoteSwiftPackageReference "Alamofire" */,
 				210821572AC8655F00A999AC /* XCRemoteSwiftPackageReference "SnapKit" */,
 				2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */,
+				2180E5562ACAFD4B00CAC283 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
 			);
 			productRefGroup = 2108211D2AC85E5D00A999AC /* Products */;
 			projectDirPath = "";
@@ -426,6 +472,7 @@
 			files = (
 				210821602AC869B400A999AC /* Network.swift in Sources */,
 				213AAC972AC9BC3C001BF9AC /* Enum+SortType.swift in Sources */,
+				21E830C02ACA92980009025D /* Enum+NetworkError.swift in Sources */,
 				2108216B2AC86AD700A999AC /* WebViewModel.swift in Sources */,
 				2108214C2AC864AF00A999AC /* Frame.swift in Sources */,
 				210821642AC869F300A999AC /* Repository.swift in Sources */,
@@ -433,11 +480,13 @@
 				210821512AC8652300A999AC /* APIStruct.swift in Sources */,
 				213AAC8C2AC9A485001BF9AC /* Enum+BarButtonType.swift in Sources */,
 				210821772AC86D7E00A999AC /* Extension+NotificationName.swift in Sources */,
+				21E830C62ACAC4F50009025D /* Enum+NewsSearchTitle.swift in Sources */,
+				21E830C22ACA9A120009025D /* APISetup.swift in Sources */,
 				213AAC7F2AC95FEA001BF9AC /* Enum+TagType.swift in Sources */,
 				210821432AC8636500A999AC /* JournalViewModel.swift in Sources */,
 				2108214E2AC864C900A999AC /* Color.swift in Sources */,
-				213AAC992AC9CAC5001BF9AC /* Enum+SearchBarCancelButton.swift in Sources */,
 				213AAC7B2AC952BE001BF9AC /* Enum+ViewControllerType.swift in Sources */,
+				21E830C92ACAC5440009025D /* JournalCell.swift in Sources */,
 				213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */,
 				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
 				2108213E2AC862EF00A999AC /* TabBarController.swift in Sources */,
@@ -449,7 +498,9 @@
 				213AAC912AC9AB03001BF9AC /* PDFViewModel.swift in Sources */,
 				210821712AC86BA100A999AC /* MemoViewModel.swift in Sources */,
 				210821382AC85FFF00A999AC /* NewsSearchViewModel.swift in Sources */,
+				21E830CB2ACAC56D0009025D /* BaseCollectionViewCell.swift in Sources */,
 				210821622AC869B900A999AC /* Router.swift in Sources */,
+				21E830C42ACAA7FB0009025D /* NewsLinkPresentationCell.swift in Sources */,
 				210821692AC86ACD00A999AC /* WebViewController.swift in Sources */,
 				213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */,
 				210821362AC85EA500A999AC /* APIKey.swift in Sources */,
@@ -460,6 +511,7 @@
 				210821402AC8633A00A999AC /* JournalViewController.swift in Sources */,
 				210821792AC8725700A999AC /* Observable.swift in Sources */,
 				213AAC8A2AC9A11A001BF9AC /* CustomBarButtonItem.swift in Sources */,
+				21E830CD2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +751,14 @@
 				minimumVersion = 10.42.3;
 			};
 		};
+		2180E5562ACAFD4B00CAC283 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/calimarkus/JDStatusBarNotification.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -721,6 +781,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		2180E5572ACAFD4B00CAC283 /* JDStatusBarNotification */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2180E5562ACAFD4B00CAC283 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;
+			productName = JDStatusBarNotification;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
