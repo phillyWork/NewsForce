@@ -64,6 +64,9 @@ final class NewsSearchViewController: BaseViewController {
             self.showAlert(title: NewsSearchSetupValues.networkErrorTitle, message: message)
         }
         
+        //시작 시의 empty view 구성?
+        
+        
     }
     
     override func configureViews() {

@@ -21,7 +21,7 @@ final class NewsSearchViewModel {
     
     var sortType = SortType.sim
     
-    let network = Network.shared
+    private let network = Network.shared
     
     //MARK: - API
     

@@ -16,7 +16,7 @@ final class NewsLinkPresentationViewModel {
     
     var news: Observable<News?> = Observable(nil)
     
-    //MARK: - Handlers
+    //MARK: - API
     
     func fetchData(url: String, completionHandler: @escaping (Result<LPLinkMetadata, LPError>) -> Void ) {
         

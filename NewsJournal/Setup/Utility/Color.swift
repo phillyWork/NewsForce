@@ -20,6 +20,9 @@ extension Constant {
 
         static let cellShadow = UIColor(red: 89/255, green: 89/255, blue: 89/255, alpha: 1)
         
+        static let linkDateShadowText = UIColor.lightGray
+        
+        
     }
     
 }

@@ -16,7 +16,7 @@ enum Constant {
         static let collectionViewCellshadowOffset = CGSize(width: 0, height: 5)
         
         static let stackViewItemSpace: CGFloat = 10
-
+        
         static let journalCollectionViewGroupInterItemSpace: CGFloat = 15
         static let journalCollectionViewInterGroupSpace: CGFloat = 15
         static let journalCollectionViewSpacingForDoublePadding: CGFloat = 20
@@ -33,9 +33,17 @@ enum Constant {
         static let newsSearchCollectionViewGroupFractionalHeight: CGFloat = 0.5
         static let newsSearchCollectionViewRepeatingItemCount: Int = 1
         
-        static let journalRealmCellLabelInset = 10
+        static let journalRealmCellLabelInset: CGFloat = 10
         static let journalRealmCellTitleLabelHeightMultiply = 0.3
         static let journalRealmCellCheckImageSizeMultiply = 0.1
+        
+        //72 points per inch
+        static let pdfCreatorPageWidth =  8.3 * 72.0
+        static let pdfCreatorPageHeight = 11.7 * 72.0
+        static let pdfCreatorPadding: CGFloat = 36
+        static let pdfCreatorPaddingForContentWidth: CGFloat = 10
+        static let pdfCreatorPaddingForContentHeight: CGFloat = 18
+        static let pdfCreatorPaddingForContentInset: CGFloat = 10
         
     }
 

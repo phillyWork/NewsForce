@@ -56,6 +56,11 @@
 		2180E5632ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5622ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift */; };
 		2180E5662ACB197E00CAC283 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5652ACB197E00CAC283 /* Extension+String.swift */; };
 		2180E5692ACB19AF00CAC283 /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */; };
+		21BD223F2ACBC3AE005EE249 /* Protocol+RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD223E2ACBC3AE005EE249 /* Protocol+RealmRepository.swift */; };
+		21BD22412ACBF05D005EE249 /* Enum+RealmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD22402ACBF05D005EE249 /* Enum+RealmError.swift */; };
+		21BD22432ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD22422ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift */; };
+		21BD224E2ACC5A81005EE249 /* Enum+SubDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD224D2ACC5A81005EE249 /* Enum+SubDataType.swift */; };
+		21BD22502ACC625F005EE249 /* Enum+PDFCreatorSetValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD224F2ACC625F005EE249 /* Enum+PDFCreatorSetValues.swift */; };
 		21E830C02ACA92980009025D /* Enum+NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830BF2ACA92980009025D /* Enum+NetworkError.swift */; };
 		21E830C22ACA9A120009025D /* APISetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C12ACA9A120009025D /* APISetup.swift */; };
 		21E830C42ACAA7FB0009025D /* NewsLinkPresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C32ACAA7FB0009025D /* NewsLinkPresentationCell.swift */; };
@@ -112,6 +117,11 @@
 		2180E5622ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+JournalRealmSetupValues.swift"; sourceTree = "<group>"; };
 		2180E5652ACB197E00CAC283 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
+		21BD223E2ACBC3AE005EE249 /* Protocol+RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Protocol+RealmRepository.swift"; sourceTree = "<group>"; };
+		21BD22402ACBF05D005EE249 /* Enum+RealmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+RealmError.swift"; sourceTree = "<group>"; };
+		21BD22422ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCompositionalLayout.swift; sourceTree = "<group>"; };
+		21BD224D2ACC5A81005EE249 /* Enum+SubDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+SubDataType.swift"; sourceTree = "<group>"; };
+		21BD224F2ACC625F005EE249 /* Enum+PDFCreatorSetValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+PDFCreatorSetValues.swift"; sourceTree = "<group>"; };
 		21E830BF2ACA92980009025D /* Enum+NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+NetworkError.swift"; sourceTree = "<group>"; };
 		21E830C12ACA9A120009025D /* APISetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISetup.swift; sourceTree = "<group>"; };
 		21E830C32ACAA7FB0009025D /* NewsLinkPresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLinkPresentationCell.swift; sourceTree = "<group>"; };
@@ -259,6 +269,8 @@
 		210821472AC8641500A999AC /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				21BD223E2ACBC3AE005EE249 /* Protocol+RealmRepository.swift */,
+				21BD22402ACBF05D005EE249 /* Enum+RealmError.swift */,
 				210821632AC869F300A999AC /* Repository.swift */,
 			);
 			path = Realm;
@@ -365,7 +377,7 @@
 		213AAC8D2AC9AAA0001BF9AC /* PDF */ = {
 			isa = PBXGroup;
 			children = (
-				213AAC8E2AC9AABC001BF9AC /* PDFDocumentCreator.swift */,
+				21BD22482ACC4EFF005EE249 /* PDFCreator */,
 				213AAC902AC9AB03001BF9AC /* PDFViewModel.swift */,
 				213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */,
 			);
@@ -385,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				210821422AC8636500A999AC /* JournalViewModel.swift */,
+				21BD22422ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift */,
 				2108213F2AC8633A00A999AC /* JournalViewController.swift */,
 			);
 			path = "JournalViewController+ViewModel";
@@ -414,6 +427,16 @@
 				2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */,
 			);
 			path = "Journal+Setup";
+			sourceTree = "<group>";
+		};
+		21BD22482ACC4EFF005EE249 /* PDFCreator */ = {
+			isa = PBXGroup;
+			children = (
+				21BD224F2ACC625F005EE249 /* Enum+PDFCreatorSetValues.swift */,
+				21BD224D2ACC5A81005EE249 /* Enum+SubDataType.swift */,
+				213AAC8E2AC9AABC001BF9AC /* PDFDocumentCreator.swift */,
+			);
+			path = PDFCreator;
 			sourceTree = "<group>";
 		};
 		21E830C72ACAC5130009025D /* Enum+NewsSearch */ = {
@@ -550,7 +573,11 @@
 				2180E55F2ACB125600CAC283 /* TagViewController.swift in Sources */,
 				213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */,
 				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
+				21BD223F2ACBC3AE005EE249 /* Protocol+RealmRepository.swift in Sources */,
+				21BD22502ACC625F005EE249 /* Enum+PDFCreatorSetValues.swift in Sources */,
+				21BD22412ACBF05D005EE249 /* Enum+RealmError.swift in Sources */,
 				2108213E2AC862EF00A999AC /* TabBarController.swift in Sources */,
+				21BD224E2ACC5A81005EE249 /* Enum+SubDataType.swift in Sources */,
 				213AAC8F2AC9AABC001BF9AC /* PDFDocumentCreator.swift in Sources */,
 				210821532AC8653300A999AC /* RealmStruct.swift in Sources */,
 				213AAC842AC962E5001BF9AC /* CustomSearchBar.swift in Sources */,
@@ -574,6 +601,7 @@
 				210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */,
 				210821402AC8633A00A999AC /* JournalViewController.swift in Sources */,
 				210821792AC8725700A999AC /* Observable.swift in Sources */,
+				21BD22432ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift in Sources */,
 				213AAC8A2AC9A11A001BF9AC /* CustomBarButtonItem.swift in Sources */,
 				21E830CD2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift in Sources */,
 			);
