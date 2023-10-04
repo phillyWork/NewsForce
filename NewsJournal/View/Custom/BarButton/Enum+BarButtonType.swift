@@ -14,6 +14,8 @@ enum BarButtonType {
     case selectForDeletion
     case deletionConfirmation
     case cancel
+    case backToList
+    case writeDownMemo
     
     var buttonTitle: String {
         switch self {
@@ -27,6 +29,10 @@ enum BarButtonType {
             return "확인"
         case .cancel:
             return "취소"
+        case .backToList:
+            return "목록으로"
+        case .writeDownMemo:
+            return "입력하기"
         }
     }
     

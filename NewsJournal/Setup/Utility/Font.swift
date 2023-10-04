@@ -21,6 +21,7 @@ extension Constant {
         static let pdfCreatorTag = UIFont.systemFont(ofSize: 13, weight: .medium)
         static let pdfCreatorContent = UIFont.systemFont(ofSize: 16, weight: .regular)
         
+        static let pdfPageInfoLabel = UIFont.systemFont(ofSize: 12, weight: .medium)
     }
     
     

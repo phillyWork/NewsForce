@@ -167,10 +167,12 @@ extension PDFDocumentCreator {
     private func addMemoTags(pageRect: CGRect, textTop: CGFloat, tags: TagTable) -> CGFloat {
         
         let tagFont = Constant.Font.pdfCreatorTag
+        let tagColor = Constant.Color.mainRed
         
-        let tagAttributes = [NSAttributedString.Key.font: tagFont]
+        let tagAttributes = [NSAttributedString.Key.font: tagFont,
+                             NSAttributedString.Key.foregroundColor: tagColor]
         
-        var tagString = PDFCreatorSetValues.basicTag
+        var tagString = PDFCreatorSetupValues.basicTag
         
         if let first = tags.firstTag {
             tagString += " #\(first.rawValue)"

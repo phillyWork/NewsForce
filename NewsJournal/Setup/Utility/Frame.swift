@@ -45,6 +45,12 @@ enum Constant {
         static let pdfCreatorPaddingForContentHeight: CGFloat = 18
         static let pdfCreatorPaddingForContentInset: CGFloat = 10
         
+        static let pdfPageInfoContainerCornerRadius: CGFloat = 8
+        static let pdfPageInfoContainerOffset = 15
+        static let pdfCurrentPageLabelDirectionalHorizontalOffset = 10
+        static let pdfCurrentPageLabelBottomOffset = -5
+        static let pdfCurrentPageLabelTopOffset = 5
+        
     }
 
 }
