@@ -21,7 +21,7 @@ final class NewsSearchViewController: BaseViewController {
     
     let indicator = UIActivityIndicatorView(style: .large)
     
-    lazy var collectionView: UICollectionView = {
+    lazy var linkPresentCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionViewCompositionalLayout())
         view.backgroundColor = Constant.Color.whiteBackground
         return view
@@ -60,13 +60,26 @@ final class NewsSearchViewController: BaseViewController {
             self.newsSearchVM.callRequest()
         }
         
-        newsSearchVM.networkErrorMessage.bind { message in
-            self.showAlert(title: NewsSearchSetupValues.networkErrorTitle, message: message)
+        newsSearchVM.errorMessage.bind { message in
+            //alert
+//            self.showAlert(title: NewsSearchSetupValues.networkErrorTitle, message: message)
+            
+            //toast
+            self.showErrorToastMessage(message: message)
         }
         
-        //시작 시의 empty view 구성?
+        newsSearchVM.isEmptyView.bind { value in
+            if value {
+                //show empty view
+                self.linkPresentCollectionView.setupBackgroundNoAPIResultEmptyView()
+            } else {
+                //not showing empty view
+                self.linkPresentCollectionView.restoreBackgroundFromEmptyView()
+            }
+        }
         
-        
+        //시작 시의 empty view 구성
+        linkPresentCollectionView.setupInitialBackgroundForSearch()
     }
     
     override func configureViews() {
@@ -74,20 +87,21 @@ final class NewsSearchViewController: BaseViewController {
         
         configNavBar()
             
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.prefetchDataSource = self
-        collectionView.isPrefetchingEnabled = true
-        collectionView.isPagingEnabled = true
+        view.addSubview(linkPresentCollectionView)
+        linkPresentCollectionView.delegate = self
+        linkPresentCollectionView.prefetchDataSource = self
+        linkPresentCollectionView.isPrefetchingEnabled = true
+        linkPresentCollectionView.isPagingEnabled = true
         
         view.addSubview(indicator)
         indicator.isHidden = true
+        
     }
     
     override func setConstraints() {
         super.setConstraints()
                 
-        collectionView.snp.makeConstraints { make in
+        linkPresentCollectionView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
@@ -106,8 +120,7 @@ final class NewsSearchViewController: BaseViewController {
             self.newsSearchVM.sortType = .date
         }
         let menu = UIMenu(options: .singleSelection, children: [simButton, dateButton])
-        let barButton = UIBarButtonItem(title: NewsSearchSetupValues.popupMenuTitle)
-        barButton.menu = menu
+        let barButton = UIBarButtonItem(title: NewsSearchSetupValues.popupMenuTitle, menu: menu)
         barButton.tintColor = Constant.Color.mainRed
         navigationItem.leftBarButtonItem = barButton
         
@@ -122,7 +135,7 @@ final class NewsSearchViewController: BaseViewController {
             cell.newsLinkPresentationVM.news.value = itemIdentifier
         }
         
-        diffableDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        diffableDataSource = UICollectionViewDiffableDataSource(collectionView: linkPresentCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         })
     }
@@ -183,9 +196,7 @@ extension NewsSearchViewController: UISearchBarDelegate {
         
         //빈칸이면 검색되지 않음
         guard let text = searchBar.text, !text.isEmpty else {
-            toastManager.present(text: NewsSearchSetupValues.noSearchWordsToastMessage) { presenter in
-                presenter.dismiss(afterDelay: NewsSearchSetupValues.noSearchWordsToastMessageDismissDelay)
-            }
+            newsSearchVM.errorMessage.value = NewsSearchSetupValues.noSearchWordsToastMessage
             return
         }
         self.activateIndicator()
@@ -205,8 +216,9 @@ extension NewsSearchViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         
         let webVC = WebViewController()
-        webVC.webVM.news.value = item
-        
+        webVC.webVM.news = item
+        webVC.webVM.updateCurrentVCType(newType: .newsSearchVC)
+    
         self.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(webVC, animated: true)
         self.hidesBottomBarWhenPushed = false

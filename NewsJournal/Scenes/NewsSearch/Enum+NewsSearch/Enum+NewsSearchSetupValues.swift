@@ -14,6 +14,6 @@ enum NewsSearchSetupValues {
     static let notAvailableToTapTitle = "기사 선택 불가"
     static let notAvailableToTapMessage = "선택할 수 없는 기사에요."
     static let noSearchWordsToastMessage = "입력값이 있어야 검색이 가능해요."
-    static let noSearchWordsToastMessageDismissDelay = 0.5
+    static let cannotSearchMoreThanMaxStart = "검색할 수 있는 최대까지 도달했어요."
     
 }

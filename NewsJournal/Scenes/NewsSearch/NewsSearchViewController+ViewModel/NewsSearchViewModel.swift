@@ -17,7 +17,9 @@ final class NewsSearchViewModel {
     
     var query = Observable("")
     
-    var networkErrorMessage = Observable("")
+    var errorMessage = Observable("")
+    
+    var isEmptyView = Observable(false)
     
     var sortType = SortType.sim
     
@@ -32,6 +34,11 @@ final class NewsSearchViewModel {
             newsList.value.removeAll()
         }
         
+        if page.value > Constant.APISetup.maxStart {
+            errorMessage.value = NewsSearchSetupValues.cannotSearchMoreThanMaxStart
+            return
+        }
+        
         let lowerCasedQuery = query.value.lowercased()
 //        guard let encodedQuery = lowerCasedQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
@@ -40,12 +47,13 @@ final class NewsSearchViewModel {
             case .success(let success):
                 if self.newsList.value.isEmpty && success.items.isEmpty {
                     //기존 검색 결과 없고 새로운 검색 결과 없는 경우: empty View 보여주기
-                    print("It's empty!")
+                    self.isEmptyView.value = true
                 } else {
                     self.newsList.value.append(contentsOf: success.items)
+                    self.isEmptyView.value = false
                 }
             case .failure(let failure):
-                self.networkErrorMessage.value = failure.errorDescription
+                self.errorMessage.value = failure.errorDescription
             }
         }
     }
