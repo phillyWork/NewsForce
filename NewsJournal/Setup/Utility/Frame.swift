@@ -35,6 +35,9 @@ enum Constant {
         static let newsSearchCollectionViewGroupFractionalHeight: CGFloat = 0.5
         static let newsSearchCollectionViewRepeatingItemCount: Int = 1
         
+        static let journalRealmCellDateTagInset: CGFloat = 5
+        static let journalRealmCellDateHeightMultiply = 0.2
+        static let journalRealmCellTagHeightMultiply = 0.15
         static let journalRealmCellLabelInset: CGFloat = 10
         static let journalRealmCellTitleLabelHeightMultiply = 0.3
         static let journalRealmCellCheckImageSizeMultiply = 0.1

@@ -15,6 +15,8 @@ extension Constant {
         
         static let tagButton = UIFont.systemFont(ofSize: 14, weight: .semibold)
         static let journalRealmCellTitle = UIFont.boldSystemFont(ofSize: 13)
+        static let journalRealmCellEditedAt = UIFont.systemFont(ofSize: 10, weight: .regular)
+        static let journalRealmCellTag = UIFont.systemFont(ofSize: 9, weight: .light)
         static let journalRealmCellMemo = UIFont.systemFont(ofSize: 11, weight: .medium)
         
         static let pdfCreatorNewsTitle = UIFont.boldSystemFont(ofSize: 15)
