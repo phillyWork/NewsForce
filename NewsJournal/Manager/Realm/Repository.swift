@@ -19,7 +19,7 @@ final class Repository: RealmRepositoryProtocol {
     
     //MARK: - CREATE
     
-    func createItem<T:Object>(record: T) throws {
+    func createRecord<T:Object>(record: T) throws {
         if let realm = realm {
             do {
                 try realm.write {
@@ -55,7 +55,7 @@ final class Repository: RealmRepositoryProtocol {
         return realm.objects(T.self).sorted(byKeyPath: "memo.editedAt", ascending: false)
     }
     
-    func fetchSingleObject(objectId: ObjectId) -> Journal? {
+    func fetchSingleRecord(objectId: ObjectId) -> Journal? {
         guard let realm = realm else { return nil }
         return realm.object(ofType: Journal.self, forPrimaryKey: objectId)
     }
@@ -68,10 +68,26 @@ final class Repository: RealmRepositoryProtocol {
         return fetch(type: Journal.self)?.where { $0.memo.content.contains(text) }
     }
     
+    func fetchWithoutSelectedJournals(selected: Dictionary<IndexPath, Journal>) -> Results<Journal>? {
+        var retrieved = fetch(type: Journal.self)
+        
+        for journal in selected.values {
+            retrieved = retrieved?.where { $0._id != journal._id }
+        }
+        return retrieved
+    }
+    
+    func fetchWithoutSelectedJournalsWithinTag(selected: Dictionary<IndexPath, Journal>, type: TagType) -> Results<Journal>? {
+        var retrievedWithTag = fetchWithTag(type: type)
+        for journal in selected.values {
+            retrievedWithTag = retrievedWithTag?.where { $0._id != journal._id }
+        }
+        return retrievedWithTag
+    }
     
     //MARK: - UPDATE
     
-    func updateItem(task: [String : Any]) throws {
+    func updateRecordOfNews(task: [String : Any]) throws {
         if let realm = realm {
             do {
                 try realm.write {
@@ -83,9 +99,21 @@ final class Repository: RealmRepositoryProtocol {
         }
     }
     
+    func updateRecordOfMemo(record: Journal, newMemo: MemoTable) throws {
+        if let realm = realm {
+            do {
+                try realm.write {
+                    record.memo = newMemo
+                }
+            } catch {
+                throw RealmError.updateObjectFailure
+            }
+        }
+    }
+    
     //MARK: - DELETE
     
-    func deleteItem<T:Object>(record: T) throws {
+    func deleteRecord<T:Object>(record: T) throws {
         if let realm = realm {
             do {
                 try realm.write {

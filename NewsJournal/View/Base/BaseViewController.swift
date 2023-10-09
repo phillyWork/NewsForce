@@ -28,11 +28,64 @@ class BaseViewController: UIViewController {
         
     }
     
+    //MARK: - Toast
+    
+    func showConfirmToastMessage(message: String) {
+        toastManager.updateDefaultStyle { style in
+            style.backgroundStyle.backgroundColor = Constant.Color.mainRed
+            style.textStyle.textColor = Constant.Color.whiteBackground
+            style.textStyle.font = Constant.Font.toastMessageFont
+            style.canSwipeToDismiss = true
+            style.leftViewStyle.tintColor = Constant.Color.whiteBackground
+            return style
+        }
+        
+        toastManager.present(text: message, dismissAfterDelay: Constant.APISetup.toastMessageDelay)
+        toastManager.displayLeftView(UIImageView(image: UIImage(systemName: Constant.ImageString.checkImageString)))
+    }
+    
+    func showErrorToastMessage(message: String) {
+        toastManager.updateDefaultStyle { style in
+            style.backgroundStyle.backgroundColor = Constant.Color.tagButtonText
+            style.textStyle.textColor = Constant.Color.whiteBackground
+            style.textStyle.font = Constant.Font.toastMessageFont
+            style.canSwipeToDismiss = true
+            style.leftViewStyle.tintColor = Constant.Color.whiteBackground
+            return style
+        }
+        
+        toastManager.present(text: message, dismissAfterDelay: Constant.APISetup.toastMessageDelay)
+        toastManager.displayLeftView(UIImageView(image: UIImage(systemName: Constant.ImageString.xmarkImageString)))
+    }
+    
+    
+    //MARK: - Alert
+    
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "확인", style: .default)
+        let confirm = UIAlertAction(title: AlertConfirmText.basicConfirm, style: .default)
         
         alert.addAction(confirm)
+        self.present(alert, animated: true)
+    }
+    
+    func alertToPop(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmToPop = UIAlertAction(title: AlertConfirmText.confirmToPop, style: .default) { action in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alert.addAction(confirmToPop)
+        self.present(alert, animated: true)
+    }
+    
+    func alertToPopRoot(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmToRoot = UIAlertAction(title: AlertConfirmText.confirmToRoot, style: .default) { action in
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        alert.addAction(confirmToRoot)
         self.present(alert, animated: true)
     }
     

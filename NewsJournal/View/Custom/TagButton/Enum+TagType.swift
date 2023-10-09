@@ -11,7 +11,7 @@ import RealmSwift
 enum TagType: String, PersistableEnum {
     
     case politics = "정치"
-    case businessAndEconomy = "비즈니스/경제"
+    case economy = "경제"
     case art = "예술"
     case entertainment = "연예"
     case science = "과학"
@@ -20,5 +20,6 @@ enum TagType: String, PersistableEnum {
     case lifestyle = "라이프"
     case sports = "스포츠"
     case world = "글로벌"
+    case none = "---"
     
 }

@@ -16,6 +16,7 @@ enum BarButtonType {
     case cancel
     case backToList
     case writeDownMemo
+    case saveRealmObject
     
     var buttonTitle: String {
         switch self {
@@ -33,6 +34,8 @@ enum BarButtonType {
             return "목록으로"
         case .writeDownMemo:
             return "입력하기"
+        case .saveRealmObject:
+            return "저장하기"
         }
     }
     

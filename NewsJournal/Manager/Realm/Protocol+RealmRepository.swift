@@ -12,8 +12,8 @@ protocol RealmRepositoryProtocol {
     
     func checkSchemaVersion() throws
     func fetch<T:Object>(type: T.Type) -> Results<T>?
-    func updateItem(task: [String: Any]) throws
-    func createItem<T:Object>(record: T) throws
-    func deleteItem<T:Object>(record: T) throws
+    func updateRecordOfNews(task: [String: Any]) throws
+    func createRecord<T:Object>(record: T) throws
+    func deleteRecord<T:Object>(record: T) throws
     
 }

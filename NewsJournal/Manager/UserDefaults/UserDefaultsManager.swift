@@ -16,17 +16,18 @@ final class UserDefaultsManager {
     
     //MARK: - READ
     
-    func retrieveFromUserDefaults<T: Codable>(forKey: String) -> T? {
+    func retrieveFromUserDefaults<T: Codable>(forKey: String) throws -> T {
         if let retrievedData = userDefault.object(forKey: forKey) as? Data {
             let decoder = JSONDecoder()
             do {
                 let data = try decoder.decode(T.self, from: retrievedData)
                 return data
             } catch {
-                return nil
+                throw UserDefaultsError.cannotDecodeData
             }
+        } else {
+            throw UserDefaultsError.noDataInUserDefault
         }
-        return nil
     }
     
     //MARK: - CREATE
@@ -46,11 +47,13 @@ final class UserDefaultsManager {
     
     func deleteFromUserDefaults<T: Codable>(type: T.Type, forKey: String) -> Bool {
         userDefault.removeObject(forKey: forKey)
-        if let _ = retrieveFromUserDefaults(forKey: forKey) as T? {
+        do {
+            try retrieveFromUserDefaults(forKey: forKey) as T
             return false
-        } else {
+        } catch {
             return true
         }
+        
     }
     
 }
