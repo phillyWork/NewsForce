@@ -45,21 +45,21 @@ final class PDFDocumentCreator: NSObject {
                 //newsTitle
                 let newsTitleBottom = addNewsTitle(pageRect: pageRect, journal: journal)
                 //newsLink
-                let newsLinkBottom = addNewsSubValue(subType: .link, pageRect: pageRect, textTop: newsTitleBottom, journal: journal)
+                let newsLinkBottom = addNewsSubValue(subType: .link, pageRect: pageRect, textTop: newsTitleBottom + Constant.Frame.pdfCreatorPaddingForSpaceBetweenNewsTitleAndLink, journal: journal)
                 //newsPubDate
-                let newsPubDateBottom = addNewsSubValue(subType: .pubDate, pageRect: pageRect, textTop: newsLinkBottom, journal: journal)
+                let newsPubDateBottom = addNewsSubValue(subType: .pubDate, pageRect: pageRect, textTop: newsLinkBottom + Constant.Frame.pdfCreatorPaddingForSpaceBetweenLinkAndDate, journal: journal)
                 
                 guard let memo = journal.memo else { continue }
                 //memoTitle
-                let memoTitleBottom = addMemoTitle(pageRect: pageRect, textTop: newsPubDateBottom, memo: memo)
+                let memoTitleBottom = addMemoTitle(pageRect: pageRect, textTop: newsPubDateBottom + Constant.Frame.pdfCreatorPaddingForSpaceBetweenNewsTitleAndLink, memo: memo)
                 //memoCreatedAt
-                let memoCreatedAtBottom = addMemoSubValue(subType: .createdAt, pageRect: pageRect, textTop: memoTitleBottom, memo: memo)
+                let memoCreatedAtBottom = addMemoSubValue(subType: .createdAt, pageRect: pageRect, textTop: memoTitleBottom + Constant.Frame.pdfCreatorPaddingForSpaceBetweenNewsTitleAndLink, memo: memo)
                 //memoEditedAt
-                let memoEditedAtBottom = addMemoSubValue(subType: .editedAt, pageRect: pageRect, textTop: memoCreatedAtBottom, memo: memo)
+                let memoEditedAtBottom = addMemoSubValue(subType: .editedAt, pageRect: pageRect, textTop: memoCreatedAtBottom + Constant.Frame.pdfCreatorPaddingForSpaceBetweenLinkAndDate, memo: memo)
                 
                 if let tags = memo.tags {
                     //tag 존재 시 추가
-                    let memoTagsBottom = addMemoTags(pageRect: pageRect, textTop: memoEditedAtBottom, tags: tags)
+                    let memoTagsBottom = addMemoTags(pageRect: pageRect, textTop: memoEditedAtBottom + Constant.Frame.pdfCreatorPaddingForSpaceBetweenLinkAndDate, tags: tags)
                     //memoContent
                     addMemoContent(pageRect: pageRect, textTop: memoTagsBottom + Constant.Frame.pdfCreatorPadding, context: context, memo: memo)
                 } else {
@@ -79,7 +79,11 @@ extension PDFDocumentCreator {
     
     private func addNewsTitle(pageRect: CGRect, journal: Journal) -> CGFloat {
         let titleFont = Constant.Font.pdfCreatorNewsTitle
-        let titleAttributes = [NSAttributedString.Key.font: titleFont]
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        paragraphStyle.lineBreakMode = .byWordWrapping
+        let titleAttributes = [NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                               NSAttributedString.Key.font: titleFont]
 
         let attributedTitle = NSAttributedString(string: journal.title, attributes: titleAttributes)
         let titleStringSize = attributedTitle.size()
@@ -87,7 +91,7 @@ extension PDFDocumentCreator {
         var titleStringRect: CGRect
         
         //왼쪽에서 시작: 오른쪽 벗어나는 길이 고려하기
-        if titleStringSize.width >= pageRect.width {
+        if titleStringSize.width > pageRect.width {
             titleStringRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: Constant.Frame.pdfCreatorPadding, width: pageRect.width - Constant.Frame.pdfCreatorPadding * 2, height: titleStringSize.height * 2)
         } else {
             titleStringRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: Constant.Frame.pdfCreatorPadding, width: titleStringSize.width, height: titleStringSize.height)
@@ -100,21 +104,30 @@ extension PDFDocumentCreator {
     private func addNewsSubValue(subType: NewsSubDataType, pageRect: CGRect, textTop: CGFloat, journal: Journal) -> CGFloat {
         let valueFont = Constant.Font.pdfCreatorLinkDate
         let valueColor = Constant.Color.linkDateShadowText
-        let valueAttributes = [NSAttributedString.Key.font: valueFont,
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        paragraphStyle.lineBreakMode = .byCharWrapping
+        let valueAttributes = [NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                               NSAttributedString.Key.font: valueFont,
                                NSAttributedString.Key.foregroundColor: valueColor]
         
         var attributedValue: NSAttributedString
         switch subType {
         case .link:
-            attributedValue = NSAttributedString(string: subType.text + journal.link, attributes: [NSAttributedString.Key.font: valueFont,
-                                                                                              NSAttributedString.Key.foregroundColor: valueColor])
+            attributedValue = NSAttributedString(string: subType.text + journal.link, attributes: valueAttributes)
         case .pubDate:
-            attributedValue = NSAttributedString(string: subType.text + journal.pubDate, attributes: [NSAttributedString.Key.font: valueFont,
-                                                                                                   NSAttributedString.Key.foregroundColor: valueColor])
+            attributedValue = NSAttributedString(string: subType.text + journal.pubDate, attributes: valueAttributes)
         }
         
         let valueSize = attributedValue.size()
-        let valueRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: valueSize.width, height: valueSize.height)
+        
+        var valueRect: CGRect
+        //왼쪽에서 시작: 오른쪽 벗어나는 길이 고려하기
+        if valueSize.width > pageRect.width {
+            valueRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: pageRect.width - Constant.Frame.pdfCreatorPadding * 2, height: valueSize.height * 2)
+        } else {
+            valueRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: valueSize.width, height: valueSize.height)
+        }
         
         attributedValue.draw(in: valueRect)
         return valueRect.origin.y + valueRect.size.height
@@ -123,14 +136,18 @@ extension PDFDocumentCreator {
     private func addMemoTitle(pageRect: CGRect, textTop: CGFloat, memo: MemoTable) -> CGFloat {
                 
         let memoTitleFont = Constant.Font.pdfCreatorMemoTitle
-        let titleAttributes = [NSAttributedString.Key.font: memoTitleFont]
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        paragraphStyle.lineBreakMode = .byWordWrapping
+        let titleAttributes = [NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                               NSAttributedString.Key.font: memoTitleFont]
         let attributedMemoTitle = NSAttributedString(string: memo.title, attributes: titleAttributes)
         
         let memoTitleStringSize = attributedMemoTitle.size()
         
         var memoTitleStringRect: CGRect
         //왼쪽에서 시작: size 크기 고려
-        if memoTitleStringSize.width >= pageRect.width {
+        if memoTitleStringSize.width > pageRect.width {
             memoTitleStringRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: pageRect.width - Constant.Frame.pdfCreatorPadding * 2 , height: memoTitleStringSize.height * 2)
         } else {
             memoTitleStringRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: memoTitleStringSize.width, height: memoTitleStringSize.height)
@@ -144,21 +161,31 @@ extension PDFDocumentCreator {
         
         let valueFont = Constant.Font.pdfCreatorLinkDate
         let valueColor = Constant.Color.linkDateShadowText
-        
-        let valueAttributes = [NSAttributedString.Key.font: valueFont,
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        paragraphStyle.lineBreakMode = .byCharWrapping
+        let valueAttributes = [NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                               NSAttributedString.Key.font: valueFont,
                               NSAttributedString.Key.foregroundColor: valueColor]
         
         var attributedValue: NSAttributedString
         
         switch subType {
         case .createdAt:
-            attributedValue = NSAttributedString(string: subType.text + "\(memo.createdAt)", attributes: valueAttributes)
+            attributedValue = NSAttributedString(string: subType.text + memo.createdAt.toString(), attributes: valueAttributes)
         case .editedAt:
-            attributedValue = NSAttributedString(string: subType.text + "\(memo.editedAt)", attributes: valueAttributes)
+            attributedValue = NSAttributedString(string: subType.text + memo.editedAt.toString(), attributes: valueAttributes)
         }
         
         let valueSize = attributedValue.size()
-        let valueRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: valueSize.width, height: valueSize.height)
+        
+        var valueRect: CGRect
+        //왼쪽에서 시작: 오른쪽 벗어나는 길이 고려하기
+        if valueSize.width > pageRect.width {
+            valueRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: pageRect.width - Constant.Frame.pdfCreatorPadding * 2, height: valueSize.height * 2)
+        } else {
+            valueRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: valueSize.width, height: valueSize.height)
+        }
         
         attributedValue.draw(in: valueRect)
         return valueRect.origin.y + valueRect.size.height
@@ -172,18 +199,8 @@ extension PDFDocumentCreator {
         let tagAttributes = [NSAttributedString.Key.font: tagFont,
                              NSAttributedString.Key.foregroundColor: tagColor]
         
-        var tagString = PDFCreatorSetupValues.basicTag
-        
-        if let first = tags.firstTag {
-            tagString += " #\(first.rawValue)"
-        }
-        if let second = tags.secondTag {
-            tagString += " #\(second.rawValue)"
-        }
-        if let third = tags.thirdTag {
-            tagString += " #\(third.rawValue)"
-        }
-        
+        let tagString = tags.returnTagsInString()
+
         let attributedTag = NSAttributedString(string: tagString, attributes: tagAttributes)
         let tagSize = attributedTag.size()
         let tagRect = CGRect(x: Constant.Frame.pdfCreatorPadding, y: textTop, width: tagSize.width, height: tagSize.height)

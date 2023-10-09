@@ -14,6 +14,13 @@ final class PDFViewController: BaseViewController {
     
     private let pdfView = PDFView()
     
+    lazy private var backButton: CustomBarButtonItem = {
+        let button = CustomBarButtonItem(type: .backToList)
+        button.target = self
+        button.action = #selector(backButtonTapped)
+        return button
+    }()
+    
     //to show current PDF page
     private var pageInfoContainer: UIView = {
         let view = UIView()
@@ -37,26 +44,16 @@ final class PDFViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pdfVM.documentData?.bind { data in
-            self.pdfView.autoScales = true   //set pdfDocument into pdfView
-            self.pdfView.displayMode = .singlePageContinuous
-            self.pdfView.displayDirection = .vertical
-            self.pdfView.document = PDFDocument(data: data)
-        }
-    
+        populatePreview()
+        
         //notification for pdf
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageChange), name: .PDFViewPageChanged, object: nil)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
         
-        tabBarController?.tabBar.isHidden = false
-    }
-    
     override func configureViews() {
         super.configureViews()
         
+        navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: PDFCreatorSetupValues.shareButtonImageString), style: .plain, target: self, action: #selector(sharedButtonTapped))
         
         view.addSubview(pdfView)
@@ -84,11 +81,28 @@ final class PDFViewController: BaseViewController {
     
     }
     
+    //MARK: - API
+    
+    private func populatePreview() {
+        
+        guard let data = pdfVM.documentData else { return }
+        
+        self.pdfView.autoScales = true   //set pdfDocument into pdfView
+        self.pdfView.displayMode = .singlePageContinuous
+        self.pdfView.displayDirection = .vertical
+        self.pdfView.document = PDFDocument(data: data)
+    }
+    
+    
     //MARK: - Handlers
+    
+    @objc private func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @objc private func sharedButtonTapped() {
         
-        guard let pdfData = pdfVM.documentData?.value else { return }
+        guard let pdfData = pdfVM.documentData else { return }
         
         //show activityVC to share data
         let activityVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: [])
@@ -101,12 +115,12 @@ final class PDFViewController: BaseViewController {
         //when error occurred
         activityVC.completionWithItemsHandler = { (activity, success, items, error) in
             if success {
-                self.toastManager.present(text: PDFCreatorSetupValues.activityShareSuccessMessage, dismissAfterDelay: PDFCreatorSetupValues.activityShareDismissInterval)
-            } else {
-                self.toastManager.present(text: PDFCreatorSetupValues.activityShareFailureMessage, dismissAfterDelay: PDFCreatorSetupValues.activityShareDismissInterval)
+                self.showConfirmToastMessage(message: PDFCreatorSetupValues.activityShareSuccessMessage)
+                self.navigationController?.popViewController(animated: true)
+            } else if let error = error {
+                self.showErrorToastMessage(message: PDFCreatorSetupValues.activityShareFailureMessage)
             }
         }
-                
         present(activityVC, animated: true)
     }
     
@@ -127,6 +141,8 @@ final class PDFViewController: BaseViewController {
         }
         
     }
+    
+    //MARK: - Timer
     
     private func startTimer() {
         timer?.invalidate()

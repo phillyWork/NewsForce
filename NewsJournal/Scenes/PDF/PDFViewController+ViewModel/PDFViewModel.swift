@@ -11,7 +11,7 @@ final class PDFViewModel {
     
     //MARK: - Properties
     
-    var documentData: Observable<Data>?
+    var documentData: Data?
     
     //MARK: - API
     
