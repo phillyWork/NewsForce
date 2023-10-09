@@ -13,7 +13,7 @@ extension Constant {
         
         static let maxStart = 1000
         static let display = 30
-        
+        static let toastMessageDelay: TimeInterval = 2
     }
     
 }

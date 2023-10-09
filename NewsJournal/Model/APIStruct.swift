@@ -22,9 +22,19 @@ struct News: Codable, Hashable {
     let description, pubDate: String
     
     //Hashable, UserDefaults
-    let id = UUID().uuidString
+    let id: String = UUID().uuidString
     
     var existingLink: String {
         return originallink.isEmpty ? link : originallink
+    }
+    
+    var htmlReducedTitle: String {
+        let result = title.htmlAttributedString(value: title)
+        return result
+    }
+    
+    var htmlReducedDescription: String {
+        let result = description.htmlAttributedString(value: description)
+        return result
     }
 }

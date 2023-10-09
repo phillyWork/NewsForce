@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210337172AD1518500B88BCC /* Enum+AlertConfirmText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210337162AD1518500B88BCC /* Enum+AlertConfirmText.swift */; };
+		210337192AD18C0D00B88BCC /* Extension+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210337182AD18C0D00B88BCC /* Extension+UICollectionView.swift */; };
+		2103371B2AD18FB300B88BCC /* ImageString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2103371A2AD18FB300B88BCC /* ImageString.swift */; };
 		210821202AC85E5D00A999AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108211F2AC85E5D00A999AC /* AppDelegate.swift */; };
 		210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821212AC85E5D00A999AC /* SceneDelegate.swift */; };
 		210821242AC85E5D00A999AC /* NewsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821232AC85E5D00A999AC /* NewsSearchViewController.swift */; };
@@ -22,10 +25,6 @@
 		2108214E2AC864C900A999AC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108214D2AC864C900A999AC /* Color.swift */; };
 		210821512AC8652300A999AC /* APIStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821502AC8652300A999AC /* APIStruct.swift */; };
 		210821532AC8653300A999AC /* RealmStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821522AC8653300A999AC /* RealmStruct.swift */; };
-		210821562AC8654B00A999AC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 210821552AC8654B00A999AC /* Alamofire */; };
-		210821592AC8655F00A999AC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 210821582AC8655F00A999AC /* SnapKit */; };
-		2108215C2AC8656F00A999AC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2108215B2AC8656F00A999AC /* Realm */; };
-		2108215E2AC8656F00A999AC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2108215D2AC8656F00A999AC /* RealmSwift */; };
 		210821602AC869B400A999AC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108215F2AC869B400A999AC /* Network.swift */; };
 		210821622AC869B900A999AC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821612AC869B900A999AC /* Router.swift */; };
 		210821642AC869F300A999AC /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821632AC869F300A999AC /* Repository.swift */; };
@@ -49,15 +48,22 @@
 		213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */; };
 		213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */; };
 		213AAC972AC9BC3C001BF9AC /* Enum+SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */; };
-		2180E5582ACAFD4B00CAC283 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 2180E5572ACAFD4B00CAC283 /* JDStatusBarNotification */; };
-		2180E55A2ACB070B00CAC283 /* JournalRealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5592ACB070B00CAC283 /* JournalRealmViewModel.swift */; };
-		2180E55F2ACB125600CAC283 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E55E2ACB125600CAC283 /* TagViewController.swift */; };
-		2180E5612ACB125D00CAC283 /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5602ACB125D00CAC283 /* TagViewModel.swift */; };
+		216887E42ACE451F008A8A40 /* Enum+MemoSetupValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216887E32ACE451F008A8A40 /* Enum+MemoSetupValues.swift */; };
+		216887E72ACE45E1008A8A40 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216887E62ACE45E1008A8A40 /* CustomTextView.swift */; };
+		216887EA2ACE4671008A8A40 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216887E92ACE4671008A8A40 /* CustomTextField.swift */; };
+		216887EC2ACE74A5008A8A40 /* Enum+MemoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216887EB2ACE74A5008A8A40 /* Enum+MemoError.swift */; };
+		216887EF2ACE758A008A8A40 /* Enum+UserDefaultsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216887EE2ACE758A008A8A40 /* Enum+UserDefaultsError.swift */; };
+		216887FE2ACEF7CD008A8A40 /* CustomPullDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216887FD2ACEF7CD008A8A40 /* CustomPullDownButton.swift */; };
 		2180E5632ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5622ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift */; };
 		2180E5662ACB197E00CAC283 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5652ACB197E00CAC283 /* Extension+String.swift */; };
 		2180E5692ACB19AF00CAC283 /* Extension+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */; };
 		2191529D2ACD51F700D57439 /* Enum+WebViewError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2191529C2ACD51F700D57439 /* Enum+WebViewError.swift */; };
-		2191529F2ACD548200D57439 /* Enum+WebViewSetupValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2191529E2ACD548200D57439 /* Enum+WebViewSetupValues.swift */; };
+		21A1DA522AD0706C002A89CB /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA512AD0706C002A89CB /* JDStatusBarNotification */; };
+		21A1DA552AD0707F002A89CB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA542AD0707F002A89CB /* SnapKit */; };
+		21A1DA582AD07089002A89CB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA572AD07089002A89CB /* Alamofire */; };
+		21A1DA5B2AD070AC002A89CB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA5A2AD070AC002A89CB /* Realm */; };
+		21A1DA5D2AD070AC002A89CB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA5C2AD070AC002A89CB /* RealmSwift */; };
+		21B6F3912AD2F1DB00983F55 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B6F3902AD2F1DB00983F55 /* Extension+Date.swift */; };
 		21BD223F2ACBC3AE005EE249 /* Protocol+RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD223E2ACBC3AE005EE249 /* Protocol+RealmRepository.swift */; };
 		21BD22412ACBF05D005EE249 /* Enum+RealmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD22402ACBF05D005EE249 /* Enum+RealmError.swift */; };
 		21BD22432ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD22422ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift */; };
@@ -73,6 +79,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		210337162AD1518500B88BCC /* Enum+AlertConfirmText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+AlertConfirmText.swift"; sourceTree = "<group>"; };
+		210337182AD18C0D00B88BCC /* Extension+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionView.swift"; sourceTree = "<group>"; };
+		2103371A2AD18FB300B88BCC /* ImageString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageString.swift; sourceTree = "<group>"; };
 		2108211C2AC85E5D00A999AC /* NewsJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2108211F2AC85E5D00A999AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		210821212AC85E5D00A999AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,14 +122,18 @@
 		213AAC922AC9AB9B001BF9AC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		213AAC942AC9B13D001BF9AC /* Enum+LPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+LPError.swift"; sourceTree = "<group>"; };
 		213AAC962AC9BC3C001BF9AC /* Enum+SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+SortType.swift"; sourceTree = "<group>"; };
-		2180E5592ACB070B00CAC283 /* JournalRealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalRealmViewModel.swift; sourceTree = "<group>"; };
-		2180E55E2ACB125600CAC283 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
-		2180E5602ACB125D00CAC283 /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		216887E32ACE451F008A8A40 /* Enum+MemoSetupValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+MemoSetupValues.swift"; sourceTree = "<group>"; };
+		216887E62ACE45E1008A8A40 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		216887E92ACE4671008A8A40 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		216887EB2ACE74A5008A8A40 /* Enum+MemoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+MemoError.swift"; sourceTree = "<group>"; };
+		216887EE2ACE758A008A8A40 /* Enum+UserDefaultsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+UserDefaultsError.swift"; sourceTree = "<group>"; };
+		216887FD2ACEF7CD008A8A40 /* CustomPullDownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPullDownButton.swift; sourceTree = "<group>"; };
 		2180E5622ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+JournalRealmSetupValues.swift"; sourceTree = "<group>"; };
 		2180E5652ACB197E00CAC283 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSAttributedString.swift"; sourceTree = "<group>"; };
 		2191529C2ACD51F700D57439 /* Enum+WebViewError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+WebViewError.swift"; sourceTree = "<group>"; };
-		2191529E2ACD548200D57439 /* Enum+WebViewSetupValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+WebViewSetupValues.swift"; sourceTree = "<group>"; };
+		21A1DA5E2AD076CA002A89CB /* libswiftUIKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftUIKit.tbd; path = usr/lib/swift/libswiftUIKit.tbd; sourceTree = SDKROOT; };
+		21B6F3902AD2F1DB00983F55 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		21BD223E2ACBC3AE005EE249 /* Protocol+RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Protocol+RealmRepository.swift"; sourceTree = "<group>"; };
 		21BD22402ACBF05D005EE249 /* Enum+RealmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+RealmError.swift"; sourceTree = "<group>"; };
 		21BD22422ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCompositionalLayout.swift; sourceTree = "<group>"; };
@@ -140,11 +153,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2180E5582ACAFD4B00CAC283 /* JDStatusBarNotification in Frameworks */,
-				2108215E2AC8656F00A999AC /* RealmSwift in Frameworks */,
-				2108215C2AC8656F00A999AC /* Realm in Frameworks */,
-				210821562AC8654B00A999AC /* Alamofire in Frameworks */,
-				210821592AC8655F00A999AC /* SnapKit in Frameworks */,
+				21A1DA582AD07089002A89CB /* Alamofire in Frameworks */,
+				21A1DA522AD0706C002A89CB /* JDStatusBarNotification in Frameworks */,
+				21A1DA5B2AD070AC002A89CB /* Realm in Frameworks */,
+				21A1DA5D2AD070AC002A89CB /* RealmSwift in Frameworks */,
+				21A1DA552AD0707F002A89CB /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +169,7 @@
 			children = (
 				2108211E2AC85E5D00A999AC /* NewsJournal */,
 				2108211D2AC85E5D00A999AC /* Products */,
+				21A1DA3C2AD0699D002A89CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -201,6 +215,7 @@
 			children = (
 				210821442AC8638700A999AC /* Utility */,
 				210821752AC86D6A00A999AC /* NotificationCenter */,
+				2180E5672ACB198700CAC283 /* Extension */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -208,9 +223,8 @@
 		2108213B2AC862CA00A999AC /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				2180E5672ACB198700CAC283 /* Extension+StringContentHeight */,
 				2180E5642ACB134A00CAC283 /* Enum+JournalRealm */,
-				2180E55B2ACB073000CAC283 /* JournalCell+ViewModel */,
+				2180E55B2ACB073000CAC283 /* JournalCell */,
 				2180E55C2ACB11AE00CAC283 /* JournalViewController+ViewModel */,
 			);
 			path = Journal;
@@ -225,7 +239,6 @@
 				213AAC8D2AC9AAA0001BF9AC /* PDF */,
 				2108216C2AC86ADB00A999AC /* Web */,
 				2108216F2AC86AF900A999AC /* Memo */,
-				2180E55D2ACB123700CAC283 /* Tag */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -246,6 +259,7 @@
 				2108214D2AC864C900A999AC /* Color.swift */,
 				213AAC812AC960C7001BF9AC /* Font.swift */,
 				21E830C12ACA9A120009025D /* APISetup.swift */,
+				2103371A2AD18FB300B88BCC /* ImageString.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -283,7 +297,9 @@
 		210821492AC8646F00A999AC /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				210337162AD1518500B88BCC /* Enum+AlertConfirmText.swift */,
 				210821662AC86AA600A999AC /* BaseViewController.swift */,
+				210337182AD18C0D00B88BCC /* Extension+UICollectionView.swift */,
 				21E830CA2ACAC56D0009025D /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
@@ -295,6 +311,9 @@
 				213AAC882AC9A109001BF9AC /* BarButton */,
 				213AAC802AC95FF8001BF9AC /* TagButton */,
 				213AAC852AC962E9001BF9AC /* SearchBar */,
+				216887E52ACE45C2008A8A40 /* TextView */,
+				216887E82ACE4665008A8A40 /* TextField */,
+				216887FC2ACEF7BE008A8A40 /* PullDownButton */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -321,8 +340,7 @@
 		2108216C2AC86ADB00A999AC /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				2191529E2ACD548200D57439 /* Enum+WebViewSetupValues.swift */,
-				2191529C2ACD51F700D57439 /* Enum+WebViewError.swift */,
+				219152A22ACDAF0800D57439 /* Enum+Web */,
 				2108216A2AC86AD700A999AC /* WebViewModel.swift */,
 				210821682AC86ACD00A999AC /* WebViewController.swift */,
 			);
@@ -332,6 +350,7 @@
 		2108216F2AC86AF900A999AC /* Memo */ = {
 			isa = PBXGroup;
 			children = (
+				216887ED2ACE74DA008A8A40 /* Enum+Memo */,
 				210821702AC86BA100A999AC /* MemoViewModel.swift */,
 				2108216D2AC86AF200A999AC /* MemoViewController.swift */,
 			);
@@ -341,6 +360,7 @@
 		210821722AC86D4200A999AC /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
+				216887EE2ACE758A008A8A40 /* Enum+UserDefaultsError.swift */,
 				210821732AC86D5700A999AC /* UserDefaultsManager.swift */,
 			);
 			path = UserDefaults;
@@ -389,13 +409,45 @@
 			path = PDF;
 			sourceTree = "<group>";
 		};
-		2180E55B2ACB073000CAC283 /* JournalCell+ViewModel */ = {
+		216887E52ACE45C2008A8A40 /* TextView */ = {
 			isa = PBXGroup;
 			children = (
-				2180E5592ACB070B00CAC283 /* JournalRealmViewModel.swift */,
+				216887E62ACE45E1008A8A40 /* CustomTextView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
+		216887E82ACE4665008A8A40 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				216887E92ACE4671008A8A40 /* CustomTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		216887ED2ACE74DA008A8A40 /* Enum+Memo */ = {
+			isa = PBXGroup;
+			children = (
+				216887E32ACE451F008A8A40 /* Enum+MemoSetupValues.swift */,
+				216887EB2ACE74A5008A8A40 /* Enum+MemoError.swift */,
+			);
+			path = "Enum+Memo";
+			sourceTree = "<group>";
+		};
+		216887FC2ACEF7BE008A8A40 /* PullDownButton */ = {
+			isa = PBXGroup;
+			children = (
+				216887FD2ACEF7CD008A8A40 /* CustomPullDownButton.swift */,
+			);
+			path = PullDownButton;
+			sourceTree = "<group>";
+		};
+		2180E55B2ACB073000CAC283 /* JournalCell */ = {
+			isa = PBXGroup;
+			children = (
 				21E830C82ACAC5440009025D /* JournalRealmCell.swift */,
 			);
-			path = "JournalCell+ViewModel";
+			path = JournalCell;
 			sourceTree = "<group>";
 		};
 		2180E55C2ACB11AE00CAC283 /* JournalViewController+ViewModel */ = {
@@ -408,15 +460,6 @@
 			path = "JournalViewController+ViewModel";
 			sourceTree = "<group>";
 		};
-		2180E55D2ACB123700CAC283 /* Tag */ = {
-			isa = PBXGroup;
-			children = (
-				2180E5602ACB125D00CAC283 /* TagViewModel.swift */,
-				2180E55E2ACB125600CAC283 /* TagViewController.swift */,
-			);
-			path = Tag;
-			sourceTree = "<group>";
-		};
 		2180E5642ACB134A00CAC283 /* Enum+JournalRealm */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,13 +468,30 @@
 			path = "Enum+JournalRealm";
 			sourceTree = "<group>";
 		};
-		2180E5672ACB198700CAC283 /* Extension+StringContentHeight */ = {
+		2180E5672ACB198700CAC283 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				21B6F3902AD2F1DB00983F55 /* Extension+Date.swift */,
 				2180E5652ACB197E00CAC283 /* Extension+String.swift */,
 				2180E5682ACB19AF00CAC283 /* Extension+NSAttributedString.swift */,
 			);
-			path = "Extension+StringContentHeight";
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		219152A22ACDAF0800D57439 /* Enum+Web */ = {
+			isa = PBXGroup;
+			children = (
+				2191529C2ACD51F700D57439 /* Enum+WebViewError.swift */,
+			);
+			path = "Enum+Web";
+			sourceTree = "<group>";
+		};
+		21A1DA3C2AD0699D002A89CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21A1DA5E2AD076CA002A89CB /* libswiftUIKit.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		21BD22482ACC4EFF005EE249 /* PDFCreator */ = {
@@ -498,11 +558,11 @@
 			);
 			name = NewsJournal;
 			packageProductDependencies = (
-				210821552AC8654B00A999AC /* Alamofire */,
-				210821582AC8655F00A999AC /* SnapKit */,
-				2108215B2AC8656F00A999AC /* Realm */,
-				2108215D2AC8656F00A999AC /* RealmSwift */,
-				2180E5572ACAFD4B00CAC283 /* JDStatusBarNotification */,
+				21A1DA512AD0706C002A89CB /* JDStatusBarNotification */,
+				21A1DA542AD0707F002A89CB /* SnapKit */,
+				21A1DA572AD07089002A89CB /* Alamofire */,
+				21A1DA5A2AD070AC002A89CB /* Realm */,
+				21A1DA5C2AD070AC002A89CB /* RealmSwift */,
 			);
 			productName = NewsJournal;
 			productReference = 2108211C2AC85E5D00A999AC /* NewsJournal.app */;
@@ -533,10 +593,10 @@
 			);
 			mainGroup = 210821132AC85E5D00A999AC;
 			packageReferences = (
-				210821542AC8654B00A999AC /* XCRemoteSwiftPackageReference "Alamofire" */,
-				210821572AC8655F00A999AC /* XCRemoteSwiftPackageReference "SnapKit" */,
-				2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */,
-				2180E5562ACAFD4B00CAC283 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
+				21A1DA502AD0706C002A89CB /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
+				21A1DA532AD0707F002A89CB /* XCRemoteSwiftPackageReference "SnapKit" */,
+				21A1DA562AD07089002A89CB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				21A1DA592AD070AC002A89CB /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 2108211D2AC85E5D00A999AC /* Products */;
 			projectDirPath = "";
@@ -569,8 +629,8 @@
 				213AAC972AC9BC3C001BF9AC /* Enum+SortType.swift in Sources */,
 				21E830C02ACA92980009025D /* Enum+NetworkError.swift in Sources */,
 				2108216B2AC86AD700A999AC /* WebViewModel.swift in Sources */,
+				210337192AD18C0D00B88BCC /* Extension+UICollectionView.swift in Sources */,
 				2108214C2AC864AF00A999AC /* Frame.swift in Sources */,
-				2180E5612ACB125D00CAC283 /* TagViewModel.swift in Sources */,
 				210821642AC869F300A999AC /* Repository.swift in Sources */,
 				210821242AC85E5D00A999AC /* NewsSearchViewController.swift in Sources */,
 				210821512AC8652300A999AC /* APIStruct.swift in Sources */,
@@ -584,7 +644,6 @@
 				2108214E2AC864C900A999AC /* Color.swift in Sources */,
 				213AAC7B2AC952BE001BF9AC /* Enum+ViewControllerType.swift in Sources */,
 				21E830C92ACAC5440009025D /* JournalRealmCell.swift in Sources */,
-				2180E55F2ACB125600CAC283 /* TagViewController.swift in Sources */,
 				213AAC932AC9AB9B001BF9AC /* PDFViewController.swift in Sources */,
 				2108216E2AC86AF200A999AC /* MemoViewController.swift in Sources */,
 				21BD223F2ACBC3AE005EE249 /* Protocol+RealmRepository.swift in Sources */,
@@ -592,31 +651,38 @@
 				21BD22412ACBF05D005EE249 /* Enum+RealmError.swift in Sources */,
 				2108213E2AC862EF00A999AC /* TabBarController.swift in Sources */,
 				21BD224E2ACC5A81005EE249 /* Enum+SubDataType.swift in Sources */,
+				210337172AD1518500B88BCC /* Enum+AlertConfirmText.swift in Sources */,
 				213AAC8F2AC9AABC001BF9AC /* PDFDocumentCreator.swift in Sources */,
+				216887EC2ACE74A5008A8A40 /* Enum+MemoError.swift in Sources */,
 				210821532AC8653300A999AC /* RealmStruct.swift in Sources */,
+				21B6F3912AD2F1DB00983F55 /* Extension+Date.swift in Sources */,
 				213AAC842AC962E5001BF9AC /* CustomSearchBar.swift in Sources */,
 				213AAC7D2AC95F6D001BF9AC /* CustomTagButton.swift in Sources */,
 				210821202AC85E5D00A999AC /* AppDelegate.swift in Sources */,
+				216887FE2ACEF7CD008A8A40 /* CustomPullDownButton.swift in Sources */,
 				213AAC912AC9AB03001BF9AC /* PDFViewModel.swift in Sources */,
 				210821712AC86BA100A999AC /* MemoViewModel.swift in Sources */,
+				216887EA2ACE4671008A8A40 /* CustomTextField.swift in Sources */,
 				210821382AC85FFF00A999AC /* NewsSearchViewModel.swift in Sources */,
 				2191529D2ACD51F700D57439 /* Enum+WebViewError.swift in Sources */,
 				21E830CB2ACAC56D0009025D /* BaseCollectionViewCell.swift in Sources */,
 				210821622AC869B900A999AC /* Router.swift in Sources */,
+				216887E72ACE45E1008A8A40 /* CustomTextView.swift in Sources */,
 				21E830C42ACAA7FB0009025D /* NewsLinkPresentationCell.swift in Sources */,
 				210821692AC86ACD00A999AC /* WebViewController.swift in Sources */,
 				213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */,
 				210821362AC85EA500A999AC /* APIKey.swift in Sources */,
-				2180E55A2ACB070B00CAC283 /* JournalRealmViewModel.swift in Sources */,
 				210821742AC86D5700A999AC /* UserDefaultsManager.swift in Sources */,
+				216887EF2ACE758A008A8A40 /* Enum+UserDefaultsError.swift in Sources */,
 				210821672AC86AA600A999AC /* BaseViewController.swift in Sources */,
 				2180E5632ACB131000CAC283 /* Enum+JournalRealmSetupValues.swift in Sources */,
 				2180E5692ACB19AF00CAC283 /* Extension+NSAttributedString.swift in Sources */,
 				213AAC822AC960C7001BF9AC /* Font.swift in Sources */,
+				2103371B2AD18FB300B88BCC /* ImageString.swift in Sources */,
 				210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */,
-				2191529F2ACD548200D57439 /* Enum+WebViewSetupValues.swift in Sources */,
 				210821402AC8633A00A999AC /* JournalViewController.swift in Sources */,
 				210821792AC8725700A999AC /* Observable.swift in Sources */,
+				216887E42ACE451F008A8A40 /* Enum+MemoSetupValues.swift in Sources */,
 				21BD22432ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift in Sources */,
 				213AAC8A2AC9A11A001BF9AC /* CustomBarButtonItem.swift in Sources */,
 				21E830CD2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift in Sources */,
@@ -754,10 +820,12 @@
 		210821312AC85E5E00A999AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(EMBEDDED_CONTENT_CONTAINS_SWIFT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PSU86J5852;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsJournal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -784,10 +852,12 @@
 		210821322AC85E5E00A999AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(EMBEDDED_CONTENT_CONTAINS_SWIFT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PSU86J5852;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsJournal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -835,31 +905,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		210821542AC8654B00A999AC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		210821572AC8655F00A999AC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.42.3;
-			};
-		};
-		2180E5562ACAFD4B00CAC283 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */ = {
+		21A1DA502AD0706C002A89CB /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/calimarkus/JDStatusBarNotification.git";
 			requirement = {
@@ -867,33 +913,57 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		21A1DA532AD0707F002A89CB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		21A1DA562AD07089002A89CB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		21A1DA592AD070AC002A89CB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		210821552AC8654B00A999AC /* Alamofire */ = {
+		21A1DA512AD0706C002A89CB /* JDStatusBarNotification */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 210821542AC8654B00A999AC /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = 21A1DA502AD0706C002A89CB /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;
+			productName = JDStatusBarNotification;
 		};
-		210821582AC8655F00A999AC /* SnapKit */ = {
+		21A1DA542AD0707F002A89CB /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 210821572AC8655F00A999AC /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 21A1DA532AD0707F002A89CB /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		2108215B2AC8656F00A999AC /* Realm */ = {
+		21A1DA572AD07089002A89CB /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 21A1DA562AD07089002A89CB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		21A1DA5A2AD070AC002A89CB /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21A1DA592AD070AC002A89CB /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
-		2108215D2AC8656F00A999AC /* RealmSwift */ = {
+		21A1DA5C2AD070AC002A89CB /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2108215A2AC8656F00A999AC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 21A1DA592AD070AC002A89CB /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
-		};
-		2180E5572ACAFD4B00CAC283 /* JDStatusBarNotification */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2180E5562ACAFD4B00CAC283 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;
-			productName = JDStatusBarNotification;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

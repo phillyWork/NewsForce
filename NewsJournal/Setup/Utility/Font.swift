@@ -11,6 +11,8 @@ extension Constant {
     
     enum Font {
         
+        static let toastMessageFont = UIFont.preferredFont(forTextStyle: .footnote)
+        
         static let tagButton = UIFont.systemFont(ofSize: 14, weight: .semibold)
         static let journalRealmCellTitle = UIFont.boldSystemFont(ofSize: 13)
         static let journalRealmCellMemo = UIFont.systemFont(ofSize: 11, weight: .medium)
@@ -22,6 +24,8 @@ extension Constant {
         static let pdfCreatorContent = UIFont.systemFont(ofSize: 16, weight: .regular)
         
         static let pdfPageInfoLabel = UIFont.systemFont(ofSize: 12, weight: .medium)
+        
+        static let memoTextView = UIFont.systemFont(ofSize: 14, weight: .medium)
     }
     
     

@@ -11,6 +11,8 @@ enum Constant {
     
     enum Frame {
         
+        static let emptyViewImageWidthMultiply: CGFloat = 0.5
+        
         static let collectionViewCellShadowRadius = 5.0
         static let collectionViewCellShadowOpacity: Float = 0.8
         static let collectionViewCellshadowOffset = CGSize(width: 0, height: 5)
@@ -44,12 +46,26 @@ enum Constant {
         static let pdfCreatorPaddingForContentWidth: CGFloat = 10
         static let pdfCreatorPaddingForContentHeight: CGFloat = 18
         static let pdfCreatorPaddingForContentInset: CGFloat = 10
+        static let pdfCreatorPaddingForSpaceBetweenNewsTitleAndLink: CGFloat = 20
+        static let pdfCreatorPaddingForSpaceBetweenLinkAndDate: CGFloat = 10
         
         static let pdfPageInfoContainerCornerRadius: CGFloat = 8
         static let pdfPageInfoContainerOffset = 15
         static let pdfCurrentPageLabelDirectionalHorizontalOffset = 10
         static let pdfCurrentPageLabelBottomOffset = -5
         static let pdfCurrentPageLabelTopOffset = 5
+        
+        static let memoTitleTextFieldInset = 15
+        static let memoTitleTextFieldHeightMultiply = 0.12
+        static let memoTitleTextFieldCornerRadius: CGFloat = 6
+        static let memoTagButtonTopOffset = 10
+        static let memoTagButtonLeadingOffset = 10
+        static let memoTagButtonWidthMultiply = 0.23
+        static let memoTagButtonHeightMultiply = 0.34
+        static let memoTagButtonCornerRadius: CGFloat = 5
+        static let memoTextViewTopOffset = 10
+        
+        
         
     }
 

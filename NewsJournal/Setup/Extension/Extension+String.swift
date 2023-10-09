@@ -15,4 +15,14 @@ extension String {
         return boundingBox.height
     }
     
+    func htmlAttributedString(value: String) -> String {
+        guard let data = value.data(using: .utf8) else { return value }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html,
+                                                                .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil).string
+        } catch {
+            return value
+        }
+    }
+    
 }

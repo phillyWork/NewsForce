@@ -8,6 +8,8 @@
 import Foundation
 import RealmSwift
 
+// DTO --> entity로 레이어화 (data 및 schema update 고려)
+
 final class Journal: Object {
     
     @Persisted(primaryKey: true) var _id: ObjectId
@@ -38,8 +40,24 @@ final class MemoTable: EmbeddedObject {
 final class TagTable: EmbeddedObject {
     
     //enum으로 관리
-    @Persisted var firstTag: TagType?
-    @Persisted var secondTag: TagType?
-    @Persisted var thirdTag: TagType?
+    @Persisted var firstTag: TagType
+    @Persisted var secondTag: TagType
+    @Persisted var thirdTag: TagType
+ 
+    func returnTagsInString() -> String {
+        var result = PDFCreatorSetupValues.basicTag
+        
+        if firstTag != .none {
+            result += "#\(firstTag.rawValue) "
+        }
+        if secondTag != .none, secondTag != firstTag {
+            result += "#\(secondTag.rawValue) "
+        }
+        if thirdTag != .none, thirdTag != firstTag, thirdTag != secondTag {
+            result += "#\(thirdTag.rawValue) "
+        }
+        
+        return result
+    }
     
 }
