@@ -25,6 +25,7 @@ final class MemoViewModel {
     var thirdTag = TagType.none
     
     var memoErrorMessage: Observable<String> = Observable("")
+    var memoSuccessMessage: Observable<String> = Observable("")
     
     private let userDefault = UserDefaultsManager.shared
     private let repository = Repository.shared
@@ -198,8 +199,8 @@ final class MemoViewModel {
             //업데이트 하려고 준비한 메모 및 태그로 저장하기
             do {
                 try repository.updateRecordOfMemo(record: object, newMemo: newMemo)
-                //성공 toast 메시지 띄우기?
-                
+                //성공 toast 메시지 띄우기
+                memoSuccessMessage.value = MemoSetupValues.updatingJournalSuceed
                 
                 //remove from UserDefaults: 실패를 굳이 알려야 하는지 의문...
                 if userDefault.deleteFromUserDefaults(type: String.self, forKey: object.title) {
@@ -228,8 +229,8 @@ final class MemoViewModel {
             
             do {
                 try repository.createRecord(record: newJournal)
-                //저장 완료 toast 띄우기?
-                
+                //저장 완료 toast 띄우기
+                memoSuccessMessage.value = MemoSetupValues.savingNewlyCreatedJournalSucceed
                 
                 //remove from UserDefaults: 실패를 굳이 알려야 하는지 의문...
                 if userDefault.deleteFromUserDefaults(type: String.self, forKey: news.title) {
@@ -247,7 +248,7 @@ final class MemoViewModel {
                 }
             } catch {
                 //저장 실패: toast 띄우기
-                memoErrorMessage.value = MemoSetupValues.savingNewCreatedJournalFailed
+                memoErrorMessage.value = MemoSetupValues.savingNewlyCreatedJournalFailed
                 isJournalMade.value = false
             }
         }

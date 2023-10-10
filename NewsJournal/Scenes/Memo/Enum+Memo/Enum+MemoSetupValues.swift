@@ -26,6 +26,9 @@ enum MemoSetupValues {
     static let deletionTempMemoFailed = "임시 메모를 삭제할 수 없어요"
     
     static let updatingJournalFailed = "수정에 실패했어요. 다시 시도해주세요"
-    static let savingNewCreatedJournalFailed = "저장에 실패했어요. 다시 시도해주세요"
+    static let savingNewlyCreatedJournalFailed = "저장에 실패했어요. 다시 시도해주세요"
+    
+    static let savingNewlyCreatedJournalSucceed = "저장 성공!"
+    static let updatingJournalSuceed = "수정 성공!"
     
 }

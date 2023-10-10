@@ -62,6 +62,10 @@ final class MemoViewController: BaseViewController {
             self.showErrorToastMessage(message: message)
         }
         
+        memoVM.memoSuccessMessage.bind { message in
+            self.showConfirmToastMessage(message: message)
+        }
+        
         //UserDefaults 내 임시 메모 확인, 존재하면 textView로 가져오기
         checkUserDefaults()
     }
