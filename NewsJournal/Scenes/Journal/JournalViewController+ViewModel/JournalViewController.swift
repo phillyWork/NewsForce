@@ -94,17 +94,25 @@ final class JournalViewController: BaseViewController {
         }
         
         journalVM.retrievedJournals.bind { journals in
+            var journalsInArray: Array<Journal>
             if let journals = journals {
-                let journalsInArray = Array(journals)
-                //config collectionView section with dynamic height layout
-                self.setupCollectionViewCompositionalDynamicHeightLayout(journalsInArray)
-                //update snapshot
-                self.updateSnapshot(journalsInArray)
+                journalsInArray = Array(journals)
+            } else {
+                journalsInArray = [Journal]()
             }
+            //config collectionView section with dynamic height layout
+            self.setupCollectionViewCompositionalDynamicHeightLayout(journalsInArray)
+            //update snapshot
+            self.updateSnapshot(journalsInArray)
+        
         }
         
         journalVM.realmErrorMessage.bind { message in
             self.showErrorToastMessage(message: message)
+        }
+        
+        journalVM.realmSucceedMessage.bind { message in
+            self.showConfirmToastMessage(message: message)
         }
         
         journalVM.isEmptyView.bind { result in
@@ -224,13 +232,9 @@ final class JournalViewController: BaseViewController {
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        view.endEditing(true)
+        realmSearchBar.resignFirstResponder()
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
+        
     //MARK: - Handlers for Notification
     
     @objc private func notificationRealmSavedObserverInJournal(notification: Notification) {
@@ -241,6 +245,8 @@ final class JournalViewController: BaseViewController {
     //MARK: - Handlers for TagButton
     
     @objc private func tagButtonTapped(_ sender: CustomTagButton) {
+        
+        realmSearchBar.resignFirstResponder()
         
         setupUnselectedButton()
         
@@ -346,6 +352,8 @@ final class JournalViewController: BaseViewController {
         setupNavBarWithCollectionViewAfterAction()
         setupInitialNavBar()
         setupTagButtonsActive()
+        
+        journalVM.realmSucceedMessage.value = JournalRealmSetupValues.selectedJournalDeletionSucceed
     }
     
     @objc private func createPDFDocumentButtonTapped() {
@@ -433,7 +441,7 @@ extension JournalViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text, !text.isEmpty else {
-            journalVM.retrieveJournals()
+            journalVM.retrieveJournalsWithTag()
             return
         }
         journalVM.retrieveJournalsWithMemo(text)
@@ -443,7 +451,7 @@ extension JournalViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         
         guard let text = searchBar.text, !text.isEmpty else {
-            journalVM.retrieveJournals()
+            journalVM.retrieveJournalsWithTag()
             return
         }
         journalVM.retrieveJournalsWithMemo(text)

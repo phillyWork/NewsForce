@@ -15,7 +15,8 @@ final class JournalViewModel {
     var currentTagType: Observable<TagType> = Observable(.none)
     var retrievedJournals: Observable<Results<Journal>?> = Observable(nil)
     
-    var realmErrorMessage = Observable("")
+    var realmErrorMessage: Observable<String> = Observable("")
+    var realmSucceedMessage: Observable<String> = Observable("")
     
     var isEmptyView = Observable(false)
     
@@ -28,6 +29,7 @@ final class JournalViewModel {
     
     func retrieveJournals() {
         if let journals = repository.fetch(type: Journal.self) {
+            retrievedJournals.value = nil
             retrievedJournals.value = journals
             isEmptyView.value = journals.isEmpty ? true : false
         } else {
@@ -37,18 +39,31 @@ final class JournalViewModel {
     }
     
     func retrieveJournalsWithMemo(_ text: String) {
-        if let journals = repository.fetchWithMemo(text: text) {
-            retrievedJournals.value = journals
-            isEmptyView.value = journals.isEmpty ? true : false
+        if currentTagType.value != .none {
+            if let journals = repository.fetchWithTagAndMemo(type: currentTagType.value, text: text) {
+                retrievedJournals.value = nil
+                retrievedJournals.value = journals
+                isEmptyView.value = journals.isEmpty ? true : false
+            } else {
+                isEmptyView.value = true
+            }
         } else {
-            //empty view
-            isEmptyView.value = true
+            if let journals = repository.fetchWithMemo(text: text) {
+                retrievedJournals.value = nil
+                retrievedJournals.value = journals
+                isEmptyView.value = journals.isEmpty ? true : false
+            } else {
+                //empty view
+                isEmptyView.value = true
+            }
         }
+        
     }
     
     func retrieveJournalsWithTag() {
         if currentTagType.value != .none {
             if let journals = repository.fetchWithTag(type: currentTagType.value) {
+                retrievedJournals.value = nil
                 retrievedJournals.value = journals
                 isEmptyView.value = journals.isEmpty ? true : false
             } else {
@@ -63,6 +78,7 @@ final class JournalViewModel {
     func retrieveWithoutSelectedWithTag() {
         //해당 tag 포함 저널만
         if let journals = repository.fetchWithoutSelectedJournalsWithinTag(selected: selectedJournals, type: currentTagType.value) {
+            retrievedJournals.value = nil
             retrievedJournals.value = journals
             isEmptyView.value = journals.isEmpty ? true : false
         } else {
@@ -73,6 +89,7 @@ final class JournalViewModel {
     func retrieveWithoutSelected() {
         //전체 저널
         if let journals = repository.fetchWithoutSelectedJournals(selected: selectedJournals) {
+            retrievedJournals.value = nil
             retrievedJournals.value = journals
             isEmptyView.value = journals.isEmpty ? true : false
         } else {

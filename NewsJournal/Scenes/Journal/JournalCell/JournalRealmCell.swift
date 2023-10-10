@@ -50,6 +50,7 @@ final class JournalRealmCell: BaseCollectionViewCell {
         titleLabel.font = Constant.Font.journalRealmCellTitle
         titleLabel.textColor = Constant.Color.whiteBackground
         titleLabel.numberOfLines = JournalRealmSetupValues.titleNumberOfLines
+        titleLabel.numberOfLines = 3
         
         editedDateLabel.font = Constant.Font.journalRealmCellEditedAt
         editedDateLabel.textColor = Constant.Color.whiteBackground

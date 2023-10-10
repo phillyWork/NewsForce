@@ -68,6 +68,10 @@ final class Repository: RealmRepositoryProtocol {
         return fetch(type: Journal.self)?.where { $0.memo.content.contains(text) }
     }
     
+    func fetchWithTagAndMemo(type: TagType, text: String) -> Results<Journal>? {
+        return fetchWithTag(type: type)?.where { $0.memo.content.contains(text) }
+    }
+    
     func fetchWithoutSelectedJournals(selected: Dictionary<IndexPath, Journal>) -> Results<Journal>? {
         var retrieved = fetch(type: Journal.self)
         

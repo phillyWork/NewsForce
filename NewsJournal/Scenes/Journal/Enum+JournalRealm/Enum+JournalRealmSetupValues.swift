@@ -17,4 +17,6 @@ enum JournalRealmSetupValues {
     static let noJournalToBeSelected = "선택할 수 없어요. 다시 시도해주세요."
     static let noJournalToBeDeselected = "선택 취소할 수 없어요. 다시 시도해주세요."
     
+    static let selectedJournalDeletionSucceed = "삭제 완료!"
+    
 }
