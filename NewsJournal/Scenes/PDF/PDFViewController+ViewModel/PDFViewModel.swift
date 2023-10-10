@@ -11,6 +11,8 @@ final class PDFViewModel {
     
     //MARK: - Properties
     
+    var pdfSucceedMessage: Observable<String> = Observable("")
+    
     var documentData: Data?
     
     //MARK: - API

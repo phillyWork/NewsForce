@@ -44,6 +44,10 @@ final class PDFViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pdfVM.pdfSucceedMessage.bind { message in
+            self.showConfirmToastMessage(message: message)
+        }
+        
         populatePreview()
         
         //notification for pdf
@@ -91,6 +95,8 @@ final class PDFViewController: BaseViewController {
         self.pdfView.displayMode = .singlePageContinuous
         self.pdfView.displayDirection = .vertical
         self.pdfView.document = PDFDocument(data: data)
+        
+        pdfVM.pdfSucceedMessage.value = PDFCreatorSetupValues.pdfViewSucceedMessage
     }
     
     
@@ -117,7 +123,7 @@ final class PDFViewController: BaseViewController {
             if success {
                 self.showConfirmToastMessage(message: PDFCreatorSetupValues.activityShareSuccessMessage)
                 self.navigationController?.popViewController(animated: true)
-            } else if let error = error {
+            } else if error != nil {
                 self.showErrorToastMessage(message: PDFCreatorSetupValues.activityShareFailureMessage)
             }
         }

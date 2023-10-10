@@ -22,4 +22,6 @@ enum PDFCreatorSetupValues {
     static let activityShareSuccessMessage = "공유에 성공했어요."
     static let activityShareFailureMessage = "공유에 실패했어요."
     
+    static let pdfViewSucceedMessage = "PDF 구성 성공!"
+    
 }

@@ -39,7 +39,7 @@ enum Constant {
         static let journalRealmCellDateHeightMultiply = 0.2
         static let journalRealmCellTagHeightMultiply = 0.15
         static let journalRealmCellLabelInset: CGFloat = 10
-        static let journalRealmCellTitleLabelHeightMultiply = 0.3
+        static let journalRealmCellTitleLabelHeightMultiply = 0.4
         static let journalRealmCellCheckImageSizeMultiply = 0.1
         
         //72 points per inch
