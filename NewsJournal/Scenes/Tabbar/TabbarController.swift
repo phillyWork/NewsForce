@@ -23,17 +23,22 @@ final class TabBarController: UITabBarController {
     }
     
     private func setupTabBarItem() {
+        let defaultNewsHomeVC = DefaultNewsHomeViewController()
+        defaultNewsHomeVC.tabBarItem.title = ViewControllerType.defaultNewsAsHome.tabbarTitle
+        defaultNewsHomeVC.tabBarItem.image = UIImage(systemName: ViewControllerType.defaultNewsAsHome.tabbarItemString)
+        let defaultNav = UINavigationController(rootViewController: defaultNewsHomeVC)
+        
         let newsSearchVC = NewsSearchViewController()
-        newsSearchVC.tabBarItem.title = ViewControllerType.newsSearchVC.tabbarTitle
-        newsSearchVC.tabBarItem.image = UIImage(systemName: ViewControllerType.newsSearchVC.tabbarItemString)
+        newsSearchVC.tabBarItem.title = ViewControllerType.newsSearchWithRecentWords.tabbarTitle
+        newsSearchVC.tabBarItem.image = UIImage(systemName: ViewControllerType.newsSearchWithRecentWords.tabbarItemString)
         let searchNav = UINavigationController(rootViewController: newsSearchVC)
         
         let journalVC = JournalViewController()
-        journalVC.tabBarItem.title = ViewControllerType.journalVC.tabbarTitle
-        journalVC.tabBarItem.image = UIImage(systemName: ViewControllerType.journalVC.tabbarItemString)
+        journalVC.tabBarItem.title = ViewControllerType.journalWithPinnedNews.tabbarTitle
+        journalVC.tabBarItem.image = UIImage(systemName: ViewControllerType.journalWithPinnedNews.tabbarItemString)
         let journalNav = UINavigationController(rootViewController: journalVC)
         
-        setViewControllers([searchNav, journalNav], animated: false)
+        setViewControllers([defaultNav, searchNav, journalNav], animated: false)
     }
     
 }

@@ -7,15 +7,16 @@
 
 import Foundation
 import PDFKit
+
 import RealmSwift
 
 final class PDFDocumentCreator: NSObject {
     
     //MARK: - Properties
     
-    let selectedJournals: [Journal]
+    let selectedJournals: [BookMarkedNews]
     
-    init(_ selectedJournals: [Journal]) {
+    init(_ selectedJournals: [BookMarkedNews]) {
         self.selectedJournals = selectedJournals
     }
     
@@ -49,7 +50,7 @@ final class PDFDocumentCreator: NSObject {
                 //newsPubDate
                 let newsPubDateBottom = addNewsSubValue(subType: .pubDate, pageRect: pageRect, textTop: newsLinkBottom + Constant.Frame.pdfCreatorPaddingForSpaceBetweenLinkAndDate, journal: journal)
                 
-                guard let memo = journal.memo else { continue }
+                guard let memo = journal.journal else { continue }
                 //memoTitle
                 let memoTitleBottom = addMemoTitle(pageRect: pageRect, textTop: newsPubDateBottom + Constant.Frame.pdfCreatorPaddingForSpaceBetweenNewsTitleAndLink, memo: memo)
                 //memoCreatedAt
@@ -77,7 +78,7 @@ final class PDFDocumentCreator: NSObject {
 
 extension PDFDocumentCreator {
     
-    private func addNewsTitle(pageRect: CGRect, journal: Journal) -> CGFloat {
+    private func addNewsTitle(pageRect: CGRect, journal: BookMarkedNews) -> CGFloat {
         let titleFont = Constant.Font.pdfCreatorNewsTitle
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
@@ -101,7 +102,7 @@ extension PDFDocumentCreator {
         return titleStringRect.origin.y + titleStringRect.size.height
     }
     
-    private func addNewsSubValue(subType: NewsSubDataType, pageRect: CGRect, textTop: CGFloat, journal: Journal) -> CGFloat {
+    private func addNewsSubValue(subType: NewsSubDataType, pageRect: CGRect, textTop: CGFloat, journal: BookMarkedNews) -> CGFloat {
         let valueFont = Constant.Font.pdfCreatorLinkDate
         let valueColor = Constant.Color.linkDateShadowText
         let paragraphStyle = NSMutableParagraphStyle()
@@ -133,7 +134,7 @@ extension PDFDocumentCreator {
         return valueRect.origin.y + valueRect.size.height
     }
     
-    private func addMemoTitle(pageRect: CGRect, textTop: CGFloat, memo: MemoTable) -> CGFloat {
+    private func addMemoTitle(pageRect: CGRect, textTop: CGFloat, memo: Journal) -> CGFloat {
                 
         let memoTitleFont = Constant.Font.pdfCreatorMemoTitle
         let paragraphStyle = NSMutableParagraphStyle()
@@ -157,7 +158,7 @@ extension PDFDocumentCreator {
         return memoTitleStringRect.origin.y + memoTitleStringRect.size.height
     }
     
-    private func addMemoSubValue(subType: JournalSubDataType, pageRect: CGRect, textTop: CGFloat, memo: MemoTable) -> CGFloat {
+    private func addMemoSubValue(subType: JournalSubDataType, pageRect: CGRect, textTop: CGFloat, memo: Journal) -> CGFloat {
         
         let valueFont = Constant.Font.pdfCreatorLinkDate
         let valueColor = Constant.Color.linkDateShadowText
@@ -209,7 +210,7 @@ extension PDFDocumentCreator {
         return tagRect.origin.y + tagRect.size.height
     }
     
-    private func addMemoContent(pageRect: CGRect, textTop: CGFloat, context: UIGraphicsPDFRendererContext, memo: MemoTable) {
+    private func addMemoContent(pageRect: CGRect, textTop: CGFloat, context: UIGraphicsPDFRendererContext, memo: Journal) {
                 
         let textFont = Constant.Font.pdfCreatorContent
         

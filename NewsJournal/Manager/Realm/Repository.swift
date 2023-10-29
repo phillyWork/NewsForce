@@ -20,6 +20,7 @@ final class Repository: RealmRepositoryProtocol {
     //MARK: - CREATE
     
     func createRecord<T:Object>(record: T) throws {
+        print(#function)
         if let realm = realm {
             do {
                 try realm.write {
@@ -52,28 +53,28 @@ final class Repository: RealmRepositoryProtocol {
 
     func fetch<T:Object>(type: T.Type) -> Results<T>? {
         guard let realm = realm else { return nil }
-        return realm.objects(T.self).sorted(byKeyPath: "memo.editedAt", ascending: false)
+        return realm.objects(T.self).sorted(byKeyPath: RealmSetupValues.editedAtKeyPath, ascending: false)
     }
     
-    func fetchSingleRecord(objectId: ObjectId) -> Journal? {
+    func fetchSingleRecord(objectId: ObjectId) -> BookMarkedNews? {
         guard let realm = realm else { return nil }
-        return realm.object(ofType: Journal.self, forPrimaryKey: objectId)
+        return realm.object(ofType: BookMarkedNews.self, forPrimaryKey: objectId)
     }
     
-    func fetchWithTag(type: TagType) -> Results<Journal>? {
-        return fetch(type: Journal.self)?.where { ($0.memo.tags.firstTag == type) || ($0.memo.tags.secondTag == type) || ($0.memo.tags.thirdTag == type) }
+    func fetchWithTag(type: TagType) -> Results<BookMarkedNews>? {
+        return fetch(type: BookMarkedNews.self)?.where { ($0.journal.tags.firstTag == type) || ($0.journal.tags.secondTag == type) || ($0.journal.tags.thirdTag == type) }
     }
     
-    func fetchWithMemo(text: String) -> Results<Journal>? {
-        return fetch(type: Journal.self)?.where { $0.memo.content.contains(text) }
+    func fetchWithJournal(text: String) -> Results<BookMarkedNews>? {
+        return fetch(type: BookMarkedNews.self)?.where { $0.journal.content.contains(text) }
     }
     
-    func fetchWithTagAndMemo(type: TagType, text: String) -> Results<Journal>? {
-        return fetchWithTag(type: type)?.where { $0.memo.content.contains(text) }
+    func fetchWithTagAndJournal(type: TagType, text: String) -> Results<BookMarkedNews>? {
+        return fetchWithTag(type: type)?.where { $0.journal.content.contains(text) }
     }
     
-    func fetchWithoutSelectedJournals(selected: Dictionary<IndexPath, Journal>) -> Results<Journal>? {
-        var retrieved = fetch(type: Journal.self)
+    func fetchWithoutSelectedBookMarkedNews(selected: Dictionary<IndexPath, BookMarkedNews>) -> Results<BookMarkedNews>? {
+        var retrieved = fetch(type: BookMarkedNews.self)
         
         for journal in selected.values {
             retrieved = retrieved?.where { $0._id != journal._id }
@@ -81,7 +82,7 @@ final class Repository: RealmRepositoryProtocol {
         return retrieved
     }
     
-    func fetchWithoutSelectedJournalsWithinTag(selected: Dictionary<IndexPath, Journal>, type: TagType) -> Results<Journal>? {
+    func fetchWithoutSelectedBookMarkedNewsWithinTag(selected: Dictionary<IndexPath, BookMarkedNews>, type: TagType) -> Results<BookMarkedNews>? {
         var retrievedWithTag = fetchWithTag(type: type)
         for journal in selected.values {
             retrievedWithTag = retrievedWithTag?.where { $0._id != journal._id }
@@ -89,13 +90,50 @@ final class Repository: RealmRepositoryProtocol {
         return retrievedWithTag
     }
     
+    func fetchWithLink(link: String) -> Results<BookMarkedNews>? {
+        return fetch(type: BookMarkedNews.self)?.where { $0.link.contains(link) }
+    }
+
+    func fetchJournalWithLink(link: String) -> Results<BookMarkedNews>? {
+        return fetchWithLink(link: link)?.where { $0.journal != nil }
+    }
+    
+    func fetchOnlyBookMarkedNewsContainingJournal() -> Results<BookMarkedNews>? {
+        return fetch(type: BookMarkedNews.self)?.where { $0.journal != nil }
+    }
+    
+    func fetchOnlyBookMarkedNewsContainingJournalWithTag(type: TagType) -> Results<BookMarkedNews>? {
+        return fetchWithTag(type: type)?.where { $0.journal != nil }
+    }
+    
+    func fetchBookMarkedNewsExcludingSpecificNews(exclude: BookMarkedNews) -> Results<BookMarkedNews>? {
+        return fetch(type: BookMarkedNews.self)?.where { $0._id != exclude._id }
+    }
+    
+    func fetchBookMarkedNewsExcludingSpecificNewsWithTag(type: TagType, exclude: BookMarkedNews) -> Results<BookMarkedNews>? {
+        return fetchWithTag(type: type)?.where { $0._id != exclude._id }
+    }
+    
+    func fetchBookMarkedNewsWithoutLink(links: [String]) -> Results<BookMarkedNews>? {
+        return fetch(type: BookMarkedNews.self)?.where { !$0.link.in(links) }
+    }
+    
+    func fetchBookMarkedNewsWithoutLinkWithinTag(type: TagType, links: [String]) -> Results<BookMarkedNews>? {
+        return fetchWithTag(type: type)?.where { !$0.link.in(links) }
+    }
+    
+    func fetchSavedSearchWordsWithKeyword(word: String) -> UserSearchKeyword? {
+        guard let realm = realm else { return nil }
+        return realm.object(ofType: UserSearchKeyword.self, forPrimaryKey: word)
+    }
+    
     //MARK: - UPDATE
     
-    func updateRecordOfNews(task: [String : Any]) throws {
+    func updateUserSearchKeyword(task: [String : Any]) throws {
         if let realm = realm {
             do {
                 try realm.write {
-                    realm.create(Journal.self, value: task, update: .modified)
+                    realm.create(UserSearchKeyword.self, value: task, update: .modified)
                 }
             } catch {
                 throw RealmError.updateObjectFailure
@@ -103,11 +141,11 @@ final class Repository: RealmRepositoryProtocol {
         }
     }
     
-    func updateRecordOfMemo(record: Journal, newMemo: MemoTable) throws {
+    func updateRecordOfJournal(record: BookMarkedNews, newJournal: Journal) throws {
         if let realm = realm {
             do {
                 try realm.write {
-                    record.memo = newMemo
+                    record.journal = newJournal
                 }
             } catch {
                 throw RealmError.updateObjectFailure
@@ -127,6 +165,24 @@ final class Repository: RealmRepositoryProtocol {
                 throw RealmError.deleteObjectFailure
             }
         }
+    }
+    
+    func deleteRecords(records: Results<BookMarkedNews>) throws {
+        print(#function)
+        if let realm = realm {
+            do {
+                try realm.write {
+                    realm.delete(records)
+                }
+            } catch {
+                throw RealmError.deleteObjectFailure
+            }
+        }
+    }
+ 
+    
+    func deleteSearchWord(word: String) {
+        
     }
     
 }

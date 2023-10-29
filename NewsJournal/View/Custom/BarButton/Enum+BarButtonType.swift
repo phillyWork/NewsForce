@@ -23,7 +23,7 @@ enum BarButtonType {
         case .selectForPDF:
             return "PDF"
         case .createPDFDocument:
-            return "생성하기"
+            return "생성"
         case .selectForDeletion:
             return "삭제"
         case .deletionConfirmation:
@@ -33,9 +33,9 @@ enum BarButtonType {
         case .backToList:
             return "목록으로"
         case .writeDownMemo:
-            return "입력하기"
+            return "입력"
         case .saveRealmObject:
-            return "저장하기"
+            return "저장"
         }
     }
     

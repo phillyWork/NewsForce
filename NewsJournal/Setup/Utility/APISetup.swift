@@ -11,9 +11,17 @@ extension Constant {
     
     enum APISetup {
         
-        static let maxStart = 1000
-        static let display = 30
-        static let toastMessageDelay: TimeInterval = 2
+        static let naverMaxStart = 1000
+        static let naverDisplay = 100
+        
+        static let mediaStackLimit = 100
+        
+        static let newsAPIMaxQueryLength = 500
+        static let newsAPIPageSize = 100
+        static let oRInASCII = "%20"
+        static let newsAPIQueryORInput = " OR "
+        static let newsAPIQueryANDInput = " AND "
+        
     }
     
 }

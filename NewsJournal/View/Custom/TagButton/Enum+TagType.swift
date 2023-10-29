@@ -6,10 +6,12 @@
 //
 
 import Foundation
+
 import RealmSwift
 
 enum TagType: String, PersistableEnum {
     
+    case whole = "전체"
     case politics = "정치"
     case economy = "경제"
     case art = "예술"

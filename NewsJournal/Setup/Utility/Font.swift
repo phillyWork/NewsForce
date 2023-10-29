@@ -11,6 +11,17 @@ extension Constant {
     
     enum Font {
         
+        static let newsTitleFont = UIFont.boldSystemFont(ofSize: 16)
+        static let newsDateFont = UIFont.systemFont(ofSize: 13, weight: .regular)
+        static let newsPressFont = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        
+        static let searchOptionButton = UIFont.systemFont(ofSize: 12, weight: .regular)
+        static let searchOptionConfirmButton = UIFont.boldSystemFont(ofSize: 17)
+        static let searchOptionResetButton = UIFont.boldSystemFont(ofSize: 13)
+        
+        static let optionMainTitleLabel = UIFont.boldSystemFont(ofSize: 22)
+        static let optionTitleLabel = UIFont.systemFont(ofSize: 14, weight: .medium)
+        
         static let toastMessageFont = UIFont.preferredFont(forTextStyle: .footnote)
         
         static let tagButton = UIFont.systemFont(ofSize: 14, weight: .semibold)

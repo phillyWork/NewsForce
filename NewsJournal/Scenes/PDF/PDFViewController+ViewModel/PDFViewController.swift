@@ -59,6 +59,7 @@ final class PDFViewController: BaseViewController {
         
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: PDFCreatorSetupValues.shareButtonImageString), style: .plain, target: self, action: #selector(sharedButtonTapped))
+        navigationItem.rightBarButtonItem?.tintColor = Constant.Color.mainRed
         
         view.addSubview(pdfView)
         view.addSubview(pageInfoContainer)

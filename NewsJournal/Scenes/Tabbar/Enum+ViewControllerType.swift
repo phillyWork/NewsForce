@@ -9,33 +9,51 @@ import Foundation
 
 enum ViewControllerType {
     
-    case newsSearchVC
-    case journalVC
+    case defaultNewsAsHome
+    case newsSearchWithRecentWords
+    case journalWithPinnedNews
+    
+    var navBarTitle: String {
+        switch self {
+        case .defaultNewsAsHome:
+            return "오늘의 기사"
+        case .newsSearchWithRecentWords:
+            return "검색"
+        case .journalWithPinnedNews:
+            return "북마크 & 저널"
+        }
+    }
     
     var tabbarTitle: String {
         switch self {
-        case .newsSearchVC:
-            return "기사 목록"
-        case .journalVC:
+        case .defaultNewsAsHome:
+            return "오늘의 기사"
+        case .newsSearchWithRecentWords:
+            return "기사 검색"
+        case .journalWithPinnedNews:
             return "저널 목록"
         }
     }
     
     var tabbarItemString: String {
         switch self {
-        case .newsSearchVC:
-            return "magnifyingglass"
-        case .journalVC:
-            return "list.bullet"
+        case .defaultNewsAsHome:
+            return Constant.ImageString.homeImageString
+        case .newsSearchWithRecentWords:
+            return Constant.ImageString.searchMagnifyingGlassImageString
+        case .journalWithPinnedNews:
+            return Constant.ImageString.listImageString
         }
     }
     
     var searchBarPlaceholder: String {
         switch self {
-        case .newsSearchVC:
-            return "기사를 검색해보세요"
-        case .journalVC:
-            return "검색어를 입력하세요"
+        case .defaultNewsAsHome:
+            return "홈화면입니다"
+        case .newsSearchWithRecentWords:
+            return "새로운 기사를 검색해보세요"
+        case .journalWithPinnedNews:
+            return "저장한 저널을 검색해보세요"
         }
     }
     

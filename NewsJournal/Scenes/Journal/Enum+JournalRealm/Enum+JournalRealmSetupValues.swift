@@ -19,4 +19,12 @@ enum JournalRealmSetupValues {
     
     static let selectedJournalDeletionSucceed = "삭제 완료!"
     
+    static let bookmarkedCellWobbleAnimationKey = "wobble"
+    
+    static let bookmarkedNewsDeletionAlertTitle = "정말 삭제할 건가요?"
+    static let bookmarkedNewsDeletionAlertMessage = "삭제하면 입력된 저널도 같이 삭제될 수 있어요"
+    
+    static let navTitleForPDFSelection = "PDF에 추가할 저널을 선택해주세요"
+    static let navTitleForRemovalSelection = "삭제할 기사를 선택해주세요"
+
 }

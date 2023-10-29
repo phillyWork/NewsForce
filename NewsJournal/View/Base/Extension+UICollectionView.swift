@@ -59,6 +59,31 @@ extension UICollectionView {
         }
     }
     
+    func setupInitialBackgroundForDefaultNews() {
+        let emptyView: UIView = {
+            let view = UIView()
+            view.backgroundColor = Constant.Color.whiteBackground
+            return view
+        }()
+        
+        let searchImage: UIImageView = {
+            let iv = UIImageView()
+            iv.image = UIImage(named: Constant.ImageString.retrieveDefaultNewsKorean.randomElement()!)
+            iv.contentMode = .scaleAspectFill
+            return iv
+        }()
+        
+        emptyView.addSubview(searchImage)
+        
+        self.backgroundView = emptyView
+        
+        searchImage.snp.makeConstraints { make in
+            make.center.equalTo(emptyView.snp.center)
+            make.width.equalTo(emptyView.snp.width).multipliedBy(Constant.Frame.emptyViewImageWidthMultiply)
+            make.height.equalTo(searchImage.snp.width)
+        }
+    }
+    
     func setupInitialBackgroundForSearch() {
         let emptyView: UIView = {
             let view = UIView()

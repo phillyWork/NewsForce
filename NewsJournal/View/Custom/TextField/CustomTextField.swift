@@ -19,6 +19,8 @@ final class CustomTextField: UITextField {
     }
     
     private func configTextField() {
+        leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        leftViewMode = .always
         placeholder = MemoSetupValues.textFieldPlaceholder
         tintColor = Constant.Color.mainRed
         backgroundColor = Constant.Color.tagButtonText

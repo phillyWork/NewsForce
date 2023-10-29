@@ -11,61 +11,104 @@ import LinkPresentation
 final class NewsLinkPresentationViewModel {
     
     //MARK: - Properties
+        
+    var news: Observable<DTONews?> = Observable(nil)
     
-    private let cacheManager = NSCache<NSString, LPLinkMetadata>()
-    
-    var news: Observable<News?> = Observable(nil)
+    private let cacheManager = CacheManager.shared
+    private let repository = Repository.shared
     
     //MARK: - API
     
-    func fetchData(url: String, completionHandler: @escaping (Result<LPLinkMetadata, LPError>) -> Void ) {
+    func checkImageInDocuments() -> Data? {
+        guard let news = news.value else {
+            print("No News to retrieve")
+            return nil
+        }
         
-        self.fetchMetaDataFromURL(url: url) { response in
-            switch response {
-            case .success(let data):
-                completionHandler(.success(data))
-            case .failure(let error):
-                if error.code == .metadataFetchFailed {
-                    completionHandler(.success(self.setupTempMetaData(url: url)))
-                } else {
-                    completionHandler(.failure(error))
-                }
-            }
+        do {
+            let imageData = try cacheManager.loadFromDocuments(fileName: "\(news.nameForURL).jpg")
+            return imageData
+        } catch {
+            return nil
         }
     }
     
-    private func fetchMetaDataFromURL(url: String, completionHandler: @escaping (Result<LPLinkMetadata, LPError>) -> Void ) {
+    func checkMetadataInMemoryCache() -> LPLinkMetadata? {
+        guard let news = news.value else {
+            print("No News to retrieve")
+            return nil
+        }
         
-        if let cachedMetaData = checkCache(url) {
-            completionHandler(.success(cachedMetaData))
+        if let metaData = cacheManager.checkMemory(news.nameForURL) {
+            return metaData
+        }
+        
+        return nil
+    }
+    
+    func retrieveImageFromLink(metaData: LPLinkMetadata, completionHandler: @escaping (UIImage?) -> Void ) {
+        guard let news = news.value else {
+            print("No News to retrieve")
             return
         }
         
-        //cache에 없다면 link로 metadata 가져오기
-        guard let urlForFetch = URL(string: url) else { return }
-        
-        let provider = LPMetadataProvider()
-        provider.startFetchingMetadata(for: urlForFetch) { [weak self] metaData, error in
-            guard let data = metaData, error == nil, let self = self else {
-                provider.cancel()
-                if let error = error as? LPError {
-                    completionHandler(.failure(error))
+        if let imageProvider = metaData.imageProvider {
+            imageProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+                if let image = image as? UIImage {
+                    completionHandler(image)
                 }
-                return
+                else {
+                    completionHandler(nil)
+                }
             }
+        } else {
+            completionHandler(nil)
+        }
+        
+    }
+    
+    func saveImageIntoDocuments(image: UIImage) {
+        guard let news = news.value else {
+            print("No News to retrieve")
+            return
+        }
+        
+        guard let imageData = image.jpegData(compressionQuality: Constant.Image.jpegCompressionQuality) else { return }
+        do {
+            try cacheManager.saveToDocuments(fileName: "\(news.nameForURL).jpg", data: imageData)
+        } catch {
             
-            //해당 metadata cache에 저장
-            self.cacheManager.setObject(data, forKey: NSString(string: url))
-            completionHandler(.success(data))
         }
     }
     
-    private func checkCache(_ url: String) -> LPLinkMetadata? {
-        let cacheKey = NSString(string: url)
-        if let cachedData = cacheManager.object(forKey: cacheKey) {
-            return cachedData
+    func saveMetadataIntoMemory(data: LPLinkMetadata) {
+        guard let news = news.value else {
+            print("No News to retrieve")
+            return
         }
-        return nil
+        
+        cacheManager.saveIntoMemoryCache(news.nameForURL, data: data)
+    }
+    
+    func fetchMediaNewsMetaData(url: String, completionHandler: @escaping (Result<LPLinkMetadata, LPError>) -> Void ) {
+        guard let urlForFetch = URL(string: url) else { return }
+        
+        let provider = LPMetadataProvider()
+        provider.startFetchingMetadata(for: urlForFetch) { metaData, error in
+            guard let data = metaData, error == nil else {
+//        provider.startFetchingMetadata(for: urlForFetch) { [weak self] metaData, error in
+//            guard let data = metaData, error == nil, let _ = self else {
+                provider.cancel()
+                if let error = error as? LPError {
+                    print("error occurred, sending LPError")
+                    completionHandler(.failure(error))
+                } else {
+                    print("can't send LPError")
+                }
+                return
+            }
+            completionHandler(.success(data))
+        }
     }
     
     private func setupTempMetaData(url: String) -> LPLinkMetadata {
@@ -74,6 +117,35 @@ final class NewsLinkPresentationViewModel {
         metadata.url = metadata.originalURL
         metadata.title = news.value?.title
         return metadata
+    }
+    
+    func checkBookMarkedNewsExists(news: DTONews) -> Bool {
+        if let results = repository.fetchWithLink(link: news.urlLink), !results.isEmpty {
+            return true
+        }
+        return false
+    }
+    
+    func checkJournalExistsWith(news: DTONews) -> Bool {
+        if let results = repository.fetchJournalWithLink(link: news.urlLink), !results.isEmpty {
+            return true
+        }
+        return false
+    }
+    
+    //MARK: - Setup Press by News Link
+    
+    func mapPressWithNewsLink() -> String? {
+        
+        guard let news = news.value else { return nil }
+        
+        let pressWithNewsLink = MappingURLPress.allCases.filter { news.urlLink.contains($0.rawValue) }
+
+        if pressWithNewsLink.isEmpty {
+            return nil
+        } else {
+            return pressWithNewsLink[0].pressName
+        }
     }
     
 }

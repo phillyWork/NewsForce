@@ -20,7 +20,8 @@ final class CustomSearchBar: UISearchBar {
     
     private func configureSearchBar() {
         tintColor = Constant.Color.mainRed
-                
+        layer.borderColor = Constant.Color.whiteBackground.cgColor
+        layer.borderWidth = Constant.Frame.searchBarBorderWidth
         //내부 textField 설정
         self.searchTextField.backgroundColor = Constant.Color.tagButtonText
         self.searchTextField.textColor = Constant.Color.searchBarText

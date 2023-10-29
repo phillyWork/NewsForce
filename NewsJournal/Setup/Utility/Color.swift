@@ -24,6 +24,8 @@ extension Constant {
         
         static let blackText = UIColor.black
         
+        static let grayForNotSelectedBookMarkedCell = UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 0.7)
+        
     }
     
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 import JDStatusBarNotification
 
@@ -40,7 +41,7 @@ class BaseViewController: UIViewController {
             return style
         }
         
-        toastManager.present(text: message, dismissAfterDelay: Constant.APISetup.toastMessageDelay)
+        toastManager.present(text: message, dismissAfterDelay: Constant.TimeDelay.toastMessageDelay)
         toastManager.displayLeftView(UIImageView(image: UIImage(systemName: Constant.ImageString.checkImageString)))
     }
     
@@ -54,8 +55,8 @@ class BaseViewController: UIViewController {
             return style
         }
         
-        toastManager.present(text: message, dismissAfterDelay: Constant.APISetup.toastMessageDelay)
-        toastManager.displayLeftView(UIImageView(image: UIImage(systemName: Constant.ImageString.xmarkImageString)))
+        toastManager.present(text: message, dismissAfterDelay: Constant.TimeDelay.toastMessageDelay)
+        toastManager.displayLeftView(UIImageView(image: UIImage(systemName: Constant.ImageString.xmarkCircleImageString)))
     }
     
     

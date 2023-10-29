@@ -25,4 +25,28 @@ extension String {
         }
     }
     
+    func toDateWithNaverType() -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        return dateFormatter.date(from: self)
+    }
+    
+    func toDateWithMediaStackAndNewsAPI() -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        return dateFormatter.date(from: self)
+    }
+    
+    func toAddORInSpaceBetweenQueryWordsForNewsAPI() -> String {
+        return self.components(separatedBy: Constant.APISetup.oRInASCII).joined(separator: Constant.APISetup.newsAPIQueryORInput)
+    }
+    
+    func toAddANDInSpaceBetweenQueryWordsForNewsAPI() -> String {
+        return self.components(separatedBy: Constant.APISetup.oRInASCII).joined(separator: Constant.APISetup.newsAPIQueryANDInput)
+    }
+    
 }

@@ -21,6 +21,8 @@ final class CustomTextView: UITextView {
     private func configTextView() {
         font = Constant.Font.memoTextView
         tintColor = Constant.Color.mainRed
+        layer.borderColor = Constant.Color.grayForNotSelectedBookMarkedCell.cgColor
+        layer.borderWidth = 1
         setInitialPlaceholder()
     }
     
@@ -35,7 +37,7 @@ final class CustomTextView: UITextView {
     
     func setInitialPlaceholder() {
         textColor = Constant.Color.linkDateShadowText
-        text = MemoSetupValues.textViewPlaceholder
+        text = MemoSetupValues.textViewPlaceholders.randomElement()
     }
     
 }
