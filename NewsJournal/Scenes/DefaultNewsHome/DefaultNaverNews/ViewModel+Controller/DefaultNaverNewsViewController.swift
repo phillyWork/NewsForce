@@ -128,7 +128,12 @@ final class DefaultNaverNewsViewController: BaseViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(Constant.Frame.newsSearchCollectionViewGroupFractionalWidth), heightDimension: .fractionalHeight(Constant.Frame.newsSearchCollectionViewGroupFractionalHeight))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, repeatingSubitem: item, count: Constant.Frame.newsSearchCollectionViewRepeatingItemCount)
+        var group: NSCollectionLayoutGroup
+        if #available(iOS 16.0, *) {
+            group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, repeatingSubitem: item, count: Constant.Frame.newsSearchCollectionViewRepeatingItemCount)
+        } else {
+            group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: Constant.Frame.newsSearchCollectionViewRepeatingItemCount)
+        }
         group.interItemSpacing = .fixed(Constant.Frame.newsSearchCollectionViewInterItemSpace)
         
         let section = NSCollectionLayoutSection(group: group)
