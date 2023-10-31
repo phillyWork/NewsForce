@@ -158,6 +158,8 @@ final class JournalViewController: BaseViewController {
             
         setupInitialNavBar()
         
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        
         view.addSubview(realmSearchBar)
         realmSearchBar.showsCancelButton = true
         realmSearchBar.delegate = self
@@ -294,6 +296,13 @@ final class JournalViewController: BaseViewController {
 //
 //        return layout
 //    }
+    
+    @objc private func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            view.endEditing(true)
+        }
+        sender.cancelsTouchesInView = false
+    }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         realmSearchBar.resignFirstResponder()

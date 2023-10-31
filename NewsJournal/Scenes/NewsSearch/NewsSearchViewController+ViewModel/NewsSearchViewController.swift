@@ -18,6 +18,7 @@ final class NewsSearchViewController: BaseViewController {
     private let apiSearchBar: CustomSearchBar = {
         let bar = CustomSearchBar()
         bar.placeholder = ViewControllerType.newsSearchWithRecentWords.searchBarPlaceholder
+        bar.showsCancelButton = true
         return bar
     }()
     
@@ -32,6 +33,19 @@ final class NewsSearchViewController: BaseViewController {
     
     lazy private var linkPresentCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionViewCompositionalLayout())
+        view.backgroundColor = Constant.Color.whiteBackground
+        return view
+    }()
+    
+    private let searchKeywordContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Constant.Color.whiteBackground
+        view.isHidden = true
+        return view
+    }()
+    
+    lazy private var searchKeywordCollectionView: UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionViewCompositionalLayoutListConfiguration())
         view.backgroundColor = Constant.Color.whiteBackground
         return view
     }()
@@ -137,20 +151,32 @@ final class NewsSearchViewController: BaseViewController {
         return stack
     }()
     
-    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, DTONews>!
+    private var diffableDataSourceForSearchKeywords: UICollectionViewDiffableDataSource<Int, UserSearchKeyword>!
+    private var diffableDataSourceForSearchResults: UICollectionViewDiffableDataSource<Int, DTONews>!
     
     //MARK: - Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configDiffableDataSource()
+        configDiffableDataSourceForSearchKeywords()
+        configDiffableDataSourceForSearchResults()
+        
+        newsSearchVM.keywordList.bind { newWordList in
+            var newWordsInArray: Array<UserSearchKeyword>
+            if let newWordList = newWordList {
+                newWordsInArray = Array(newWordList)
+            } else {
+                newWordsInArray = [UserSearchKeyword]()
+            }
+            self.updateSnapshotForSearchKeywords(newWordsInArray)
+        }
         
         newsSearchVM.newsList.bind { newNewsList in
             //hide indicator
             self.inactivateIndicator()
             //collectionView update with snapshot
-            self.updateSnapshot(newNewsList)
+            self.updateSnapshotForSearchResults(newNewsList)
         }
         
         newsSearchVM.errorMessage.bind { message in
@@ -203,7 +229,6 @@ final class NewsSearchViewController: BaseViewController {
             self.newsSearchVM.callRequest()
         }
         
-        
         //Notification 설정
         NotificationCenter.default.addObserver(self, selector: #selector(notificationRealmSavedObserverInSearch), name: .realmSavedSourceFromNaver, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(notificationJournalSavedObserverInSearch), name: .journalSavedInMemoVCFromNaver, object: nil)
@@ -239,6 +264,10 @@ final class NewsSearchViewController: BaseViewController {
         linkPresentCollectionView.prefetchDataSource = self
         linkPresentCollectionView.isPrefetchingEnabled = true
         linkPresentCollectionView.isPagingEnabled = true
+        
+        view.addSubview(searchKeywordContainerView)
+        searchKeywordContainerView.addSubview(searchKeywordCollectionView)
+        searchKeywordCollectionView.delegate = self
         
         view.addSubview(indicator)
         indicator.isHidden = true
@@ -305,6 +334,15 @@ final class NewsSearchViewController: BaseViewController {
             make.top.trailing.equalTo(view.safeAreaLayoutGuide)
             make.leading.equalTo(searchOptionButton.snp.trailing)
             make.height.equalTo(searchOptionButton.snp.height)
+        }
+        
+        searchKeywordContainerView.snp.makeConstraints { make in
+            make.top.equalTo(apiSearchBar.snp.bottom)
+            make.bottom.directionalHorizontalEdges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        searchKeywordCollectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         linkPresentCollectionView.snp.makeConstraints { make in
@@ -382,9 +420,79 @@ final class NewsSearchViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    //MARK: - Setup CollectionView Compositional Layout & Diffable DataSource & Snapshot For Previously Searched Keywords
+    
+    private func configDiffableDataSourceForSearchKeywords() {
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, UserSearchKeyword> { cell, indexPath, itemIdentifier in
+            var content = UIListContentConfiguration.valueCell()
+            content.text = itemIdentifier.searchWord
+            content.textProperties.color = Constant.Color.blackText
+            content.textProperties.font = Constant.Font.searchKeyword
+            
+            content.secondaryText = "마지막 검색: \(self.newsSearchVM.calculateDaysForKeywordLastSearch(from: itemIdentifier.lastlySearchedAt, to: Date()))"
+            content.secondaryTextProperties.color = Constant.Color.linkDateShadowText
+            content.secondaryTextProperties.font = Constant.Font.searchKeywordLastDate
+            
+            let selectedBackgroundView = UIView()
+            selectedBackgroundView.backgroundColor = Constant.Color.whiteBackground
+            cell.selectedBackgroundView = selectedBackgroundView
+            
+            cell.contentConfiguration = content
+        }
+        
+        let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
+            var configuration = UIListContentConfiguration.groupedHeader()
+            configuration.text = NewsSearchSetupValues.headerTitle
+            supplementaryView.contentConfiguration = configuration
+        }
+        
+        diffableDataSourceForSearchKeywords = UICollectionViewDiffableDataSource(collectionView: searchKeywordCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+        })
+        
+        diffableDataSourceForSearchKeywords.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+            collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+        }
+        
+    }
+    
+    private func updateSnapshotForSearchKeywords(_ keywords: [UserSearchKeyword]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, UserSearchKeyword>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(keywords)
+        diffableDataSourceForSearchKeywords.apply(snapshot)
+    }
+    
+    private func setupCollectionViewCompositionalLayoutListConfiguration() -> UICollectionViewLayout {
+        var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        config.headerMode = .supplementary
+        config.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
+            guard let self = self, let keyword = self.diffableDataSourceForSearchKeywords.itemIdentifier(for: indexPath) else {
+                print("No keyword to be deleted")
+                return nil
+            }
+            
+            print("keyword about to delete: ", keyword)
+            
+            let actionHandler: UIContextualAction.Handler = { action, view, completionHandler in
+                //update snapshot without that keyword
+                self.newsSearchVM.fetchKeywordWithoutWord(keyword: keyword)
+                //delete keyword data
+                self.newsSearchVM.deleteSearchWord(keyword: keyword)
+                completionHandler(true)
+            }
+            
+            let action = UIContextualAction(style: .destructive, title: NewsSearchSetupValues.searchKeywordSwipeDeletionActionTitle, handler: actionHandler)
+            return UISwipeActionsConfiguration(actions: [action])
+        }
+        
+        let layout = UICollectionViewCompositionalLayout.list(using: config)
+        return layout
+    }
+    
     //MARK: - Setup CollectionView Compositional Layout & Diffable DataSource & Snapshot
     
-    private func configDiffableDataSource() {
+    private func configDiffableDataSourceForSearchResults() {
         let cellRegistration = UICollectionView.CellRegistration<NewsLinkPresentationCell, DTONews> { cell, indexPath, itemIdentifier in
             cell.newsLinkPresentationVM.news.value = itemIdentifier
             //indexPath for update button & realm
@@ -393,16 +501,16 @@ final class NewsSearchViewController: BaseViewController {
             cell.bookMarkButton.addTarget(self, action: #selector(self.bookmarkButtonTapped), for: .touchUpInside)
         }
         
-        diffableDataSource = UICollectionViewDiffableDataSource(collectionView: linkPresentCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        diffableDataSourceForSearchResults = UICollectionViewDiffableDataSource(collectionView: linkPresentCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         })
     }
 
-    private func updateSnapshot(_ newsList: [DTONews]) {
+    private func updateSnapshotForSearchResults(_ newsList: [DTONews]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, DTONews>()
         snapshot.appendSections([0])
         snapshot.appendItems(newsList)
-        diffableDataSource.apply(snapshot)
+        diffableDataSourceForSearchResults.apply(snapshot)
     }
     
     private func setupCollectionViewCompositionalLayout() -> UICollectionViewLayout {
@@ -475,7 +583,7 @@ final class NewsSearchViewController: BaseViewController {
     
     @objc private func bookmarkButtonTapped(sender: CustomBookMarkButton) {
         
-        guard let indexPath = sender.indexPath, let item = diffableDataSource.itemIdentifier(for: indexPath) else {
+        guard let indexPath = sender.indexPath, let item = diffableDataSourceForSearchResults.itemIdentifier(for: indexPath) else {
             newsSearchVM.errorMessage.value = DefaultHomeViewSetupValues.notAbleToTapBookMarkButton
             return
         }
@@ -781,10 +889,12 @@ extension NewsSearchViewController: UISearchBarDelegate {
     
     //user tap: search history containerview appears
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
+        searchKeywordContainerView.isHidden = false
+        newsSearchVM.fetchKeywords()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchKeywordContainerView.isHidden = true
         searchBar.resignFirstResponder()
         
         //빈칸이면 검색되지 않음
@@ -805,45 +915,63 @@ extension NewsSearchViewController: UISearchBarDelegate {
         newsSearchVM.updateSearchWords()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        searchKeywordContainerView.isHidden = true
+    }
+    
 }
 
 //MARK: - Extension for CollectionView Delegate, Prefetch DataSource
 
 extension NewsSearchViewController: UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
-    
+        
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let item = diffableDataSource.itemIdentifier(for: indexPath) else {
-            showAlert(title: NewsSearchSetupValues.notAvailableToTapTitle, message: NewsSearchSetupValues.notAvailableToTapMessage)
-            return
-        }
-
-        let webVC = WebViewController()
-        switch newsSearchVM.checkCurrentSearchAPI() {
-        case .naver:
-            webVC.webVM.updateAPITypeToNaver()
-        case .newsAPI:
-            webVC.webVM.updateAPITypeToNewsAPI()
-        }
         
-        if let bookMarked = newsSearchVM.checkBookMarkedNewsExistWithLink(news: item) {
-            webVC.webVM.objectId = bookMarked.first?._id
+        if collectionView == linkPresentCollectionView {
+            guard let item = diffableDataSourceForSearchResults.itemIdentifier(for: indexPath) else {
+                showAlert(title: NewsSearchSetupValues.notAvailableToTapTitle, message: NewsSearchSetupValues.notAvailableToTapMessage)
+                return
+            }
+            
+            let webVC = WebViewController()
+            switch newsSearchVM.checkCurrentSearchAPI() {
+            case .naver:
+                webVC.webVM.updateAPITypeToNaver()
+            case .newsAPI:
+                webVC.webVM.updateAPITypeToNewsAPI()
+            }
+            
+            if let bookMarked = newsSearchVM.checkBookMarkedNewsExistWithLink(news: item) {
+                webVC.webVM.objectId = bookMarked.first?._id
+            } else {
+                webVC.webVM.news = item
+            }
+            
+            self.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(webVC, animated: true)
+            self.hidesBottomBarWhenPushed = false
         } else {
-            webVC.webVM.news = item
+            guard let item = diffableDataSourceForSearchKeywords.itemIdentifier(for: indexPath) else {
+                showAlert(title: NewsSearchSetupValues.notAvailableToTapTitle, message: NewsSearchSetupValues.notAvailableToTapMessage)
+                return
+            }
+            
+            apiSearchBar.text = item.searchWord
+            searchBarSearchButtonClicked(apiSearchBar)
         }
-        
-        self.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(webVC, animated: true)
-        self.hidesBottomBarWhenPushed = false
     }
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        for indexPath in indexPaths {
-            if newsSearchVM.checkPrefetchingNeeded(indexPath.row) {
-                switch newsSearchVM.checkCurrentSearchAPI() {
-                case .naver:
-                    self.newsSearchVM.naverPage.value += 1
-                case .newsAPI:
-                    self.newsSearchVM.newsAPIPage.value += 1
+        if collectionView == linkPresentCollectionView {
+            for indexPath in indexPaths {
+                if newsSearchVM.checkPrefetchingNeeded(indexPath.row) {
+                    switch newsSearchVM.checkCurrentSearchAPI() {
+                    case .naver:
+                        self.newsSearchVM.naverPage.value += 1
+                    case .newsAPI:
+                        self.newsSearchVM.newsAPIPage.value += 1
+                    }
                 }
             }
         }

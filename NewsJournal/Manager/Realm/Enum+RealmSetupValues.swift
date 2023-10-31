@@ -10,6 +10,7 @@ import Foundation
 enum RealmSetupValues {
     
     static let editedAtKeyPath = "journal.editedAt"
-    
+    static let searchWordCount = "searchWordCount"
+    static let lastTimeSearchedAt = "lastlySearchedAt"
     
 }

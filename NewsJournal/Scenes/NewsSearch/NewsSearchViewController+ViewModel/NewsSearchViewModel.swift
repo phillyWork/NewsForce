@@ -11,11 +11,18 @@ import RealmSwift
 
 final class NewsSearchViewModel {
     
+    private let network = Network.shared
+    private let repository = Repository.shared
+
+    var errorMessage = Observable("")
+
+    //MARK: - Properties For Search Keyword
+    
+    var keywordList: Observable<Results<UserSearchKeyword>?> = Observable(nil)
+    
     //MARK: - Properties
     
     var newsList: Observable<[DTONews]> = Observable([])
-
-    var errorMessage = Observable("")
     
     var isEmptyView = Observable(false)
     
@@ -23,9 +30,6 @@ final class NewsSearchViewModel {
     private var searchType = SearchAPIType.naver
     
     var yPosForHidingOptionView: CGFloat = 0
-    
-    private let network = Network.shared
-    private let repository = Repository.shared
     
     //NaverAPI
     
@@ -80,17 +84,11 @@ final class NewsSearchViewModel {
                 indexPathResult.append(indexPath)
             }
         }
-        
-        print("result in search news indexPath: ", indexPathResult)
-        
         return indexPathResult
     }
     
    
     func checkDeletedBookmarkNewsInSearchNewsList(deleted: [String]) -> [IndexPath] {
-        
-        print("count of deleted news in searchVC: ", deleted.count)
-        
         var indexPathResult = [IndexPath]()
         
         for j in 0..<deleted.count {
@@ -214,11 +212,8 @@ final class NewsSearchViewModel {
         
         let lowerCasedQuery = newsAPIQuery.value.lowercased()
         guard let encodedQuery = lowerCasedQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        
         let queryReplacedBlankWith = newsAPIQueryBlankReplacementType == .asAnd ? encodedQuery.toAddANDInSpaceBetweenQueryWordsForNewsAPI() : encodedQuery.toAddORInSpaceBetweenQueryWordsForNewsAPI()
-        
-        print("final for query: ", queryReplacedBlankWith)
-        
+                
         network.newsAPICallRequest(type: NewsAPITotal.self, api: .newsSearch(query: queryReplacedBlankWith, keyIndex: newsAPIApiKeyIndex.value, page: newsAPIPage.value, sortBy: newsAPISortType)) { response in
             switch response {
             case .success(let success):
@@ -332,37 +327,54 @@ final class NewsSearchViewModel {
     }
     
     //MARK: - API for SearchWords Realm
+
+    func calculateDaysForKeywordLastSearch(from: Date, to: Date) -> String {
+        let fromDate = Calendar(identifier: .gregorian) .startOfDay(for: from)
+        let toDate = Calendar(identifier: .gregorian).startOfDay(for: to)
+        let numberOfDays = Calendar(identifier: .gregorian).dateComponents([.day], from: fromDate, to: toDate).day!
+        
+        if numberOfDays < 7 {
+            return "\(numberOfDays)일 전"
+        } else if numberOfDays < 32 {
+           return  "\(numberOfDays/7)주 전"
+        } else if numberOfDays < 366 {
+            return "\(numberOfDays/30)개월 전"
+        } else {
+            return "\(numberOfDays/365)년 전"
+        }
+    }
     
-    func deleteSearchWords() {
-        
-        //최근 검색어 나타내는 collectionView의 해당 cell X 버튼 탭 --> 해당 cell indexPath에 해당하는 item 받아와서 realm에 삭제 요청하기
+    func fetchKeywords() {
+        if let results = repository.fetchUserSearchKeywords() {
+            keywordList.value = results
+        }
+    }
+    
+    func fetchKeywordWithoutWord(keyword: UserSearchKeyword) {
+        print(#function)
+        if let results = repository.fetchUserSearchKeywordsWithoutThatKeyword(keyword: keyword) {
+            keywordList.value = results
+        }
+    }
+    
+    func deleteSearchWord(keyword: UserSearchKeyword) {
+        //최근 검색어 나타내는 collectionView의 해당 cell swipe --> 해당 cell indexPath에 해당하는 item 받아와서 realm에 삭제 요청하기
         //compositional layout 사용 시, update snapshot 먼저 수행하고 삭제할 것
-        
-        
-//        switch searchType {
-//        case .naver:
-//            do {
-//
-//            } catch {
-//
-//            }
-//        case .newsAPI:
-//            do {
-//
-//            } catch {
-//
-//            }
-//        }
+        do {
+            try repository.deleteSearchWord(word: keyword)
+        } catch {
+            errorMessage.value = NewsSearchSetupValues.deleteSearchKeywordFailure
+        }
     }
     
     func updateSearchWords() {
         
         switch searchType {
         case .naver:
-            if let keyword = repository.fetchSavedSearchWordsWithKeyword(word: naverQuery.value.lowercased()) {
+            if let keyword = repository.fetchSingleUserSearchKeyWord(word: naverQuery.value.lowercased()) {
                 //존재한다면 횟수 증가하기
                 do {
-                    try repository.updateUserSearchKeyword(task: ["searchWord": keyword.searchWord, "searchWordCount": keyword.searchWordCount + 1, "lastlySearchedAt": Date()])
+                    try repository.updateUserSearchKeyword(task: [NewsSearchSetupValues.searchWord: keyword.searchWord, NewsSearchSetupValues.searchWordCount: keyword.searchWordCount + 1, NewsSearchSetupValues.lastlySearchedAt: Date()])
                 } catch {
                     //검색 횟수 증가 오류
                     print("update naver search word failure")
@@ -377,10 +389,10 @@ final class NewsSearchViewModel {
                 }
             }
         case .newsAPI:
-            if let keyword = repository.fetchSavedSearchWordsWithKeyword(word: newsAPIQuery.value.lowercased()) {
+            if let keyword = repository.fetchSingleUserSearchKeyWord(word: newsAPIQuery.value.lowercased()) {
                 //존재한다면 횟수 증가하기
                 do {
-                    try repository.updateUserSearchKeyword(task: ["searchWord": keyword.searchWord, "searchWordCount": keyword.searchWordCount + 1, "lastlySearchedAt": Date()])
+                    try repository.updateUserSearchKeyword(task: [NewsSearchSetupValues.searchWord: keyword.searchWord, NewsSearchSetupValues.searchWordCount: keyword.searchWordCount + 1, NewsSearchSetupValues.lastlySearchedAt: Date()])
                 } catch {
                     print("update news api search word failure")
                 }

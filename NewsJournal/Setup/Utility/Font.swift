@@ -19,6 +19,9 @@ extension Constant {
         static let searchOptionConfirmButton = UIFont.boldSystemFont(ofSize: 17)
         static let searchOptionResetButton = UIFont.boldSystemFont(ofSize: 13)
         
+        static let searchKeyword = UIFont.boldSystemFont(ofSize: 12)
+        static let searchKeywordLastDate = UIFont.systemFont(ofSize: 9, weight: .light)
+        
         static let optionMainTitleLabel = UIFont.boldSystemFont(ofSize: 22)
         static let optionTitleLabel = UIFont.systemFont(ofSize: 14, weight: .medium)
         

@@ -122,24 +122,7 @@ final class Repository: RealmRepositoryProtocol {
         return fetchWithTag(type: type)?.where { !$0.link.in(links) }
     }
     
-    func fetchSavedSearchWordsWithKeyword(word: String) -> UserSearchKeyword? {
-        guard let realm = realm else { return nil }
-        return realm.object(ofType: UserSearchKeyword.self, forPrimaryKey: word)
-    }
-    
     //MARK: - UPDATE
-    
-    func updateUserSearchKeyword(task: [String : Any]) throws {
-        if let realm = realm {
-            do {
-                try realm.write {
-                    realm.create(UserSearchKeyword.self, value: task, update: .modified)
-                }
-            } catch {
-                throw RealmError.updateObjectFailure
-            }
-        }
-    }
     
     func updateRecordOfJournal(record: BookMarkedNews, newJournal: Journal) throws {
         if let realm = realm {
@@ -181,8 +164,47 @@ final class Repository: RealmRepositoryProtocol {
     }
  
     
-    func deleteSearchWord(word: String) {
-        
+    //MARK: - CRUD For Search Keyword
+    
+    func fetchUserSearchKeywords() -> Results<UserSearchKeyword>? {
+        guard let realm = realm else { return nil }
+        let sortProperties = [SortDescriptor(keyPath: RealmSetupValues.searchWordCount, ascending: false), SortDescriptor(keyPath: RealmSetupValues.lastTimeSearchedAt, ascending: false)]
+        return realm.objects(UserSearchKeyword.self).sorted(by: sortProperties)
+    }
+
+    func fetchUserSearchKeywordsWithoutThatKeyword(keyword: UserSearchKeyword) -> Results<UserSearchKeyword>? {
+        guard let realm = realm else { return nil }
+        let sortProperties = [SortDescriptor(keyPath: RealmSetupValues.searchWordCount, ascending: false), SortDescriptor(keyPath: RealmSetupValues.lastTimeSearchedAt, ascending: false)]
+        return realm.objects(UserSearchKeyword.self).where { $0.searchWord != keyword.searchWord }.sorted(by: sortProperties)
+    }
+    
+    func fetchSingleUserSearchKeyWord(word: String) -> UserSearchKeyword? {
+        guard let realm = realm else { return nil }
+        return realm.object(ofType: UserSearchKeyword.self, forPrimaryKey: word)
+    }
+    
+    func updateUserSearchKeyword(task: [String : Any]) throws {
+        if let realm = realm {
+            do {
+                try realm.write {
+                    realm.create(UserSearchKeyword.self, value: task, update: .modified)
+                }
+            } catch {
+                throw RealmError.updateObjectFailure
+            }
+        }
+    }
+    
+    func deleteSearchWord(word: UserSearchKeyword) throws {
+        if let realm = realm {
+            do {
+                try realm.write {
+                    realm.delete(word)
+                }
+            } catch {
+                throw RealmError.deleteObjectFailure
+            }
+        }
     }
     
 }
