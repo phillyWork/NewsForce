@@ -63,8 +63,14 @@ final class WebViewController: BaseViewController {
     override func configureViews() {
         super.configureViews()
         
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = writeButton
+        if #available(iOS 16.0, *) {
+            navigationItem.leftBarButtonItem = backButton
+            navigationItem.rightBarButtonItem = writeButton
+        } else {
+            navigationItem.setRightBarButton(writeButton, animated: true)
+            navigationItem.setLeftBarButton(backButton, animated: true)
+            navigationItem.setHidesBackButton(true, animated: true)
+        }
         
         swipeGestureRecognizer.direction = .right
         view.addGestureRecognizer(swipeGestureRecognizer)
@@ -126,8 +132,13 @@ final class WebViewController: BaseViewController {
     
     @objc func notificationCloseVC() {
         //memoVC 내려감: 뒤로 가기 버튼 활성화
-        navigationItem.leftBarButtonItem?.isHidden = false
-        navigationItem.rightBarButtonItem?.isHidden = false
+        if #available(iOS 16.0, *) {
+            navigationItem.leftBarButtonItem?.isHidden = false
+            navigationItem.rightBarButtonItem?.isHidden = false
+        } else {
+            navigationItem.setLeftBarButton(backButton, animated: true)
+            navigationItem.setRightBarButton(writeButton, animated: true)
+        }
     }
     
     //MARK: - Handlers
@@ -144,8 +155,14 @@ final class WebViewController: BaseViewController {
     
     @objc private func writeDownButtonTapped() {
         //nav의 버튼 눌리지 않도록 설정: 숨기기
-        navigationItem.leftBarButtonItem?.isHidden = true
-        navigationItem.rightBarButtonItem?.isHidden = true
+        if #available(iOS 16.0, *) {
+            navigationItem.leftBarButtonItem?.isHidden = true
+            navigationItem.rightBarButtonItem?.isHidden = true
+        } else {
+            navigationItem.setLeftBarButton(nil, animated: true)
+            navigationItem.setRightBarButton(nil, animated: true)
+            navigationItem.setHidesBackButton(true, animated: true)
+        }
 
         let memoVC = MemoViewController()
         memoVC.memoVM.updateAPIType(newType: webVM.passAPIType())
@@ -161,17 +178,27 @@ final class WebViewController: BaseViewController {
 
         //setup Memo with SheetPresentation
         let nav = UINavigationController(rootViewController: memoVC)
-        let detentIdentifier = UISheetPresentationController.Detent.Identifier(WebViewSetupValues.sheetPresentationDetentIdentifier)
-        let customDetent = UISheetPresentationController.Detent.custom(identifier: detentIdentifier) { _ in
-            return self.view.safeAreaLayoutGuide.layoutFrame.height * Constant.Frame.sheetPresentationDetentHeightMultiply
+        if #available(iOS 16.0, *) {
+            let detentIdentifier = UISheetPresentationController.Detent.Identifier(WebViewSetupValues.sheetPresentationDetentIdentifier)
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: detentIdentifier) { _ in
+                return self.view.safeAreaLayoutGuide.layoutFrame.height * Constant.Frame.sheetPresentationDetentHeightMultiply
+            }
+            if let sheetPresentationController = nav.sheetPresentationController {
+                sheetPresentationController.detents = [.large(), customDetent ]
+                sheetPresentationController.largestUndimmedDetentIdentifier = customDetent.identifier
+                sheetPresentationController.prefersGrabberVisible = true
+                sheetPresentationController.prefersScrollingExpandsWhenScrolledToEdge = false
+            }
+            present(nav, animated: true)
+        } else {
+            if let sheetPresentationController = nav.sheetPresentationController {
+                sheetPresentationController.detents = [.medium(), .large()]
+                sheetPresentationController.largestUndimmedDetentIdentifier = .medium
+                sheetPresentationController.prefersGrabberVisible = true
+                sheetPresentationController.prefersScrollingExpandsWhenScrolledToEdge = false
+            }
+            present(nav, animated: true)
         }
-        if let sheetPresentationController = nav.sheetPresentationController {
-            sheetPresentationController.detents = [.large(), customDetent ]
-            sheetPresentationController.largestUndimmedDetentIdentifier = customDetent.identifier
-            sheetPresentationController.prefersGrabberVisible = true
-            sheetPresentationController.prefersScrollingExpandsWhenScrolledToEdge = false
-        }
-        present(nav, animated: true)
     }
     
     
