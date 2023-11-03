@@ -1,5 +1,7 @@
 # NewsForce
 
+![imagesForApp](./imagesForReadMe/appStoreImages.jpg)
+
 #### 원하는 기사를 북마크로 저장하고, 기사를 읽으며 저널을 작성하고, 작성한 저널을 PDF 문서로 추출해서 활용할 수 있는 앱입니다.
 
 - 모든 기사는 북마크 버튼을 통해 Realm에 저장/삭제가 가능합니다.
