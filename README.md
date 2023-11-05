@@ -4,18 +4,8 @@
 
 #### 원하는 기사를 북마크로 저장하고, 기사를 읽으며 저널을 작성하고, 작성한 저널을 PDF 문서로 추출해서 활용할 수 있는 앱입니다.
 
-- 모든 기사는 북마크 버튼을 통해 Realm에 저장/삭제가 가능합니다.
-- 모든 기사는 탭할 경우, 기사를 읽을 수 있는 WebView와 저널을 입력할 ViewController가 UISheetPresentation으로 화면 전환이 이뤄집니다.
-- "오늘의 기사" 탭에서 당일 기사를 fetch 해오는 국내/해외 기사를 확인 가능합니다.
-- "기사 검색" 탭에서 기사를 검색할 수 있고 fetch한 검색 결과를 확인 가능합니다.
-- "기사 검색" 탭에서 상세 검색 옵션 버튼을 통해 검색 API 및 query 설정이 가능합니다.
-- "저널 목록" 탭에서 북마크한 기사와 저널 기록을 한 기사를 같이 볼 수 있습니다.
-- "저널 목록" 탭에서 저널 입력 시 같이 저장한 태그 버튼으로 검색이 가능합니다.
-- "저널 목록" 탭에서 북마크한 기사와 저널 기록을 한 기사를 여럿 선택해서 삭제할 수 있습니다.
-- "저널 목록" 탭에서 저널을 입력한 기사들로 PDF 문서로 추출 수 있습니다.
-- PDF 문서 구성이 완료되면, ActivityViewController로 파일 저장, AirDrop 및 카카오톡 공유, 메일 첨부파일로 활용 가능합니다.
-
 # Link
+
 [NewsForce 앱스토어 링크](https://apps.apple.com/app/newsforce/id6469046867)
 
 [블로그: 개발 과정에 따른 자세한 회고](https://velog.io/@simonyain/NewsForce-출시-회고)
@@ -23,6 +13,7 @@
 # 개발 기간 및 인원
 - 2023.09.25 ~ 2023.10.31
 - 배포 이후 지속적 업데이트 중 (현재 version 1.1.1)
+- 최소 버전: iOS 15.0
 - 1인 개발
 
 # 사용 기술
@@ -33,14 +24,41 @@
 - **NotificationCenter, GCD, UserDefaults, FileManager, NSCache, Codable, Hashable**
 - **API: Naver News API, Media Stack API, News API**
 
+------
+
+# 기능 구현
+
+- 서로 다른 API 데이터를 통합 관리하기 위한 DTO 구조 설계
+  - 앱 내부에서는 DTO 구조만 가지고 데이터 다룸
+  - API 구조 변경 시, DTO 구조로 변경하는 지점만 수정하는 유지 보수 비용 이점 확보 
+- `Realm` DB Table 스키마 구성
+    - `EmbeddedObject` 활용한 Subset Pattern 
+    - 최근 검색어 및 검색 횟수를 DB 스키마로 관리, 유저 검색 활동 UX 개선
+- `DiffableDataSource`를 활용한 data 기반 CollectionView 핸들링
+    -  Realm DB 실시간 특성 활용, snapshot update 시나리오 구성
+- `UISheetPresentation` 및 custom Detent 활용, 기사 탐독에 방해되지 않을 높이의 화면 전환 구성
+    - identifier 및 높이값 설정으로 custom 높이의 detent 구성 (최소 버전: iOS 16)
+    - iOS 15는 어쩔 수 없이 `.medium()`이 최소
+- 기사의 Image Fetch 위한 네트워크 통신 횟수 감소와 데이터 구성 속도 개선
+  - `FileManager` 활용한 이미지 디스크 캐싱
+  - `NSCache` 활용한 `LPLinkMetadata` 메모리 캐싱
+- `PDFKit` 기반 PDF 문서 구성 및 `ActivityViewController` 활용 파일 공유 및 저장 기능 구현
+    - PDF 문서 구성에 활용될 요소들이 차지할 영역을 계산, 상단 (0,0)부터 시작해 문서 크기를 다 채우기 전까지 요소를 그려나감
+    - 문서 가로 길이를 초과하는지 분기 처리, 그려질 `CGRect`의 높이를 더 크게 설정
+    - 입력한 저널 내용을 일정 크기의 `UITextView`로 나눠서 생성, 각 textView가 남은 페이지 양을 초과해 다음 페이지에서 그려져야 하는 지 분기처리해서 그려지도록 함
+- 기사 fetch 과정에서 UI적으로 상황 알려줌으로 유저의 UX 경험 개선
+    - `SkeletonView`를 활용해 기사와 이미지를 로딩중임을 알림
+    - 기사 결과가 없을 경우 CollectionView의 emptyView 활용해 fetch해올 수 없는 상황 인지시켜줌 UX 개선
+
+------
 
 # Trouble Shooting
 
 ### A. UISheetPresentation 활용 시, 유저의 drag down에 따라 입력한 값을 따로 저장하지 않으면 활용 불가능
 
-UISheetPresentation으로 화면전환되는 ViewController도 결국 화면에서 내려가면 메모리에서 해제된다. 
-해제되기 전에 저널 입력값들을 저장해야, 새로 fetch하지 않았다는 가정하에 동일 기사는 임시 입력값들을 활용할 수 있었다.
-해결을 위해 SheetPresentation이 화면에서 내려갈 시점에 입력값이 존재하면 UserDefaults에 저장하도록 코드 구성을 했다.
+`UISheetPresentation`으로 화면전환되는 ViewController도 결국 화면에서 내려가면 메모리에서 해제된다. 
+해제되기 전에 저널 입력값들을 저장해야, 새로 fetch하지 않았다는 가정하에 동일 기사에서 임시 저장된 입력값들을 활용할 수 있었다.
+해결을 위해 SheetPresentation이 화면에서 내려갈 시점에 입력값이 존재하면 `UserDefaults`에 저장하도록 코드 구성을 했다.
 
 ```swift
 //MemoViewModel
@@ -101,17 +119,19 @@ override func viewDidDisappear(_ animated: Bool) {
 }
 ```
 
+-----
+
 ### B. LinkPresentation만으로 기사 이미지를 fetch 해올 경우 오래걸리는 처리 속도
 
-LinkPresentation만으로 LPLinkMetadata를 활용한 cell을 구성했을 때는 개발 입장에서는 큰 고민이 없었지만 유저가 기사를 새로 가져올 때마다 매번 네트워크 통신이 필요해서 반응이 느려진다는 단점이 나타났다.
+`LinkPresentation`만으로 `LPLinkMetadata`를 활용한 cell을 구성했을 때는 개발 입장에서는 큰 고민이 없었지만 유저가 기사를 새로 가져올 때마다 매번 네트워크 통신이 필요해서 반응이 느려진다는 단점이 나타났다.
 따라서 기사의 이미지 파일과 LPLinkMetadata를 캐싱해서 네트워크 요청을 줄여 반응성 높은 앱 디자인이 되도록 했다.
 이미지 저장 및 cell 구성 시나리오는 다음과 같았다.
 
-1. FileManager를 활용, 디스크에 해당 이미지 파일이 존재하면 fetch해서 cell에 띄워주기
-2. 존재하지 않을 경우 DTONews 구조에서 imageUrl string value가 존재하면 kingfisher library 활용, 이미지 파일 imageView에 나타내고 디스크에 저장하기
-3. image 링크가 존재하지 않으면 메모리에 캐싱된 LPLinkMetadata가 존재하는지 확인
-  - a. metadata가 존재하면 LinkPresentation의 itemProvider를 활용해서 이미지를 가져오기, 가져올 수 없다면 default image asset을 활용하기
-  - b. metadata가 존재하지 않으면 기사 link에서 LPLinkMetadata를 가져오기 (메서드: startFetch)
+1. `FileManager`를 활용, 디스크에 해당 이미지 파일이 존재하면 fetch해서 cell에 띄워주기
+2. 존재하지 않을 경우 DTONews 구조에서 imageUrl string value가 존재하면 `Kingfisher` library 활용, 이미지 파일 imageView에 나타내고 디스크에 저장하기
+3. image 링크가 존재하지 않으면 메모리에 캐싱된 `LPLinkMetadata`가 존재하는지 확인
+  - a. metadata가 존재하면 LinkPresentation의 `itemProvider`를 활용해서 이미지를 가져오기, 가져올 수 없다면 default image asset을 활용하기
+  - b. metadata가 존재하지 않으면 기사 link에서 LPLinkMetadata를 가져오기 (메서드: `startFetch`)
 4. metadata fetch에 성공하면 3-a)를 다시 시도, fetch조차 할 수 없다면 default image asset을 활용하기
 
 ```swift
@@ -170,9 +190,11 @@ private func populateWithPassedData(news: DTONews) {
     }
 ```
 
+-----
+
 ### C. allowsMultipleSelection으로 구현한 collectionView item 선택 문제
-PDF 문서 구성 혹은 아이템 삭제를 위해 여러 item을 선택할 수 있도록 allowsMultipleSelection = true인 상황을 설정했다.
-didSelectItemAt과 didDeselectItemAt 메서드는 allowsMultipleSelection이 false일 때는 하나의 item이 선택될 때 자동으로 다른 item들의 isSelected property를 false로 설정한다.
+PDF 문서 구성 혹은 아이템 삭제를 위해 여러 item을 선택할 수 있도록 `allowsMultipleSelection`이 true인 상황을 설정했다.
+`didSelectItemAt`과 `didDeselectItemAt` 메서드는 allowsMultipleSelection이 false일 때는 하나의 item이 선택될 때 자동으로 다른 item들의 `isSelected` property를 false로 설정한다.
 반면 allowsMultipleSelection이 true일 때는 자동으로 update되지 않았다.
 
 allowsMultipleSelection이 true인 상황에서 isSelected의 값이 어떤지에 따라 선택할지, 해제할지를 결정하는 data flow 시나리오는 다음과 같다.
@@ -230,14 +252,16 @@ func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexP
 }    
 ```
 
+------
+
 ### D. Realm의 record 삭제 후 DiffableDatasource로 snapshot update 시 런타임 에러 발생
 Realm DB는 실시간 DB로, 어느 ViewController 혹은 ViewModel에서 record를 삭제했다면 별다른 update 작업 없이도 다른 ViewModel이나 ViewController에서 확인 시, 삭제되었음을 알 수 있다.
 그렇기에 삭제된 record로 접근하려는 시도는 런타임 에러가 발생하도록 Realm의 설계가 되어있다.
 
-DiffableDatasource는 update 시점에 이전과 이후의 data를 snapshot으로 비교해서 변화 지점에 대한 애니메이션과 cell update를 수행한다.
-DiffableDatasource에서 data로 Realm의 record를 활용할 경우, snapshot update 이전에 미리 Realm의 record를 제거하면 snapshot 비교 과정에서 런타임 에러가 발생합니다.
+`DiffableDatasource`는 update 시점에 이전과 이후의 data를 `snapshot`으로 비교해서 변화 지점에 대한 애니메이션과 cell update를 수행한다.
+DiffableDatasource에서 data로 Realm의 record를 활용할 경우, snapshot update 이전에 미리 Realm의 record를 제거하면 snapshot 비교 과정에서 런타임 에러가 발생한다.
 
-따라서 record 삭제 이전에 해당 record를 제외한 Results<RealmDataStructure>를 fetch해서 snapshot update를 먼저 수행한 뒤, record를 삭제하면 문제없이 활용이 가능합니다.
+따라서 record 삭제 이전에 해당 record를 제외한 `Results<RealmDataStructure>`를 fetch해서 snapshot update를 먼저 수행한 뒤, record를 삭제하면 문제없이 활용이 가능하다.
 
 ```swift
 @objc private func bookmarkButtonTapped(sender: CustomBookMarkButton) {
@@ -269,6 +293,8 @@ DiffableDatasource에서 data로 Realm의 record를 활용할 경우, snapshot u
         }
 }
 ```
+
+------
 
 # 회고
 
