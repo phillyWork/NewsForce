@@ -21,8 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        //Notification User Authorization
+        UNUserNotificationCenter.current().delegate = self
         
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+          options: authOptions,
+          completionHandler: { _, _ in }
+        )
+
+        application.registerForRemoteNotifications()
         
+        //FCM wrapping
+        Messaging.messaging().delegate = self
         
         
         //schema update
@@ -35,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Realm.Configuration.defaultConfiguration = config
-        
         
         
         return true
@@ -58,3 +68,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+//MARK: - Extension for UserNotificationDelegate
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        
+        print("APNS token: ", token)
+    }
+    
+}
+
+
+//MARK: - Extension for MessagingDelegate
+
+extension AppDelegate: MessagingDelegate {
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(String(describing: fcmToken))")
+        
+        let dataDict: [String: String] = ["token": fcmToken ?? ""]
+        NotificationCenter.default.post(
+            name: Notification.Name("FCMToken"),
+            object: nil,
+            userInfo: dataDict
+        )
+    }
+    // TODO: If necessary send token to application server.
+    // Note: This callback is fired at each app startup and whenever a new token is generated.
+    
+}
