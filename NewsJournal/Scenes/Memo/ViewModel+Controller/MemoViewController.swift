@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseAnalytics
+
 final class MemoViewController: BaseViewController {
     
     //MARK: - Properties
@@ -364,10 +366,23 @@ final class MemoViewController: BaseViewController {
             memoVM.memoErrorMessage.value = MemoError.noJournalToRetrieve.alertMessage
         }
        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Memo-01",
+            AnalyticsParameterItemName: "MemoSaveButton",
+            AnalyticsParameterContentType: "saveButtonTapped"
+        ])
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Memo-02",
+            AnalyticsParameterItemName: "MemoViewTapToDismissKeyboard",
+            AnalyticsParameterContentType: "viewTappedToDismissKeyboard"
+        ])
+        
     }
     
 }
@@ -377,7 +392,16 @@ final class MemoViewController: BaseViewController {
 extension MemoViewController: UITextFieldDelegate {
     
     //엔터 키 입력
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool { return true }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Memo-03",
+            AnalyticsParameterItemName: "MemoTextViewEnterKey",
+            AnalyticsParameterContentType: "textViewEnterKeyTapped"
+        ])
+        
+        return true
+    }
     
 }
 
@@ -390,6 +414,13 @@ extension MemoViewController: UITextViewDelegate {
         if MemoSetupValues.textViewPlaceholders.contains(contentTextView.text) {
             contentTextView.removePlaceholder()
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Memo-04",
+            AnalyticsParameterItemName: "MemoTextViewStartEditing",
+            AnalyticsParameterContentType: "textViewStartEdit"
+        ])
+        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -397,6 +428,12 @@ extension MemoViewController: UITextViewDelegate {
         if contentTextView.text.isEmpty {
             contentTextView.setInitialPlaceholder()
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Memo-05",
+            AnalyticsParameterItemName: "MemoTextViewEndEditing",
+            AnalyticsParameterContentType: "textViewEndEdit"
+        ])
     }
 
 }

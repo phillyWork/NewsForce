@@ -8,6 +8,7 @@
 import UIKit
 
 import RealmSwift
+import FirebaseAnalytics
 
 final class NewsSearchViewController: BaseViewController {
 
@@ -636,6 +637,12 @@ final class NewsSearchViewController: BaseViewController {
                 NotificationCenter.default.post(name: .realmSavedInSearchVCSourceFromNewsAPI, object: nil, userInfo: [NotificationUserInfoName.dtoNewsToBeSavedInRealm: item])
             }
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-01",
+            AnalyticsParameterItemName: "SearchNewsBookmarkButton",
+            AnalyticsParameterContentType: "bookmarkButtonTapped"
+        ])
     }
     
     private func alertForRealmDeletion(title: String, message: String, bookMarked: Results<BookMarkedNews>, indexPath: IndexPath) {
@@ -678,10 +685,22 @@ final class NewsSearchViewController: BaseViewController {
         case .newsAPI:
             optionSearchTypeNewsAPIButtonTapped()
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-02",
+            AnalyticsParameterItemName: "SearchNewsOptionButton",
+            AnalyticsParameterContentType: "optionButtonTapped"
+        ])
     }
     
     @objc private func closeButtonTapped() {
         hideOptionView()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-03",
+            AnalyticsParameterItemName: "SearchNewsOptionCloseButton",
+            AnalyticsParameterContentType: "closeButtonTapped"
+        ])
     }
         
     @objc private func optionViewConfirmButtonTapped() {
@@ -694,6 +713,12 @@ final class NewsSearchViewController: BaseViewController {
             newsSearchVM.setNewsAPISearchWordTypeBy()
         }
         hideOptionView()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-04",
+            AnalyticsParameterItemName: "SearchNewsOptionConfirmButton",
+            AnalyticsParameterContentType: "confirmButtonTapped"
+        ])
     }
         
     @objc private func optionResetButtonTapped() {
@@ -707,6 +732,12 @@ final class NewsSearchViewController: BaseViewController {
         newsSearchVM.resetNewsAPISortType()
         newsSearchVM.resetNaverAPISortType()
         optionSearchTypeNaverButtonTapped()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-05",
+            AnalyticsParameterItemName: "SearchNewsOptionResetButton",
+            AnalyticsParameterContentType: "resetButtonTapped"
+        ])
     }
     
     private func revealOptionView() {
@@ -740,6 +771,12 @@ final class NewsSearchViewController: BaseViewController {
         case .date:
             optionNaverDateButtonTapped()
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-06",
+            AnalyticsParameterItemName: "SearchNewsNaverOptionButton",
+            AnalyticsParameterContentType: "naverOptionButtonTapped"
+        ])
     }
     
     private func deSelectNewsAPISearch() {
@@ -753,12 +790,24 @@ final class NewsSearchViewController: BaseViewController {
         newsSearchVM.saveNaverSortType(type: .sim)
         optionNaverSortSimButton.isButtonSelected = true
         optionNaverSortDateButton.isButtonSelected = false
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-07",
+            AnalyticsParameterItemName: "SearchNewsNaverSimButton",
+            AnalyticsParameterContentType: "naverSimButtonTapped"
+        ])
     }
     
     @objc private func optionNaverDateButtonTapped() {
         newsSearchVM.saveNaverSortType(type: .date)
         optionNaverSortDateButton.isButtonSelected = true
         optionNaverSortSimButton.isButtonSelected = false
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-08",
+            AnalyticsParameterItemName: "SearchNewsNaverDateButton",
+            AnalyticsParameterContentType: "naverDateButtonTapped"
+        ])
     }
     
     //MARK: - Handlers for NewsAPI Option
@@ -788,6 +837,12 @@ final class NewsSearchViewController: BaseViewController {
         case .asOr:
             toggleNewsAPISearchButton(type: .asOr)
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-09",
+            AnalyticsParameterItemName: "SearchNewsAPIOptionButton",
+            AnalyticsParameterContentType: "newsAPIOptionButtonTapped"
+        ])
     }
     
     private func deSelectNaverSearch() {
@@ -799,16 +854,34 @@ final class NewsSearchViewController: BaseViewController {
     @objc private func optionNewsAPIPublishedAtButtonTapped() {
         newsSearchVM.saveNewsAPISortBy(type: .publishedAt)
         toggleNewsAPISortButton(type: .publishedAt)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-10",
+            AnalyticsParameterItemName: "SearchNewsAPIPublishedAtButton",
+            AnalyticsParameterContentType: "newsAPIPublishedAtButtonTapped"
+        ])
     }
     
     @objc private func optionNewsAPIRelevancyButtonTapped() {
         newsSearchVM.saveNewsAPISortBy(type: .relevancy)
         toggleNewsAPISortButton(type: .relevancy)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-11",
+            AnalyticsParameterItemName: "SearchNewsAPIRelevancyButton",
+            AnalyticsParameterContentType: "newsAPIRelevancyButtonTapped"
+        ])
     }
 
     @objc private func optionNewsAPIPopularityButtonTapped() {
         newsSearchVM.saveNewsAPISortBy(type: .popularity)
         toggleNewsAPISortButton(type: .popularity)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-12",
+            AnalyticsParameterItemName: "SearchNewsAPIPopularityButton",
+            AnalyticsParameterContentType: "newsAPIPopularityButtonTapped"
+        ])
     }
     
     private func toggleNewsAPISortButton(type: NewsAPISearchSortType) {
@@ -831,11 +904,23 @@ final class NewsSearchViewController: BaseViewController {
     @objc private func optionNewsAPISearchWordsANDButtonTapped() {
         newsSearchVM.saveNewsAPISearchWordTypeBy(type: .asAnd)
         toggleNewsAPISearchButton(type: .asAnd)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-13",
+            AnalyticsParameterItemName: "SearchNewsAPIANDButton",
+            AnalyticsParameterContentType: "newsAPIANDButtonTapped"
+        ])
     }
     
     @objc private func optionNewsAPISearchWordsORButtonTapped() {
         newsSearchVM.saveNewsAPISearchWordTypeBy(type: .asOr)
         toggleNewsAPISearchButton(type: .asOr)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-14",
+            AnalyticsParameterItemName: "SearchNewsAPIORButton",
+            AnalyticsParameterContentType: "newsAPIORButtonTapped"
+        ])
     }
     
     private func toggleNewsAPISearchButton(type: NewsAPISearchQueryBlankReplacementType) {
@@ -856,6 +941,12 @@ final class NewsSearchViewController: BaseViewController {
             view.endEditing(true)
         }
         sender.cancelsTouchesInView = false
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-15",
+            AnalyticsParameterItemName: "SearchNewsCollectionViewTapToDismissKeyboard",
+            AnalyticsParameterContentType: "collectionViewTapped"
+        ])
     }
     
     private func activateIndicator() {
@@ -871,6 +962,12 @@ final class NewsSearchViewController: BaseViewController {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         print(#function)
         apiSearchBar.resignFirstResponder()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "SearchNews-16",
+            AnalyticsParameterItemName: "SearchNewsCollectionViewScrollToDismissKeyboard",
+            AnalyticsParameterContentType: "collectionViewScroll"
+        ])
     }
      
     //MARK: - Deinit

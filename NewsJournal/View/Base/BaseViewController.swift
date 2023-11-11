@@ -12,7 +12,7 @@ import JDStatusBarNotification
 
 class BaseViewController: UIViewController {
 
-    let toastManager = NotificationPresenter.shared()
+    let toastManager = NotificationPresenter.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,8 @@ class BaseViewController: UIViewController {
             return style
         }
         
-        toastManager.present(text: message, dismissAfterDelay: Constant.TimeDelay.toastMessageDelay)
+        toastManager.present(message, duration: Constant.TimeDelay.toastMessageDelay)
+//        toastManager.present(text: message, dismissAfterDelay: Constant.TimeDelay.toastMessageDelay)
         toastManager.displayLeftView(UIImageView(image: UIImage(systemName: Constant.ImageString.checkImageString)))
     }
     
@@ -55,7 +56,8 @@ class BaseViewController: UIViewController {
             return style
         }
         
-        toastManager.present(text: message, dismissAfterDelay: Constant.TimeDelay.toastMessageDelay)
+        toastManager.present(message, duration: Constant.TimeDelay.toastMessageDelay)
+//        toastManager.present(text: message, dismissAfterDelay: Constant.TimeDelay.toastMessageDelay)
         toastManager.displayLeftView(UIImageView(image: UIImage(systemName: Constant.ImageString.xmarkCircleImageString)))
     }
     

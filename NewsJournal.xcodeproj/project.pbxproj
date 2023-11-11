@@ -16,7 +16,6 @@
 		210821292AC85E5E00A999AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210821282AC85E5E00A999AC /* Assets.xcassets */; };
 		2108212C2AC85E5E00A999AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2108212A2AC85E5E00A999AC /* LaunchScreen.storyboard */; };
 		210821342AC85E9300A999AC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 210821332AC85E9300A999AC /* .gitignore */; };
-		210821362AC85EA500A999AC /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821352AC85EA500A999AC /* APIKey.swift */; };
 		210821382AC85FFF00A999AC /* NewsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */; };
 		2108213E2AC862EF00A999AC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108213D2AC862EF00A999AC /* TabBarController.swift */; };
 		210821402AC8633A00A999AC /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108213F2AC8633A00A999AC /* JournalViewController.swift */; };
@@ -40,6 +39,10 @@
 		211E7A5A2AE96D7E00658ED2 /* Enum+APIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E7A592AE96D7E00658ED2 /* Enum+APIType.swift */; };
 		211F01002AE3C4C100E0249B /* Enum+SearchAPIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211F00FF2AE3C4C100E0249B /* Enum+SearchAPIType.swift */; };
 		211F01032AE4492D00E0249B /* CustomSearchOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211F01022AE4492D00E0249B /* CustomSearchOptionButton.swift */; };
+		212065B62AFFCD3E000A5245 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 212065B52AFFCD3E000A5245 /* GoogleService-Info.plist */; };
+		212065B92AFFCDDE000A5245 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 212065B82AFFCDDE000A5245 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		212065BB2AFFCDDE000A5245 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 212065BA2AFFCDDE000A5245 /* FirebaseCrashlytics */; };
+		212065BD2AFFCDDE000A5245 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 212065BC2AFFCDDE000A5245 /* FirebaseMessaging */; };
 		21290CA92AD563C2001FAA49 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21290CA82AD563C2001FAA49 /* OnBoardingViewController.swift */; };
 		21290CC12AD56B9A001FAA49 /* Enum+OnBoardingSetupValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21290CC02AD56B9A001FAA49 /* Enum+OnBoardingSetupValues.swift */; };
 		21290CC32AD56E19001FAA49 /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21290CC22AD56E19001FAA49 /* OnBoardingViewModel.swift */; };
@@ -93,7 +96,6 @@
 		219D89372AEC1427002B97EF /* Enum+NewsAPISearchQueryBlankReplacementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D89362AEC1427002B97EF /* Enum+NewsAPISearchQueryBlankReplacementType.swift */; };
 		219D893A2AEC2DE1002B97EF /* CustomSearchOptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D89392AEC2DE1002B97EF /* CustomSearchOptionLabel.swift */; };
 		219D893C2AEC2E00002B97EF /* Enum+SearchOptionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D893B2AEC2E00002B97EF /* Enum+SearchOptionTitle.swift */; };
-		21A1DA522AD0706C002A89CB /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA512AD0706C002A89CB /* JDStatusBarNotification */; };
 		21A1DA552AD0707F002A89CB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA542AD0707F002A89CB /* SnapKit */; };
 		21A1DA582AD07089002A89CB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA572AD07089002A89CB /* Alamofire */; };
 		21A1DA5B2AD070AC002A89CB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 21A1DA5A2AD070AC002A89CB /* Realm */; };
@@ -130,6 +132,10 @@
 		21E830C92ACAC5440009025D /* JournalRealmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830C82ACAC5440009025D /* JournalRealmCell.swift */; };
 		21E830CB2ACAC56D0009025D /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830CA2ACAC56D0009025D /* BaseCollectionViewCell.swift */; };
 		21E830CD2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E830CC2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift */; };
+		21F2F7562AF87D7C0001ABF8 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 21F2F7552AF87D7C0001ABF8 /* JDStatusBarNotification */; };
+		21F2F7592AF880C20001ABF8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 21F2F7582AF880C20001ABF8 /* RxCocoa */; };
+		21F2F75B2AF880C20001ABF8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 21F2F75A2AF880C20001ABF8 /* RxSwift */; };
+		21FCBB052AF7F37F00B64A1C /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FCBB042AF7F37F00B64A1C /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,7 +150,6 @@
 		2108212B2AC85E5E00A999AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2108212D2AC85E5E00A999AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		210821332AC85E9300A999AC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		210821352AC85EA500A999AC /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		210821372AC85FFF00A999AC /* NewsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchViewModel.swift; sourceTree = "<group>"; };
 		2108213D2AC862EF00A999AC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2108213F2AC8633A00A999AC /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 		211E7A592AE96D7E00658ED2 /* Enum+APIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+APIType.swift"; sourceTree = "<group>"; };
 		211F00FF2AE3C4C100E0249B /* Enum+SearchAPIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+SearchAPIType.swift"; sourceTree = "<group>"; };
 		211F01022AE4492D00E0249B /* CustomSearchOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchOptionButton.swift; sourceTree = "<group>"; };
+		212065B52AFFCD3E000A5245 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		21290CA82AD563C2001FAA49 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		21290CC02AD56B9A001FAA49 /* Enum+OnBoardingSetupValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+OnBoardingSetupValues.swift"; sourceTree = "<group>"; };
 		21290CC22AD56E19001FAA49 /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 		21E830C82ACAC5440009025D /* JournalRealmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalRealmCell.swift; sourceTree = "<group>"; };
 		21E830CA2ACAC56D0009025D /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		21E830CC2ACAC62D0009025D /* NewsLinkPresentationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLinkPresentationViewModel.swift; sourceTree = "<group>"; };
+		21FCBB042AF7F37F00B64A1C /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,12 +265,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F2F7592AF880C20001ABF8 /* RxCocoa in Frameworks */,
 				21A1DA582AD07089002A89CB /* Alamofire in Frameworks */,
-				21A1DA522AD0706C002A89CB /* JDStatusBarNotification in Frameworks */,
+				21F2F75B2AF880C20001ABF8 /* RxSwift in Frameworks */,
 				21D983FD2AE2F6580056452D /* Kingfisher in Frameworks */,
+				212065B92AFFCDDE000A5245 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				21A1DA5B2AD070AC002A89CB /* Realm in Frameworks */,
 				21C8F5332AEA4DBA00CB6861 /* SkeletonView in Frameworks */,
 				21A1DA5D2AD070AC002A89CB /* RealmSwift in Frameworks */,
+				212065BD2AFFCDDE000A5245 /* FirebaseMessaging in Frameworks */,
+				21F2F7562AF87D7C0001ABF8 /* JDStatusBarNotification in Frameworks */,
+				212065BB2AFFCDDE000A5245 /* FirebaseCrashlytics in Frameworks */,
 				21A1DA552AD0707F002A89CB /* SnapKit in Frameworks */,
 				212B0E8D2AD9B87B0006FD1A /* Tabman in Frameworks */,
 			);
@@ -294,7 +306,7 @@
 			children = (
 				2108211F2AC85E5D00A999AC /* AppDelegate.swift */,
 				210821212AC85E5D00A999AC /* SceneDelegate.swift */,
-				210821352AC85EA500A999AC /* APIKey.swift */,
+				21FCBB042AF7F37F00B64A1C /* APIKey.swift */,
 				2108213A2AC8602600A999AC /* Setup */,
 				210821452AC8639900A999AC /* Manager */,
 				2108214F2AC8650200A999AC /* Model */,
@@ -303,6 +315,7 @@
 				210821282AC85E5E00A999AC /* Assets.xcassets */,
 				2108212A2AC85E5E00A999AC /* LaunchScreen.storyboard */,
 				2108212D2AC85E5E00A999AC /* Info.plist */,
+				212065B52AFFCD3E000A5245 /* GoogleService-Info.plist */,
 				210821332AC85E9300A999AC /* .gitignore */,
 			);
 			path = NewsJournal;
@@ -941,7 +954,6 @@
 			);
 			name = NewsJournal;
 			packageProductDependencies = (
-				21A1DA512AD0706C002A89CB /* JDStatusBarNotification */,
 				21A1DA542AD0707F002A89CB /* SnapKit */,
 				21A1DA572AD07089002A89CB /* Alamofire */,
 				21A1DA5A2AD070AC002A89CB /* Realm */,
@@ -949,6 +961,12 @@
 				212B0E8C2AD9B87B0006FD1A /* Tabman */,
 				21D983FC2AE2F6580056452D /* Kingfisher */,
 				21C8F5322AEA4DBA00CB6861 /* SkeletonView */,
+				21F2F7552AF87D7C0001ABF8 /* JDStatusBarNotification */,
+				21F2F7582AF880C20001ABF8 /* RxCocoa */,
+				21F2F75A2AF880C20001ABF8 /* RxSwift */,
+				212065B82AFFCDDE000A5245 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				212065BA2AFFCDDE000A5245 /* FirebaseCrashlytics */,
+				212065BC2AFFCDDE000A5245 /* FirebaseMessaging */,
 			);
 			productName = NewsJournal;
 			productReference = 2108211C2AC85E5D00A999AC /* NewsJournal.app */;
@@ -962,7 +980,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					2108211B2AC85E5D00A999AC = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -980,13 +998,15 @@
 			);
 			mainGroup = 210821132AC85E5D00A999AC;
 			packageReferences = (
-				21A1DA502AD0706C002A89CB /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
 				21A1DA532AD0707F002A89CB /* XCRemoteSwiftPackageReference "SnapKit" */,
 				21A1DA562AD07089002A89CB /* XCRemoteSwiftPackageReference "Alamofire" */,
 				21A1DA592AD070AC002A89CB /* XCRemoteSwiftPackageReference "realm-swift" */,
 				212B0E8B2AD9B87B0006FD1A /* XCRemoteSwiftPackageReference "Tabman" */,
 				21D983FB2AE2F6580056452D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				21C8F5312AEA4DBA00CB6861 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				21FCBAFD2AF7F26700B64A1C /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
+				21F2F7572AF880C20001ABF8 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				212065B72AFFCDDE000A5245 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 2108211D2AC85E5D00A999AC /* Products */;
 			projectDirPath = "";
@@ -1003,6 +1023,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				210821342AC85E9300A999AC /* .gitignore in Resources */,
+				212065B62AFFCD3E000A5245 /* GoogleService-Info.plist in Resources */,
 				2108212C2AC85E5E00A999AC /* LaunchScreen.storyboard in Resources */,
 				210821292AC85E5E00A999AC /* Assets.xcassets in Resources */,
 			);
@@ -1106,7 +1127,6 @@
 				210821692AC86ACD00A999AC /* WebViewController.swift in Sources */,
 				21C8F5352AEABE9500CB6861 /* CustomNewsImageView.swift in Sources */,
 				213AAC952AC9B13D001BF9AC /* Enum+LPError.swift in Sources */,
-				210821362AC85EA500A999AC /* APIKey.swift in Sources */,
 				210821742AC86D5700A999AC /* UserDefaultsManager.swift in Sources */,
 				216887EF2ACE758A008A8A40 /* Enum+UserDefaultsError.swift in Sources */,
 				210821672AC86AA600A999AC /* BaseViewController.swift in Sources */,
@@ -1122,6 +1142,7 @@
 				216887E42ACE451F008A8A40 /* Enum+MemoSetupValues.swift in Sources */,
 				21BD22432ACBF6CB005EE249 /* DynamicHeightCompositionalLayout.swift in Sources */,
 				217FC70D2ADAE18700ED14EE /* DTONewsAPI.swift in Sources */,
+				21FCBB052AF7F37F00B64A1C /* APIKey.swift in Sources */,
 				213AAC8A2AC9A11A001BF9AC /* CustomBarButtonItem.swift in Sources */,
 				217FC7122ADAE43F00ED14EE /* DefaultMediaStackNewsViewModel.swift in Sources */,
 				217FC7202ADAFCB900ED14EE /* Extension+CacheManager.swift in Sources */,
@@ -1181,6 +1202,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1195,7 +1217,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1242,6 +1264,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1250,7 +1273,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1282,7 +1305,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.phillyh.NewsJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1316,7 +1339,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.phillyh.NewsJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1352,20 +1375,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		212065B72AFFCDDE000A5245 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.17.0;
+			};
+		};
 		212B0E8B2AD9B87B0006FD1A /* XCRemoteSwiftPackageReference "Tabman" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uias/Tabman.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.0.0;
-			};
-		};
-		21A1DA502AD0706C002A89CB /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/calimarkus/JDStatusBarNotification.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
 			};
 		};
 		21A1DA532AD0707F002A89CB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -1408,18 +1431,44 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		21F2F7572AF880C20001ABF8 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+		21FCBAFD2AF7F26700B64A1C /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/calimarkus/JDStatusBarNotification.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		212065B82AFFCDDE000A5245 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 212065B72AFFCDDE000A5245 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		212065BA2AFFCDDE000A5245 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 212065B72AFFCDDE000A5245 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		212065BC2AFFCDDE000A5245 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 212065B72AFFCDDE000A5245 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		212B0E8C2AD9B87B0006FD1A /* Tabman */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 212B0E8B2AD9B87B0006FD1A /* XCRemoteSwiftPackageReference "Tabman" */;
 			productName = Tabman;
-		};
-		21A1DA512AD0706C002A89CB /* JDStatusBarNotification */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 21A1DA502AD0706C002A89CB /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;
-			productName = JDStatusBarNotification;
 		};
 		21A1DA542AD0707F002A89CB /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1450,6 +1499,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 21D983FB2AE2F6580056452D /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		21F2F7552AF87D7C0001ABF8 /* JDStatusBarNotification */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21FCBAFD2AF7F26700B64A1C /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;
+			productName = JDStatusBarNotification;
+		};
+		21F2F7582AF880C20001ABF8 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21F2F7572AF880C20001ABF8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		21F2F75A2AF880C20001ABF8 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21F2F7572AF880C20001ABF8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

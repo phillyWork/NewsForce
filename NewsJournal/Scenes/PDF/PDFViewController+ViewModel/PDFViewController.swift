@@ -8,6 +8,8 @@
 import UIKit
 import PDFKit
 
+import FirebaseAnalytics
+
 final class PDFViewController: BaseViewController {
     
     //MARK: - Properties
@@ -105,6 +107,12 @@ final class PDFViewController: BaseViewController {
     
     @objc private func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "PDF-01",
+            AnalyticsParameterItemName: "PDFBackButton",
+            AnalyticsParameterContentType: "backButtonTapped"
+        ])
     }
     
     @objc private func sharedButtonTapped() {
@@ -129,6 +137,12 @@ final class PDFViewController: BaseViewController {
             }
         }
         present(activityVC, animated: true)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "PDF-02",
+            AnalyticsParameterItemName: "PDFShareButton",
+            AnalyticsParameterContentType: "shareButtonTapped"
+        ])
     }
     
     @objc private func handlePageChange() {
@@ -146,6 +160,12 @@ final class PDFViewController: BaseViewController {
             }
             currentPageLabel.text = "\(pageIndex + 1) of \(pdfView.document?.pageCount ?? .zero)"
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "PDF-03",
+            AnalyticsParameterItemName: "PDFScrollToShowPage",
+            AnalyticsParameterContentType: "scrollToShowPage"
+        ])
         
     }
     

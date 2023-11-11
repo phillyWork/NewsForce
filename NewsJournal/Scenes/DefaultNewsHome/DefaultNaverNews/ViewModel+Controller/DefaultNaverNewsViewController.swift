@@ -8,6 +8,7 @@
 import UIKit
 
 import RealmSwift
+import FirebaseAnalytics
 
 final class DefaultNaverNewsViewController: BaseViewController {
     
@@ -219,6 +220,12 @@ final class DefaultNaverNewsViewController: BaseViewController {
             self.linkPresentNaverCollectionView.refreshControl?.endRefreshing()
         }
         
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "DefaultNaverNews-01",
+            AnalyticsParameterItemName: "DefaultNaverNewsStretchCollectionView",
+            AnalyticsParameterContentType: "stretchCollectionViewReload"
+        ])
+        
     }
     
     @objc private func bookmarkButtonTapped(sender: CustomBookMarkButton) {
@@ -259,6 +266,12 @@ final class DefaultNaverNewsViewController: BaseViewController {
             
             NotificationCenter.default.post(name: .realmSavedSourceFromNaver, object: nil, userInfo: [NotificationUserInfoName.dtoNewsToBeSavedInRealm: item])
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "DefaultNaverNews-02",
+            AnalyticsParameterItemName: "DefaultNaverNewsBookmarkButton",
+            AnalyticsParameterContentType: "bookmarkButtonTapped"
+        ])
         
     }
     

@@ -8,6 +8,7 @@
 import UIKit
 
 import RealmSwift
+import FirebaseAnalytics
 
 final class DefaultMediaStackNewsViewController: BaseViewController {
     
@@ -219,6 +220,12 @@ final class DefaultMediaStackNewsViewController: BaseViewController {
             self.linkPresentMediaStackCollectionView.refreshControl?.endRefreshing()
         }
         
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "DefaultMediaStackNews-01",
+            AnalyticsParameterItemName: "DefaultMediaStackNewsStretchCollectionView",
+            AnalyticsParameterContentType: "stretchCollectionViewReload"
+        ])
+        
     }
     
     @objc private func bookmarkButtonTapped(sender: CustomBookMarkButton) {
@@ -258,6 +265,12 @@ final class DefaultMediaStackNewsViewController: BaseViewController {
             
             NotificationCenter.default.post(name: .realmSavedSourceFromMediaStack, object: nil, userInfo: [NotificationUserInfoName.dtoNewsToBeSavedInRealm: item])
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "DefaultMediaStackNews-02",
+            AnalyticsParameterItemName: "DefaultMediaStackNewsBookmarkButton",
+            AnalyticsParameterContentType: "bookmarkButtonTapped"
+        ])
         
     }
     

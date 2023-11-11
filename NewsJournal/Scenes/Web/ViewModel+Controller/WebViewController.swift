@@ -8,6 +8,8 @@
 import UIKit
 import WebKit
 
+import FirebaseAnalytics
+
 final class WebViewController: BaseViewController {
     
     //MARK: - Properties
@@ -147,10 +149,22 @@ final class WebViewController: BaseViewController {
         if gesture.direction == .right {
             self.navigationController?.popViewController(animated: true)
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Web-01",
+            AnalyticsParameterItemName: "WebSwipeToGoBack",
+            AnalyticsParameterContentType: "swipeToGoBack"
+        ])
     }
     
     @objc private func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Web-02",
+            AnalyticsParameterItemName: "WebBackButton",
+            AnalyticsParameterContentType: "backButtonTapped"
+        ])
     }
     
     @objc private func writeDownButtonTapped() {
@@ -199,6 +213,12 @@ final class WebViewController: BaseViewController {
             }
             present(nav, animated: true)
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Web-03",
+            AnalyticsParameterItemName: "WebWriteJournalButton",
+            AnalyticsParameterContentType: "writeJournalButtonTapped"
+        ])
     }
     
     

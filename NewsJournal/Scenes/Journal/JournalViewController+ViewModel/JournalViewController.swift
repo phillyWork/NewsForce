@@ -8,6 +8,7 @@
 import UIKit
 
 import RealmSwift
+import FirebaseAnalytics
 
 final class JournalViewController: BaseViewController {
     
@@ -307,10 +308,22 @@ final class JournalViewController: BaseViewController {
             view.endEditing(true)
         }
         sender.cancelsTouchesInView = false
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-01",
+            AnalyticsParameterItemName: "JournalCollectionViewTapToDismissKeyboard",
+            AnalyticsParameterContentType: "collectionViewTapped"
+        ])
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         realmSearchBar.resignFirstResponder()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-02",
+            AnalyticsParameterItemName: "JournalCollectionViewScrollToDismissKeyboard",
+            AnalyticsParameterContentType: "collectionViewScroll"
+        ])
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -379,6 +392,12 @@ final class JournalViewController: BaseViewController {
             journalVM.removeBookMarkedNewsFromRealm(bookMarkedNews: item)
         }
         
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-03",
+            AnalyticsParameterItemName: "JournalBookmarkButtonToDelete",
+            AnalyticsParameterContentType: "bookmarkButtonTapped"
+        ])
+        
     }
     
     private func alertForRealmDeletion(title: String, message: String, bookMarked: BookMarkedNews) {
@@ -423,6 +442,12 @@ final class JournalViewController: BaseViewController {
             //different: search in realm with that tag & update Button UI
             journalVM.updateTagType(newType: sender.type)
         }
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-04",
+            AnalyticsParameterItemName: "JournalTagButton",
+            AnalyticsParameterContentType: "tagButtonTapped"
+        ])
     }
     
     private func setupUnselectedButton() {
@@ -498,6 +523,12 @@ final class JournalViewController: BaseViewController {
         journalVM.retrieveOnlyBookMarkedNewsWithJournal()
 
         startsWobbleAnimation()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-05",
+            AnalyticsParameterItemName: "JournalPDFButtonToDelete",
+            AnalyticsParameterContentType: "pdfButtonTapped"
+        ])
     }
     
     @objc private func deleteButtonTapped() {
@@ -510,10 +541,22 @@ final class JournalViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         
         startsWobbleAnimation()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-06",
+            AnalyticsParameterItemName: "JournalDeleteButtonToDelete",
+            AnalyticsParameterContentType: "DeleteButtonTapped"
+        ])
     }
     
     @objc private func confirmDeletionButtonTapped() {
         alertToDeleteSelectedNews(title: JournalRealmSetupValues.bookmarkedNewsDeletionAlertTitle, message: JournalRealmSetupValues.bookmarkedNewsDeletionAlertMessage)
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-07",
+            AnalyticsParameterItemName: "JournalConfirmDeletionButton",
+            AnalyticsParameterContentType: "confirmDeletionButtonTapped"
+        ])
     }
     
     private func alertToDeleteSelectedNews(title: String, message: String) {
@@ -574,6 +617,12 @@ final class JournalViewController: BaseViewController {
         
         //back to normal bookmarkedNews lists
         journalVM.retrieveBookMarkedNewsWithTag()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-08",
+            AnalyticsParameterItemName: "JournalCreatePDFButton",
+            AnalyticsParameterContentType: "createPDFButtonTapped"
+        ])
     }
     
     @objc private func cancelButtonTapped() {
@@ -597,6 +646,12 @@ final class JournalViewController: BaseViewController {
         navigationItem.leftBarButtonItem = nil
         
         setupTagButtonsActive()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Journal-09",
+            AnalyticsParameterItemName: "JournalCancelButton",
+            AnalyticsParameterContentType: "cancelButtonTapped"
+        ])
     }
     
     private func startsWobbleAnimation() {

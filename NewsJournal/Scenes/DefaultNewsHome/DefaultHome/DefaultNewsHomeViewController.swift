@@ -57,8 +57,6 @@ final class DefaultNewsHomeViewController: TabmanViewController {
         addBar(bar, dataSource: self, at: .top)
     }
     
-    
-    
 }
 
 //MARK: - Extension for  TMBarDataSource
