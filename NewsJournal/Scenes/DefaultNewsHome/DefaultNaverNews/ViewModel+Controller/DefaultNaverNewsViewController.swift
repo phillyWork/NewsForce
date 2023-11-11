@@ -71,9 +71,20 @@ final class DefaultNaverNewsViewController: BaseViewController {
         
         //시작 시의 empty view 구성
         linkPresentNaverCollectionView.setupInitialBackgroundForDefaultNews()
+  
+//        let button = UIButton(type: .roundedRect)
+//        button.frame = CGRect(x: 250, y: 300, width: 100, height: 30)
+//        button.setTitle("Test Crash", for: [])
+//        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+//        view.addSubview(button)
         
         defaultNaverVM.callRequestForNaver()
     }
+    
+//    @objc func crashButtonTapped(_ sender: AnyObject) {
+//          let numbers = [0]
+//          let _ = numbers[1]
+//      }
     
     override func configureViews() {
         super.configureViews()
