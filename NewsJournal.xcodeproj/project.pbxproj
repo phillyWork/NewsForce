@@ -43,6 +43,8 @@
 		212065B92AFFCDDE000A5245 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 212065B82AFFCDDE000A5245 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		212065BB2AFFCDDE000A5245 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 212065BA2AFFCDDE000A5245 /* FirebaseCrashlytics */; };
 		212065BD2AFFCDDE000A5245 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 212065BC2AFFCDDE000A5245 /* FirebaseMessaging */; };
+		212065C12B0007ED000A5245 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212065C02B0007ED000A5245 /* APIKey.swift */; };
+		212065C32B00082C000A5245 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 212065C22B00082C000A5245 /* GoogleService-Info.plist */; };
 		21290CA92AD563C2001FAA49 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21290CA82AD563C2001FAA49 /* OnBoardingViewController.swift */; };
 		21290CC12AD56B9A001FAA49 /* Enum+OnBoardingSetupValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21290CC02AD56B9A001FAA49 /* Enum+OnBoardingSetupValues.swift */; };
 		21290CC32AD56E19001FAA49 /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21290CC22AD56E19001FAA49 /* OnBoardingViewModel.swift */; };
@@ -175,6 +177,8 @@
 		211F01022AE4492D00E0249B /* CustomSearchOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchOptionButton.swift; sourceTree = "<group>"; };
 		212065B52AFFCD3E000A5245 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		212065BF2AFFF41F000A5245 /* NewsJournal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewsJournal.entitlements; sourceTree = "<group>"; };
+		212065C02B0007ED000A5245 /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		212065C22B00082C000A5245 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		21290CA82AD563C2001FAA49 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		21290CC02AD56B9A001FAA49 /* Enum+OnBoardingSetupValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+OnBoardingSetupValues.swift"; sourceTree = "<group>"; };
 		21290CC22AD56E19001FAA49 /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 				2108211F2AC85E5D00A999AC /* AppDelegate.swift */,
 				210821212AC85E5D00A999AC /* SceneDelegate.swift */,
 				21FCBB042AF7F37F00B64A1C /* APIKey.swift */,
+				212065C02B0007ED000A5245 /* APIKey.swift */,
 				2108213A2AC8602600A999AC /* Setup */,
 				210821452AC8639900A999AC /* Manager */,
 				2108214F2AC8650200A999AC /* Model */,
@@ -318,6 +323,7 @@
 				2108212A2AC85E5E00A999AC /* LaunchScreen.storyboard */,
 				2108212D2AC85E5E00A999AC /* Info.plist */,
 				212065B52AFFCD3E000A5245 /* GoogleService-Info.plist */,
+				212065C22B00082C000A5245 /* GoogleService-Info.plist */,
 				210821332AC85E9300A999AC /* .gitignore */,
 			);
 			path = NewsJournal;
@@ -1027,6 +1033,7 @@
 			files = (
 				210821342AC85E9300A999AC /* .gitignore in Resources */,
 				212065B62AFFCD3E000A5245 /* GoogleService-Info.plist in Resources */,
+				212065C32B00082C000A5245 /* GoogleService-Info.plist in Resources */,
 				2108212C2AC85E5E00A999AC /* LaunchScreen.storyboard in Resources */,
 				210821292AC85E5E00A999AC /* Assets.xcassets in Resources */,
 			);
@@ -1165,6 +1172,7 @@
 				2103371B2AD18FB300B88BCC /* ImageString.swift in Sources */,
 				212B0E912AD9B93F0006FD1A /* DefaultNaverNewsViewController.swift in Sources */,
 				210821222AC85E5D00A999AC /* SceneDelegate.swift in Sources */,
+				212065C12B0007ED000A5245 /* APIKey.swift in Sources */,
 				210821402AC8633A00A999AC /* JournalViewController.swift in Sources */,
 				210821792AC8725700A999AC /* Observable.swift in Sources */,
 				216887E42ACE451F008A8A40 /* Enum+MemoSetupValues.swift in Sources */,
@@ -1336,7 +1344,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.phillyh.NewsJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1372,7 +1380,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.phillyh.NewsJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
