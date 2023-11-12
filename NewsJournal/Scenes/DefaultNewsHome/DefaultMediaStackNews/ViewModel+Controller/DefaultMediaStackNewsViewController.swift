@@ -7,8 +7,6 @@
 
 import UIKit
 
-import RxSwift
-import RxCocoa
 import RealmSwift
 import FirebaseAnalytics
 

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
 import RealmSwift
 import FirebaseAnalytics
 
@@ -22,36 +24,36 @@ final class JournalViewController: BaseViewController {
 
     private lazy var pdfBarButtonItem: CustomBarButtonItem = {
         let button = CustomBarButtonItem(type: .selectForPDF)
-        button.target = self
-        button.action = #selector(pdfButtonTapped)
+//        button.target = self
+//        button.action = #selector(pdfButtonTapped)
         return button
     }()
     
     private lazy var createPDFDocumentBarButtonItem: CustomBarButtonItem = {
         let button = CustomBarButtonItem(type: .createPDFDocument)
-        button.target = self
-        button.action = #selector(createPDFDocumentButtonTapped)
+//        button.target = self
+//        button.action = #selector(createPDFDocumentButtonTapped)
         return button
     }()
     
     private lazy var deleteBarButtonItem: CustomBarButtonItem = {
         let button = CustomBarButtonItem(type: .selectForDeletion)
-        button.target = self
-        button.action = #selector(deleteButtonTapped)
+//        button.target = self
+//        button.action = #selector(deleteButtonTapped)
         return button
     }()
     
     private lazy var deleteConfirmBarButtonItem: CustomBarButtonItem = {
         let button = CustomBarButtonItem(type: .deletionConfirmation)
-        button.target = self
-        button.action = #selector(confirmDeletionButtonTapped)
+//        button.target = self
+//        button.action = #selector(confirmDeletionButtonTapped)
         return button
     }()
     
     private lazy var cancelBarButtonItem: CustomBarButtonItem = {
         let button = CustomBarButtonItem(type: .cancel)
-        button.target = self
-        button.action = #selector(cancelButtonTapped)
+//        button.target = self
+//        button.action = #selector(cancelButtonTapped)
         return button
     }()
     
@@ -88,10 +90,14 @@ final class JournalViewController: BaseViewController {
     
     private var diffableDataSource: UICollectionViewDiffableDataSource<Int, BookMarkedNews>!
     
+    private let disposeBag = DisposeBag()
+    
     //MARK: - Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bind()
         
         configDiffableDataSource()
         
@@ -209,6 +215,135 @@ final class JournalViewController: BaseViewController {
         stackView.spacing = Constant.Frame.stackViewItemSpace
         stackView.alignment = .top
         stackView.distribution = .fillProportionally
+    }
+    
+    
+    //MARK: - Rx bind
+    
+    private func bind() {
+        
+        pdfBarButtonItem.rx.tap
+            .subscribe(with: self) { owner, _ in
+                owner.navigationItem.leftBarButtonItem = owner.cancelBarButtonItem
+                owner.navigationItem.rightBarButtonItems = [owner.createPDFDocumentBarButtonItem]
+                owner.setupNavBarWithCollectionViewBeforeAction()
+                owner.setupTagButtonsInactive()
+                
+                owner.navigationItem.title = JournalRealmSetupValues.navTitleForPDFSelection
+                owner.navigationController?.navigationBar.prefersLargeTitles = false
+                        
+                owner.journalVM.retrieveOnlyBookMarkedNewsWithJournal()
+
+                owner.startsWobbleAnimation()
+                
+                Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                    AnalyticsParameterItemID: "Journal-05",
+                    AnalyticsParameterItemName: "JournalPDFButtonToCreate",
+                    AnalyticsParameterContentType: "pdfButtonTapped"
+                ])
+            }
+            .disposed(by: disposeBag)
+        
+        deleteBarButtonItem.rx.tap
+            .subscribe(with: self) { owner, _ in
+                owner.navigationItem.leftBarButtonItem = owner.cancelBarButtonItem
+                owner.navigationItem.rightBarButtonItems = [owner.deleteConfirmBarButtonItem]
+                owner.setupNavBarWithCollectionViewBeforeAction()
+                owner.setupTagButtonsInactive()
+                
+                owner.navigationItem.title = JournalRealmSetupValues.navTitleForRemovalSelection
+                owner.navigationController?.navigationBar.prefersLargeTitles = false
+                
+                owner.startsWobbleAnimation()
+                
+                Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                    AnalyticsParameterItemID: "Journal-06",
+                    AnalyticsParameterItemName: "JournalDeleteButtonToDelete",
+                    AnalyticsParameterContentType: "DeleteButtonTapped"
+                ])
+            }
+            .disposed(by: disposeBag)
+        
+        
+        createPDFDocumentBarButtonItem.rx.tap
+            .subscribe(with: self) { owner, _ in
+                //hide checkmark and reset selected status
+                owner.hideCheckMark()
+                
+                owner.stopsWobbleAnimation()
+                
+                //present PDFViewController
+                let pdfVC = PDFViewController()
+                pdfVC.pdfVM.documentData = owner.journalVM.createPDFData()
+                owner.navigationController?.pushViewController(pdfVC, animated: true)
+                
+                //remove selected objects in viewModel
+                owner.journalVM.clearSelectedJournals()
+                
+                owner.setupNavBarWithCollectionViewAfterAction()
+                owner.setupInitialNavBar()
+                
+                //remove left
+                owner.navigationItem.leftBarButtonItem = nil
+                
+                owner.setupTagButtonsActive()
+                
+                //back to normal bookmarkedNews lists
+                owner.journalVM.retrieveBookMarkedNewsWithTag()
+                
+                Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                    AnalyticsParameterItemID: "Journal-08",
+                    AnalyticsParameterItemName: "JournalCreatePDFButton",
+                    AnalyticsParameterContentType: "createPDFButtonTapped"
+                ])
+            }
+            .disposed(by: disposeBag)
+        
+        deleteConfirmBarButtonItem.rx.tap
+            .subscribe(with: self) { owner, _ in
+                owner.alertToDeleteSelectedNews(title: JournalRealmSetupValues.bookmarkedNewsDeletionAlertTitle, message: JournalRealmSetupValues.bookmarkedNewsDeletionAlertMessage)
+                
+                Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                    AnalyticsParameterItemID: "Journal-07",
+                    AnalyticsParameterItemName: "JournalConfirmDeletionButton",
+                    AnalyticsParameterContentType: "confirmDeletionButtonTapped"
+                ])
+            }
+            .disposed(by: disposeBag)
+        
+        cancelBarButtonItem.rx.tap
+            .subscribe(with: self) { owner, _ in
+                //hide checkmark and reset selected status
+                owner.hideCheckMark()
+                
+                owner.stopsWobbleAnimation()
+                
+                //remove selected objects in viewModel
+                owner.journalVM.clearSelectedJournals()
+                
+                if let rightBarButtonItems = owner.navigationItem.rightBarButtonItems, rightBarButtonItems.contains(owner.createPDFDocumentBarButtonItem) {
+                    //pdf 구성 완료 후 원래대로 돌아오기
+                    owner.journalVM.retrieveBookMarkedNewsWithTag()
+                }
+                
+                owner.setupNavBarWithCollectionViewAfterAction()
+                owner.setupInitialNavBar()
+                
+                //remove left
+                owner.navigationItem.leftBarButtonItem = nil
+                
+                owner.setupTagButtonsActive()
+                
+                Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                    AnalyticsParameterItemID: "Journal-09",
+                    AnalyticsParameterItemName: "JournalCancelButton",
+                    AnalyticsParameterContentType: "cancelButtonTapped"
+                ])
+            }
+            .disposed(by: disposeBag)
+        
+        
+        
     }
     
     //MARK: - Setup with CollectionView Compositional Layout & Diffable DataSource
@@ -511,53 +646,53 @@ final class JournalViewController: BaseViewController {
     
     //MARK: - Handlers for BarButtonItem
     
-    @objc private func pdfButtonTapped() {
-        navigationItem.leftBarButtonItem = cancelBarButtonItem
-        navigationItem.rightBarButtonItems = [createPDFDocumentBarButtonItem]
-        setupNavBarWithCollectionViewBeforeAction()
-        setupTagButtonsInactive()
-        
-        navigationItem.title = JournalRealmSetupValues.navTitleForPDFSelection
-        navigationController?.navigationBar.prefersLargeTitles = false
-                
-        journalVM.retrieveOnlyBookMarkedNewsWithJournal()
-
-        startsWobbleAnimation()
-        
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-            AnalyticsParameterItemID: "Journal-05",
-            AnalyticsParameterItemName: "JournalPDFButtonToDelete",
-            AnalyticsParameterContentType: "pdfButtonTapped"
-        ])
-    }
+//    @objc private func pdfButtonTapped() {
+//        navigationItem.leftBarButtonItem = cancelBarButtonItem
+//        navigationItem.rightBarButtonItems = [createPDFDocumentBarButtonItem]
+//        setupNavBarWithCollectionViewBeforeAction()
+//        setupTagButtonsInactive()
+//        
+//        navigationItem.title = JournalRealmSetupValues.navTitleForPDFSelection
+//        navigationController?.navigationBar.prefersLargeTitles = false
+//                
+//        journalVM.retrieveOnlyBookMarkedNewsWithJournal()
+//
+//        startsWobbleAnimation()
+//        
+//        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+//            AnalyticsParameterItemID: "Journal-05",
+//            AnalyticsParameterItemName: "JournalPDFButtonToCreate",
+//            AnalyticsParameterContentType: "pdfButtonTapped"
+//        ])
+//    }
     
-    @objc private func deleteButtonTapped() {
-        navigationItem.leftBarButtonItem = cancelBarButtonItem
-        navigationItem.rightBarButtonItems = [deleteConfirmBarButtonItem]
-        setupNavBarWithCollectionViewBeforeAction()
-        setupTagButtonsInactive()
-        
-        navigationItem.title = JournalRealmSetupValues.navTitleForRemovalSelection
-        navigationController?.navigationBar.prefersLargeTitles = false
-        
-        startsWobbleAnimation()
-        
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-            AnalyticsParameterItemID: "Journal-06",
-            AnalyticsParameterItemName: "JournalDeleteButtonToDelete",
-            AnalyticsParameterContentType: "DeleteButtonTapped"
-        ])
-    }
+//    @objc private func deleteButtonTapped() {
+//        navigationItem.leftBarButtonItem = cancelBarButtonItem
+//        navigationItem.rightBarButtonItems = [deleteConfirmBarButtonItem]
+//        setupNavBarWithCollectionViewBeforeAction()
+//        setupTagButtonsInactive()
+//        
+//        navigationItem.title = JournalRealmSetupValues.navTitleForRemovalSelection
+//        navigationController?.navigationBar.prefersLargeTitles = false
+//        
+//        startsWobbleAnimation()
+//        
+//        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+//            AnalyticsParameterItemID: "Journal-06",
+//            AnalyticsParameterItemName: "JournalDeleteButtonToDelete",
+//            AnalyticsParameterContentType: "DeleteButtonTapped"
+//        ])
+//    }
     
-    @objc private func confirmDeletionButtonTapped() {
-        alertToDeleteSelectedNews(title: JournalRealmSetupValues.bookmarkedNewsDeletionAlertTitle, message: JournalRealmSetupValues.bookmarkedNewsDeletionAlertMessage)
-        
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-            AnalyticsParameterItemID: "Journal-07",
-            AnalyticsParameterItemName: "JournalConfirmDeletionButton",
-            AnalyticsParameterContentType: "confirmDeletionButtonTapped"
-        ])
-    }
+//    @objc private func confirmDeletionButtonTapped() {
+//        alertToDeleteSelectedNews(title: JournalRealmSetupValues.bookmarkedNewsDeletionAlertTitle, message: JournalRealmSetupValues.bookmarkedNewsDeletionAlertMessage)
+//        
+//        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+//            AnalyticsParameterItemID: "Journal-07",
+//            AnalyticsParameterItemName: "JournalConfirmDeletionButton",
+//            AnalyticsParameterContentType: "confirmDeletionButtonTapped"
+//        ])
+//    }
     
     private func alertToDeleteSelectedNews(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -593,66 +728,66 @@ final class JournalViewController: BaseViewController {
         present(alert, animated: true)
     }
     
-    @objc private func createPDFDocumentButtonTapped() {
-        //hide checkmark and reset selected status
-        hideCheckMark()
-        
-        stopsWobbleAnimation()
-        
-        //present PDFViewController
-        let pdfVC = PDFViewController()
-        pdfVC.pdfVM.documentData = journalVM.createPDFData()
-        navigationController?.pushViewController(pdfVC, animated: true)
-        
-        //remove selected objects in viewModel
-        journalVM.clearSelectedJournals()
-        
-        setupNavBarWithCollectionViewAfterAction()
-        setupInitialNavBar()
-        
-        //remove left
-        navigationItem.leftBarButtonItem = nil
-        
-        setupTagButtonsActive()
-        
-        //back to normal bookmarkedNews lists
-        journalVM.retrieveBookMarkedNewsWithTag()
-        
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-            AnalyticsParameterItemID: "Journal-08",
-            AnalyticsParameterItemName: "JournalCreatePDFButton",
-            AnalyticsParameterContentType: "createPDFButtonTapped"
-        ])
-    }
+//    @objc private func createPDFDocumentButtonTapped() {
+//        //hide checkmark and reset selected status
+//        hideCheckMark()
+//        
+//        stopsWobbleAnimation()
+//        
+//        //present PDFViewController
+//        let pdfVC = PDFViewController()
+//        pdfVC.pdfVM.documentData = journalVM.createPDFData()
+//        navigationController?.pushViewController(pdfVC, animated: true)
+//        
+//        //remove selected objects in viewModel
+//        journalVM.clearSelectedJournals()
+//        
+//        setupNavBarWithCollectionViewAfterAction()
+//        setupInitialNavBar()
+//        
+//        //remove left
+//        navigationItem.leftBarButtonItem = nil
+//        
+//        setupTagButtonsActive()
+//        
+//        //back to normal bookmarkedNews lists
+//        journalVM.retrieveBookMarkedNewsWithTag()
+//        
+//        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+//            AnalyticsParameterItemID: "Journal-08",
+//            AnalyticsParameterItemName: "JournalCreatePDFButton",
+//            AnalyticsParameterContentType: "createPDFButtonTapped"
+//        ])
+//    }
     
-    @objc private func cancelButtonTapped() {
-        //hide checkmark and reset selected status
-        hideCheckMark()
-        
-        stopsWobbleAnimation()
-        
-        //remove selected objects in viewModel
-        journalVM.clearSelectedJournals()
-        
-        if let rightBarButtonItems = navigationItem.rightBarButtonItems, rightBarButtonItems.contains(createPDFDocumentBarButtonItem) {
-            //pdf 구성 완료 후 원래대로 돌아오기
-            journalVM.retrieveBookMarkedNewsWithTag()
-        }
-        
-        setupNavBarWithCollectionViewAfterAction()
-        setupInitialNavBar()
-        
-        //remove left
-        navigationItem.leftBarButtonItem = nil
-        
-        setupTagButtonsActive()
-        
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-            AnalyticsParameterItemID: "Journal-09",
-            AnalyticsParameterItemName: "JournalCancelButton",
-            AnalyticsParameterContentType: "cancelButtonTapped"
-        ])
-    }
+//    @objc private func cancelButtonTapped() {
+//        //hide checkmark and reset selected status
+//        hideCheckMark()
+//        
+//        stopsWobbleAnimation()
+//        
+//        //remove selected objects in viewModel
+//        journalVM.clearSelectedJournals()
+//        
+//        if let rightBarButtonItems = navigationItem.rightBarButtonItems, rightBarButtonItems.contains(createPDFDocumentBarButtonItem) {
+//            //pdf 구성 완료 후 원래대로 돌아오기
+//            journalVM.retrieveBookMarkedNewsWithTag()
+//        }
+//        
+//        setupNavBarWithCollectionViewAfterAction()
+//        setupInitialNavBar()
+//        
+//        //remove left
+//        navigationItem.leftBarButtonItem = nil
+//        
+//        setupTagButtonsActive()
+//        
+//        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+//            AnalyticsParameterItemID: "Journal-09",
+//            AnalyticsParameterItemName: "JournalCancelButton",
+//            AnalyticsParameterContentType: "cancelButtonTapped"
+//        ])
+//    }
     
     private func startsWobbleAnimation() {
         //wobble animation starts
