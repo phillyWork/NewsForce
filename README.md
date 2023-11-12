@@ -17,8 +17,8 @@
 - 1인 개발
 
 # 사용 기술
-- **UIKit, LinkPresentation, PDFKit, WebKit, SPM**
-- **Alamofire, Realm, Kingfisher, SnapKit, JDStatusBarNotification, SkeletonView, Tabman**
+- **UIKit, LinkPresentation, PDFKit, WebKit, SPM, Push Notifications Console**
+- **Alamofire, Realm, Kingfisher, RxSwift, SnapKit, JDStatusBarNotification, SkeletonView, Tabman, FirebaseAnalyticsWithoutAdid, FirebaseCrashlytics, FirebaseMessaging**
 - **MVVM, Router, Singleton, Repository, DTO Data Structure**
 - **CompositionalLayout, DiffableDatasource, ListContentConfiguration, UISheetPresentation, UISearchBar + ContainerView, BaseView + Custom ReusableView**
 - **NotificationCenter, GCD, UserDefaults, FileManager, NSCache, Codable, Hashable**
@@ -49,6 +49,7 @@
 - 기사 fetch 과정에서 UI적으로 상황 알려줌으로 유저의 UX 경험 개선
     - `SkeletonView`를 활용해 기사와 이미지를 로딩중임을 알림
     - 기사 결과가 없을 경우 CollectionView의 emptyView 활용해 fetch해올 수 없는 상황 인지시켜줌 UX 개선
+- `FCM` 및 `Push Notifications Console` 활용 remote Push 기능 구현
 
 ------
 
