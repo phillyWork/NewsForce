@@ -11,7 +11,10 @@ import LinkPresentation
 final class CacheManager {
     
     static let shared = CacheManager()
-    private init() { }
+    
+    private init() {
+        memoryCache.totalCostLimit = 100000
+    }
     
     private let memoryCache = NSCache<NSString, LPLinkMetadata>()
     
@@ -28,6 +31,8 @@ final class CacheManager {
     
     func saveIntoMemoryCache(_ url: String, data: LPLinkMetadata) {
         let size = MemoryLayout.size(ofValue: data)
+        //setting totalCostLimit, NSCache will automatically calculate size with each data and remove biggest size
+        //LPLinkMetadata: News data ~ 소모성 큼, etag 활용 어려움 --> 사이즈로 관리
         memoryCache.setObject(data, forKey: NSString(string: url), cost: size)
     }
     
